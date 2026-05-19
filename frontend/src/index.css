@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-purple: #2563EB;
+  --color-brand-purple-light: #1E3A8A;
+  --color-brand-purple-dark: #1E3A8A;
+  --color-brand-dark: #0F172A;
+  --color-brand-dark-accent: #1A1A2E;
+  --color-brand-gold: #FACC15;
+  --color-brand-gold-dark: #EAB308;
+  --color-brand-gray: #F3F4F6;
+  
+  /* Vibrant Accents from user request */
+  --color-emerald-400: oklch(76.5% .177 163.223);
+  --color-cyan-400: oklch(78.9% .154 211.53);
+  --color-indigo-500: oklch(58.5% .233 277.117);
+  --color-violet-600: oklch(54.1% .281 293.009);
+  --color-fuchsia-500: oklch(66.7% .295 322.15);
+  
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Poppins", sans-serif;
+}
+
+:root {
+  background-color: white;
+  color: #111827;
+  font-family: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .grid-pattern {
+    background-image: radial-gradient(circle at 1px 1px, rgba(130, 36, 227, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+  
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-2xl;
+  }
+  
+  .glass-dark {
+    @apply bg-brand-dark/90 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 30px rgba(130, 36, 227, 0.4);
+  }
+  
+  .bg-gradient-purple {
+    background: linear-gradient(135deg, var(--color-brand-purple) 0%, var(--color-brand-purple-dark) 100%);
+  }
+
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, var(--color-brand-gold) 0%, var(--color-brand-gold-dark) 100%);
+  }
+
+  .bg-gradient-vibrant {
+    background: linear-gradient(135deg, var(--color-violet-600) 0%, var(--color-fuchsia-500) 100%);
+  }
+  
+  .bg-gradient-tech {
+    background: linear-gradient(135deg, var(--color-indigo-500) 0%, var(--color-cyan-400) 100%);
+  }
+
+  /* Animations */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; filter: blur(0px); }
+    50% { opacity: .7; filter: blur(4px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}
+
