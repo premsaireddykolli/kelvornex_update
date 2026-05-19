@@ -45,139 +45,191 @@ const Login = () => {
 
   return (
     <Layout
-      title="Login to Kelvornex"
-      subtitle="Access your customized dashboard, expert cohorts, and upskilling roadmap."
+      title="Login"
       description="Login to Kelvornex: Sign in to your Student or Entrepreneur dashboard."
+      hideBanner={true}
     >
-      <div className="max-w-md mx-auto bg-white rounded-3xl border border-gray-100 shadow-sm p-8 relative overflow-hidden">
-        
-        {/* Success Screen */}
-        <AnimatePresence>
-          {success && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-6"
-            >
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
-                <CheckCircle2 size={32} />
+      <div className="min-h-[calc(100vh-180px)] flex items-center justify-center py-6 bg-slate-50/20">
+        <div className="max-w-6xl w-full mx-auto px-6 grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+          
+          {/* Left Column: Visual/Brand Hub */}
+          <div className="hidden md:flex md:col-span-5 lg:col-span-6 flex-col justify-center bg-brand-dark rounded-3xl p-12 text-white relative overflow-hidden shadow-xl shadow-brand-dark/10">
+            {/* Background gradient & decorative shapes */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand-dark to-brand-purple/30 opacity-95" />
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-purple rounded-full blur-[80px] opacity-25" />
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-violet-600 rounded-full blur-[80px] opacity-20" />
+            
+            <div className="relative z-10 space-y-8">
+              <div>
+                <div className="inline-block bg-white p-2 rounded-2xl mb-8">
+                  <img src="Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 rounded-xl" />
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
+                  Empowering Tech Careers & Startups
+                </h2>
+                <p className="text-white/70 mt-3 text-sm lg:text-base font-light">
+                  Access your customized dashboard, expert cohorts, and upskilling roadmap.
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">Welcome Back!</h3>
-              <p className="text-gray-500 mt-2 text-sm">
-                Successfully authenticated. Redirecting to dashboard...
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Role Toggle Switcher */}
-        <div className="mb-8">
-          <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider text-center mb-3">
-            Select Your Profile Role
-          </label>
-          <div className="flex bg-gray-50 p-1 rounded-2xl border border-gray-100 relative">
-            <button
-              type="button"
-              onClick={() => setRole('student')}
-              className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 relative z-10 cursor-pointer ${
-                role === 'student' ? 'text-white' : 'text-gray-500 hover:text-gray-800'
-              }`}
-            >
-              I am a Student
-            </button>
-            <button
-              type="button"
-              onClick={() => setRole('entrepreneur')}
-              className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 relative z-10 cursor-pointer ${
-                role === 'entrepreneur' ? 'text-white' : 'text-gray-500 hover:text-gray-800'
-              }`}
-            >
-              I am an Entrepreneur
-            </button>
-            <div
-              className={`absolute top-1 bottom-1 rounded-xl bg-brand-purple transition-all duration-300 ${
-                role === 'student' ? 'left-1 w-[48%]' : 'left-[51%] w-[48%]'
-              }`}
-            />
+              
+              <ul className="space-y-4 pt-4 border-t border-white/10">
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-purple font-extrabold">✓</span>
+                  <span className="text-sm font-semibold text-white/90">Industry-Vetted Cohorts</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-purple font-extrabold">✓</span>
+                  <span className="text-sm font-semibold text-white/90">Vetted Tech Talent Pool</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-purple font-extrabold">✓</span>
+                  <span className="text-sm font-semibold text-white/90">Direct Mentorship</span>
+                </li>
+              </ul>
+            </div>
           </div>
+
+          {/* Right Column: Form Hub */}
+          <div className="col-span-1 md:col-span-7 lg:col-span-6 flex items-center justify-center">
+            <div className="max-w-md w-full bg-white rounded-3xl border border-gray-100 shadow-sm p-8 relative overflow-hidden">
+              
+              {/* Success Screen */}
+              <AnimatePresence>
+                {success && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-6"
+                  >
+                    <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
+                      <CheckCircle2 size={32} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900">Welcome Back!</h3>
+                    <p className="text-gray-500 mt-2 text-sm">
+                      Successfully authenticated. Redirecting to dashboard...
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Header Title for Form Mobile */}
+              <div className="md:hidden text-center mb-6">
+                <img src="Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 mx-auto mb-3 rounded-xl" />
+                <h3 className="text-2xl font-extrabold text-gray-900">Welcome Back</h3>
+              </div>
+
+              {/* Role Toggle Switcher */}
+              <div className="mb-8">
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider text-center mb-3">
+                  Select Your Profile Role
+                </label>
+                <div className="flex bg-gray-50 p-1 rounded-2xl border border-gray-100 relative">
+                  <button
+                    type="button"
+                    onClick={() => setRole('student')}
+                    className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 relative z-10 cursor-pointer ${
+                      role === 'student' ? 'text-white' : 'text-gray-500 hover:text-gray-800'
+                    }`}
+                  >
+                    I am a Student
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setRole('entrepreneur')}
+                    className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all duration-300 relative z-10 cursor-pointer ${
+                      role === 'entrepreneur' ? 'text-white' : 'text-gray-500 hover:text-gray-800'
+                    }`}
+                  >
+                    I am an Entrepreneur
+                  </button>
+                  <div
+                    className={`absolute top-1 bottom-1 rounded-xl bg-brand-purple transition-all duration-300 ${
+                      role === 'student' ? 'left-1 w-[48%]' : 'left-[51%] w-[48%]'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Validation Errors */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl flex gap-3 items-start text-sm"
+                >
+                  <AlertCircle size={20} className="shrink-0 mt-0.5" />
+                  <span>{error}</span>
+                </motion.div>
+              )}
+
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                    Email Address
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-3.5 text-gray-400">
+                      <Mail size={18} />
+                    </span>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-brand-purple"
+                      placeholder={role === 'student' ? 'alex@university.edu' : 'founder@mycompany.com'}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
+                      Password
+                    </label>
+                    <a href="#" className="text-xs text-brand-purple hover:underline">Forgot password?</a>
+                  </div>
+                  <div className="relative">
+                    <span className="absolute left-4 top-3.5 text-gray-400">
+                      <Lock size={18} />
+                    </span>
+                    <input
+                      type="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-brand-purple"
+                      placeholder="••••••••"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-brand-purple text-white font-bold py-4 rounded-2xl hover:bg-brand-purple/95 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-brand-purple/20"
+                >
+                  Sign In As {role === 'student' ? 'Student' : 'Entrepreneur'} <ArrowRight size={18} />
+                </button>
+              </form>
+
+              {/* Footer Redirect Toggle */}
+              <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+                <p className="text-sm text-gray-500">
+                  Don't have an account?{' '}
+                  <Link to="/signup" className="text-brand-purple font-bold hover:underline">
+                    Create one now
+                  </Link>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
         </div>
-
-        {/* Validation Errors */}
-        {error && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-2xl flex gap-3 items-start text-sm"
-          >
-            <AlertCircle size={20} className="shrink-0 mt-0.5" />
-            <span>{error}</span>
-          </motion.div>
-        )}
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-              Email Address
-            </label>
-            <div className="relative">
-              <span className="absolute left-4 top-3.5 text-gray-400">
-                <Mail size={18} />
-              </span>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-                className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-brand-purple"
-                placeholder={role === 'student' ? 'alex@university.edu' : 'founder@mycompany.com'}
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block">
-                Password
-              </label>
-              <a href="#" className="text-xs text-brand-purple hover:underline">Forgot password?</a>
-            </div>
-            <div className="relative">
-              <span className="absolute left-4 top-3.5 text-gray-400">
-                <Lock size={18} />
-              </span>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-                className="w-full bg-gray-50 border border-gray-100 rounded-2xl pl-12 pr-4 py-3 text-sm focus:outline-none focus:border-brand-purple"
-                placeholder="••••••••"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-brand-purple text-white font-bold py-4 rounded-2xl hover:bg-brand-purple/95 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-brand-purple/20"
-          >
-            Sign In As {role === 'student' ? 'Student' : 'Entrepreneur'} <ArrowRight size={18} />
-          </button>
-        </form>
-
-        {/* Footer Redirect Toggle */}
-        <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-          <p className="text-sm text-gray-500">
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-brand-purple font-bold hover:underline">
-              Create one now
-            </Link>
-          </p>
-        </div>
-
       </div>
     </Layout>
   );
