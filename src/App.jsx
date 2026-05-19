@@ -20,6 +20,8 @@ import ApplyAsMentor from './pages/ApplyAsMentor';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Affiliate from './pages/Affiliate';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 
 
@@ -57,6 +59,8 @@ function App() {
           <Route path="/apply-as-mentor" element={<ApplyAsMentor />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/affiliate" element={<Affiliate />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           
           {/* Dynamic Program Routes */}
           <Route path="/:programId" element={<ProgramDetail />} />

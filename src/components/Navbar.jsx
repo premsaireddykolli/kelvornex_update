@@ -103,8 +103,8 @@ const Navbar = ({ onCartClick }) => {
         {/* Buttons & Cart */}
         <div className="hidden lg:flex items-center gap-4">
           <Link to="/about" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors mr-4">About Us</Link>
-          <button className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors">Login</button>
-          <button className="bg-brand-purple text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-purple-dark transition-all shadow-lg shadow-brand-purple/20">Contact Us</button>
+          <Link to="/login" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors">Login</Link>
+          <Link to="/contact" className="bg-brand-purple text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-purple-dark transition-all shadow-lg shadow-brand-purple/20">Contact Us</Link>
           
           <button 
             onClick={onCartClick}
@@ -156,8 +156,8 @@ const Navbar = ({ onCartClick }) => {
                 </div>
               ))}
               <div className="pt-6 flex flex-col gap-3">
-                <button className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold">Login</button>
-                <button className="w-full border-2 border-gray-800 text-gray-800 py-4 rounded-2xl font-bold">Contact Us</button>
+                <Link to="/login" className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold text-center block">Login</Link>
+                <Link to="/contact" className="w-full border-2 border-gray-800 text-gray-800 py-4 rounded-2xl font-bold text-center block">Contact Us</Link>
               </div>
             </div>
           </motion.div>
