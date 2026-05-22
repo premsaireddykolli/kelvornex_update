@@ -1,4 +1,3 @@
-import React from 'react';
 import Layout from '../components/Layout';
 import { Shield, Eye, Lock, FileText, Globe, UserCheck } from 'lucide-react';
 

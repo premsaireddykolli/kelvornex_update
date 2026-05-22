@@ -1,4 +1,3 @@
-import React from 'react';
 import Hero from '../components/Hero';
 import Partners from '../components/Partners';
 import Programs from '../components/Programs';

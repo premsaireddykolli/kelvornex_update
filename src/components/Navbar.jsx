@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Menu, X, ArrowRight, ShoppingCart } from 'lucide-react';
+import { ChevronDown, Menu, X, ShoppingCart } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
 
 const Navbar = ({ onCartClick }) => {
+  const { user, isAuthenticated } = useContext(AuthContext);
+  const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const location = useLocation();
+
+  const [prevLocation, setPrevLocation] = useState(location);
+  if (location.pathname !== prevLocation.pathname || location.search !== prevLocation.search) {
+    setPrevLocation(location);
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,12 +27,6 @@ const Navbar = ({ onCartClick }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [location]);
 
   const navLinks = [
     { 
@@ -58,7 +63,7 @@ const Navbar = ({ onCartClick }) => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src="Kelvornex.jpeg" alt="kelvornex" className="h-8 md:h-10" />
+          <img src="/Kelvornex.jpeg" alt="kelvornex" className="h-8 md:h-10" />
         </Link>
 
         {/* Desktop Links */}
@@ -103,7 +108,22 @@ const Navbar = ({ onCartClick }) => {
         {/* Buttons & Cart */}
         <div className="hidden lg:flex items-center gap-4">
           <Link to="/about" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors mr-4">About Us</Link>
-          <Link to="/login" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors">Login</Link>
+          {isAuthenticated ? (
+            <Link to={`/profile/${user?.id}`} className="flex items-center mr-2">
+              {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
+                <img src={user.profilePictureUrl} className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
+              ) : (
+                <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-slate-400">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+              )}
+            </Link>
+          ) : (
+            <Link to="/login" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors mr-2">Login</Link>
+          )}
+          
           <Link to="/contact" className="bg-brand-purple text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-purple-dark transition-all shadow-lg shadow-brand-purple/20">Contact Us</Link>
           
           <button 
@@ -111,19 +131,36 @@ const Navbar = ({ onCartClick }) => {
             className="relative p-2 text-gray-700 hover:text-brand-purple transition-colors ml-2"
           >
             <ShoppingCart size={24} />
-            <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
-              0
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+                {cartCount}
+              </span>
+            )}
           </button>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="lg:hidden text-gray-900"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        {/* Mobile Toggle & Cart */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button 
+            onClick={onCartClick}
+            className="relative p-2 text-gray-700 hover:text-brand-purple transition-colors"
+          >
+            <ShoppingCart size={24} />
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+                {cartCount}
+              </span>
+            )}
+          </button>
+          
+          <button 
+            className="text-gray-900 p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -156,7 +193,27 @@ const Navbar = ({ onCartClick }) => {
                 </div>
               ))}
               <div className="pt-6 flex flex-col gap-3">
-                <Link to="/login" className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold text-center block">Login</Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link to={`/profile/${user?.id}`} className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
+                      {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
+                        <img src={user.profilePictureUrl} className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
+                      ) : (
+                        <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-slate-400">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                          </svg>
+                        </div>
+                      )}
+                      <div>
+                        <div className="text-sm font-bold text-gray-800">{user?.name}</div>
+                        <div className="text-xs text-gray-500 capitalize">{user?.role?.toLowerCase()} Dashboard</div>
+                      </div>
+                    </Link>
+                  </>
+                ) : (
+                  <Link to="/login" className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold text-center block">Login</Link>
+                )}
                 <Link to="/contact" className="w-full border-2 border-gray-800 text-gray-800 py-4 rounded-2xl font-bold text-center block">Contact Us</Link>
               </div>
             </div>

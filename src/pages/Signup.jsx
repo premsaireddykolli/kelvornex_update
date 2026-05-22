@@ -1,12 +1,101 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef, useContext, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import Layout from '../components/Layout';
 import { Mail, Lock, User, Building, GraduationCap, Calendar, Briefcase, ArrowRight, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Signup = () => {
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [role, setRole] = useState('student'); // 'student' or 'entrepreneur'
+
+  const tokenClientRef = useRef(null);
+
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('Registration successful. Redirecting to login view...');
+
+  const handleGoogleLogin = useCallback(async (accessToken) => {
+    setError('');
+    try {
+      const response = await fetch('/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: accessToken,
+          tokenType: 'access_token',
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Google registration failed.');
+      }
+
+      const data = await response.json();
+      console.log('Google auth response:', data);
+
+      if (data.roleSelectionRequired) {
+        navigate(`/select-role?token=${data.tempToken}`);
+      } else {
+        setSuccessMessage('Successfully registered with Google! Logging you in automatically...');
+        setSuccess(true);
+        setTimeout(() => {
+          login(data);
+        }, 1500);
+      }
+    } catch (err) {
+      setError(err.message || 'Something went wrong during Google registration.');
+    }
+  }, [login, navigate]);
+
+  useEffect(() => {
+    const initGoogle = () => {
+      if (window.google) {
+        try {
+          tokenClientRef.current = window.google.accounts.oauth2.initTokenClient({
+            client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || '1047648439401-placeholder.apps.googleusercontent.com',
+            scope: 'email profile openid',
+            callback: async (response) => {
+              if (response.error) {
+                console.error('Google Auth Error:', response.error);
+                setError('Google authentication failed: ' + response.error);
+                return;
+              }
+              if (response.access_token) {
+                await handleGoogleLogin(response.access_token);
+              }
+            },
+          });
+        } catch (err) {
+          console.error('Failed to initialize Google Token Client:', err);
+        }
+      }
+    };
+
+    if (window.google) {
+      initGoogle();
+    } else {
+      const interval = setInterval(() => {
+        if (window.google) {
+          initGoogle();
+          clearInterval(interval);
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [handleGoogleLogin]);
+
+  const handleGoogleClick = () => {
+    if (tokenClientRef.current) {
+      tokenClientRef.current.requestAccessToken();
+    } else {
+      setError('Google Sign-In is initializing. Please try again in a moment.');
+    }
+  };
   
   // Shared fields + role specific fields
   const [formData, setFormData] = useState({
@@ -20,15 +109,12 @@ const Signup = () => {
     industryDomain: ''
   });
 
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
-
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (error) setError('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -71,11 +157,35 @@ const Signup = () => {
       }
     }
 
-    // Success simulation
-    setSuccess(true);
-    setTimeout(() => {
-      navigate('/login');
-    }, 2000);
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      password: formData.password,
+      role: role.toUpperCase(), // 'student' -> 'STUDENT', 'entrepreneur' -> 'ENTREPRENEUR'
+    };
+
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Registration failed. Please try again.');
+      }
+
+      setSuccessMessage('Registration successful. Redirecting to login view...');
+      setSuccess(true);
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    } catch (err) {
+      setError(err.message || 'Something went wrong during registration.');
+    }
   };
 
   return (
@@ -97,7 +207,7 @@ const Signup = () => {
             <div className="relative z-10 space-y-8">
               <div>
                 <div className="inline-block bg-white p-2 rounded-2xl mb-8">
-                  <img src="Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 rounded-xl" />
+                  <img src="/Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 rounded-xl" />
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
                   Empowering Tech Careers & Startups
@@ -135,14 +245,14 @@ const Signup = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-6"
+                    className="absolute inset-0 bg-white z-30 flex flex-col items-center justify-center text-center p-6"
                   >
                     <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-4">
                       <CheckCircle2 size={32} />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900">Account Created!</h3>
                     <p className="text-gray-500 mt-2 text-sm">
-                      Registration successful. Redirecting to login view...
+                      {successMessage}
                     </p>
                   </motion.div>
                 )}
@@ -150,8 +260,30 @@ const Signup = () => {
 
               {/* Header Title for Form Mobile */}
               <div className="md:hidden text-center mb-6">
-                <img src="Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 mx-auto mb-3 rounded-xl" />
+                <img src="/Kelvornex.jpeg" alt="Kelvornex Logo" className="h-10 mx-auto mb-3 rounded-xl" />
                 <h3 className="text-2xl font-extrabold text-gray-900">Create Account</h3>
+              </div>
+
+              {/* Continue with Google button */}
+              <button
+                type="button"
+                className="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:border-slate-300 rounded-[9999px] py-4 text-sm font-bold text-slate-800 transition-all duration-200 hover:bg-slate-50 cursor-pointer mb-5 shadow-sm"
+                onClick={handleGoogleClick}
+              >
+                <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+                </svg>
+                Continue with Google
+              </button>
+
+              {/* OR divider */}
+              <div className="flex items-center mb-6">
+                <div className="flex-grow border-t border-slate-100"></div>
+                <span className="px-3 text-slate-400 text-xs font-semibold tracking-wider">OR</span>
+                <div className="flex-grow border-t border-slate-100"></div>
               </div>
 
               {/* Role Toggle Switcher */}

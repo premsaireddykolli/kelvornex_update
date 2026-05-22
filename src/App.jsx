@@ -22,6 +22,10 @@ import Contact from './pages/Contact';
 import Affiliate from './pages/Affiliate';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
+import Checkout from './pages/Checkout';
+import SelectRole from './pages/SelectRole';
+import { CartProvider } from './context/CartContext';
 
 
 
@@ -34,12 +38,19 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  useEffect(() => {
+    const handleOpenCart = () => setIsCartOpen(true);
+    window.addEventListener('open-cart', handleOpenCart);
+    return () => window.removeEventListener('open-cart', handleOpenCart);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 selection:bg-brand-purple/30">
-            <PopupBanner />                                  {/* ← ADD THIS */}
-      <Navbar onCartClick={() => setIsCartOpen(true)} />
-      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-      <main>
+    <CartProvider>
+      <div className="min-h-screen bg-white text-gray-900 selection:bg-brand-purple/30">
+              <PopupBanner />                                  {/* ← ADD THIS */}
+        <Navbar onCartClick={() => setIsCartOpen(true)} />
+        <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+        <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/programs" element={<Home />} />
@@ -61,6 +72,9 @@ function App() {
           <Route path="/affiliate" element={<Affiliate />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/checkout/:checkoutId" element={<Checkout />} />
+          <Route path="/select-role" element={<SelectRole />} />
           
           {/* Dynamic Program Routes */}
           <Route path="/:programId" element={<ProgramDetail />} />
@@ -75,8 +89,9 @@ function App() {
           <Route path="/:cat/:programId" element={<ProgramDetail />} />
         </Routes>
       </main>
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 }
 

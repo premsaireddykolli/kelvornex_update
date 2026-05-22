@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 import { DollarSign, ShieldCheck, Share2, Users } from 'lucide-react';
 import { motion } from 'framer-motion';

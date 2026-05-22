@@ -1,6 +1,5 @@
-import React from 'react';
 import Layout from '../components/Layout';
-import { CreditCard, ShieldCheck, RefreshCw, Calendar, FileText, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, RefreshCw, Calendar, FileText, CheckCircle2 } from 'lucide-react';
 
 const PaymentRefund = () => {
   const refundSteps = [

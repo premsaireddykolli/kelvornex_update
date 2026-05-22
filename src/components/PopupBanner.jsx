@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -51,7 +52,7 @@ const PopupBanner = () => {
 
               {/* Hiring Image */}
               <img
-                src="We_are_hiring.png"
+                src="/We_are_hiring.png"
                 alt="We Are Hiring - Kelvornex"
                 className="w-full h-auto block"
               />
@@ -63,12 +64,13 @@ const PopupBanner = () => {
                   <p className="text-gray-500 text-sm">Product &amp; Software Development Interns – Including R&amp;D Roles</p>
                 </div>
                 <div className="flex gap-3 shrink-0">
-                  <a
-                    href="mailto:info@kelvornex.online"
+                  <Link
+                    to="/careers"
+                    onClick={handleClose}
                     className="bg-black text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-800 transition-colors"
                   >
                     Apply Now
-                  </a>
+                  </Link>
                   <button
                     onClick={handleClose}
                     className="border-2 border-gray-200 text-gray-600 px-6 py-3 rounded-xl font-bold text-sm hover:border-gray-400 transition-colors"

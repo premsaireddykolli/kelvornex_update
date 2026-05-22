@@ -1,8 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Crown, BookOpen, Layers, CheckCircle, ArrowRight } from 'lucide-react';
+import { Zap, Crown, CheckCircle, ArrowRight } from 'lucide-react';
 
-const PackCard = ({ title, courses, features, color, highlight }) => (
+const PackCard = ({ title, courses, features, highlight }) => (
   <motion.div 
     whileHover={{ y: -10, scale: highlight ? 1.02 : 1 }}
     className={`relative p-8 rounded-[2.5rem] border overflow-hidden transition-all duration-300 ${highlight ? 'bg-brand-dark text-white border-brand-gold shadow-[0_0_40px_rgba(250,204,21,0.2)]' : 'bg-white border-gray-100 shadow-xl shadow-gray-100'}`}

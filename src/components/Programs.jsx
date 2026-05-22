@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Code, Database, Brain, Globe, Shield, BarChart3, Users, Clock, 
@@ -81,7 +81,9 @@ const Programs = () => {
 
   const [activeTab, setActiveTab] = useState(getInitialTab);
 
-  useEffect(() => {
+  const [prevParams, setPrevParams] = useState({ categoryParam, catParam });
+  if (categoryParam !== prevParams.categoryParam || catParam !== prevParams.catParam) {
+    setPrevParams({ categoryParam, catParam });
     const targetCategory = getMappedCategory();
     if (targetCategory) {
       const matchedTab = tabs.find(t => 
@@ -90,15 +92,23 @@ const Programs = () => {
       );
       if (matchedTab) {
         setActiveTab(matchedTab.id);
-        // Allow DOM to settle, then smooth scroll to the section container
-        setTimeout(() => {
-          const element = document.getElementById('programs');
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 150);
       }
     }
+  }
+
+  useEffect(() => {
+    const targetCategory = getMappedCategory();
+    if (targetCategory) {
+      // Allow DOM to settle, then smooth scroll to the section container
+      const timer = setTimeout(() => {
+        const element = document.getElementById('programs');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryParam, catParam]);
 
   const programData = {
@@ -180,7 +190,7 @@ const Programs = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {programData[activeTab].map((prog, i) => (
+            {programData[activeTab].map((prog) => (
               <ProgramCard key={prog.title} {...prog} />
             ))}
           </AnimatePresence>

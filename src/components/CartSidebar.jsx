@@ -1,8 +1,10 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ShoppingCart, ArrowRight } from 'lucide-react';
+import { X, ShoppingCart, ArrowRight, Trash2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const CartSidebar = ({ isOpen, onClose }) => {
+  const { cart, removeFromCart, cartCount, cartTotal } = useCart();
   return (
     <AnimatePresence>
       {isOpen && (
@@ -30,7 +32,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 <ShoppingCart className="text-brand-purple" size={24} />
                 <h2 className="text-xl font-bold font-display text-gray-900">Your Cart</h2>
                 <span className="bg-brand-purple/10 text-brand-purple text-xs font-bold px-2 py-1 rounded-full">
-                  0
+                  {cartCount}
                 </span>
               </div>
               <button 
@@ -41,32 +43,81 @@ const CartSidebar = ({ isOpen, onClose }) => {
               </button>
             </div>
             
-            {/* Body - Empty State */}
-            <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
-              <div className="w-32 h-32 bg-gray-50 rounded-full flex items-center justify-center mb-6">
-                <ShoppingCart size={48} className="text-gray-300" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h3>
-              <p className="text-gray-500 mb-8">
-                Looks like you haven't added any programs to your cart yet.
-              </p>
-              
-              <button 
-                onClick={onClose}
-                className="bg-brand-purple text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-purple-dark transition-colors flex items-center gap-2"
-              >
-                Browse Courses <ArrowRight size={18} />
-              </button>
+            {/* Body */}
+            <div className="flex-1 overflow-y-auto p-6">
+              {cartCount === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center">
+                  <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                    <ShoppingCart size={40} className="text-gray-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Your cart is empty</h3>
+                  <p className="text-gray-500 text-sm mb-8 max-w-xs">
+                    Looks like you haven't added any programs to your cart yet.
+                  </p>
+                  <Link 
+                    to="/"
+                    onClick={onClose}
+                    className="bg-brand-purple text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-purple-dark transition-colors flex items-center gap-2 text-sm"
+                  >
+                    Browse Courses <ArrowRight size={16} />
+                  </Link>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 items-center justify-between group">
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={item.image} 
+                          alt={item.title} 
+                          className="w-16 h-16 object-cover rounded-xl border border-gray-200"
+                        />
+                        <div>
+                          <h4 className="font-bold text-gray-800 text-sm line-clamp-1">{item.title}</h4>
+                          <p className="text-xs text-gray-400 font-semibold uppercase">{item.category}</p>
+                          <p className="text-brand-purple font-extrabold text-sm mt-1">
+                            ₹{item.price ? item.price.toLocaleString('en-IN') : '0'}
+                          </p>
+                        </div>
+                      </div>
+                      <button 
+                        onClick={() => removeFromCart(item.id)}
+                        className="w-8 h-8 rounded-lg bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-100 transition-colors shadow-sm"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             
             {/* Footer */}
-            <div className="p-6 border-t border-gray-100 bg-gray-50">
-              <button 
-                disabled
-                className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded-xl font-bold cursor-not-allowed"
-              >
-                Return to Course
-              </button>
+            <div className="p-6 border-t border-gray-100 bg-gray-50/50">
+              {cartCount > 0 ? (
+                <>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-gray-500 font-medium">Subtotal</span>
+                    <span className="text-2xl font-extrabold text-gray-900">
+                      ₹{cartTotal.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                  <Link 
+                    to="/checkout/cart"
+                    onClick={onClose}
+                    className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all text-center block shadow-lg shadow-brand-purple/20"
+                  >
+                    Proceed to Checkout <ArrowRight size={18} />
+                  </Link>
+                </>
+              ) : (
+                <button 
+                  disabled
+                  className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded-xl font-bold cursor-not-allowed"
+                >
+                  Return to Course
+                </button>
+              )}
             </div>
           </motion.div>
         </>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
-import { Briefcase, MapPin, DollarSign, Clock, Users, ShieldAlert, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Briefcase, MapPin, DollarSign, Users, ShieldAlert, CheckCircle2, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Careers = () => {

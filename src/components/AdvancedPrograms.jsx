@@ -1,6 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Download, ExternalLink, Star, Users, Clock, ShieldCheck } from 'lucide-react';
+import { Download, ExternalLink, Users, Clock, ShieldCheck } from 'lucide-react';
 
 const AdvancedCard = ({ title, tag, description, mentees, duration, logos, image }) => (
   <motion.div 

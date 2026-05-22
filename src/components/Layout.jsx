@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Layout = ({ children, title, subtitle, description, hideBanner = false }) => {

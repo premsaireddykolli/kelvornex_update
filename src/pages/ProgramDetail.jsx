@@ -1,16 +1,14 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, Clock, BookOpen, GraduationCap, PlayCircle, Star, Users } from 'lucide-react';
+import { useCart } from '../context/CartContext';
+import { getProgramDetails } from '../utils/courseCatalog';
 
 const ProgramDetail = () => {
   const { programId, cat } = useParams();
+  const { addToCart } = useCart();
   
-  // Format the ID for display
-  const rawTitle = programId || cat || 'Program';
-  const title = rawTitle
-    .split('-')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  const program = getProgramDetails(programId, cat);
+  const { title, description, duration, level, image, price } = program;
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-white">
@@ -31,7 +29,7 @@ const ProgramDetail = () => {
                 Master {title}
               </h1>
               <p className="text-white/60 text-lg mb-8 leading-relaxed">
-                Comprehensive curriculum designed by industry experts. Take your career to the next level with hands-on projects and 1-on-1 mentorship.
+                {description}
               </p>
               
               <div className="flex flex-wrap items-center gap-6 mb-10">
@@ -44,11 +42,17 @@ const ProgramDetail = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-brand-purple text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-purple-light transition-colors flex items-center justify-center gap-2">
+                <Link to={`/checkout/${program.id}`} className="bg-brand-purple text-white px-8 py-4 rounded-2xl font-bold hover:bg-brand-purple-light transition-all flex items-center justify-center gap-2">
                   Enroll Now <GraduationCap size={20} />
-                </button>
-                <button className="border-2 border-white/20 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white hover:text-brand-dark transition-colors flex items-center justify-center gap-2">
-                  Watch Preview <PlayCircle size={20} />
+                </Link>
+                <button 
+                  onClick={() => {
+                    addToCart(program);
+                    window.dispatchEvent(new Event('open-cart'));
+                  }}
+                  className="bg-white/10 hover:bg-white/20 border-2 border-white text-white px-8 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2"
+                >
+                  Add to Cart
                 </button>
               </div>
             </div>
@@ -56,7 +60,7 @@ const ProgramDetail = () => {
             <div className="lg:w-1/2">
               <div className="glass-dark rounded-3xl p-8 border border-white/10">
                 <div className="aspect-video bg-black/50 rounded-2xl overflow-hidden relative group">
-                  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2071" alt="Course Preview" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />
+                  <img src={image} alt="Course Preview" className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center cursor-pointer hover:bg-brand-purple transition-colors">
                       <PlayCircle size={32} className="text-white" />
@@ -113,7 +117,7 @@ const ProgramDetail = () => {
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase">Duration</p>
-                    <p className="font-bold text-gray-800">8-12 Weeks</p>
+                    <p className="font-bold text-gray-800">{duration}</p>
                   </div>
                 </div>
                 
@@ -123,16 +127,34 @@ const ProgramDetail = () => {
                   </div>
                   <div>
                     <p className="text-xs text-gray-400 font-bold uppercase">Level</p>
-                    <p className="font-bold text-gray-800">Beginner to Advanced</p>
+                    <p className="font-bold text-gray-800">{level}</p>
                   </div>
                 </div>
               </div>
               
               <div className="text-center">
-                <p className="text-gray-500 text-sm mb-4">Limited seats available for the next batch</p>
-                <button className="w-full bg-brand-dark text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors">
-                  Apply Now
-                </button>
+                <div className="mb-4">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest block mb-1">Course Price</span>
+                  <span className="text-3xl font-black text-gray-900 font-display">₹{price.toLocaleString('en-IN')}</span>
+                </div>
+                <p className="text-gray-500 text-sm mb-6">Limited seats available for the next batch</p>
+                <div className="flex flex-col gap-3">
+                  <Link 
+                    to={`/checkout/${program.id}`}
+                    className="w-full bg-brand-dark text-white py-4 rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors block text-center shadow-lg"
+                  >
+                    Apply Now
+                  </Link>
+                  <button 
+                    onClick={() => {
+                      addToCart(program);
+                      window.dispatchEvent(new Event('open-cart'));
+                    }}
+                    className="w-full bg-white border-2 border-brand-purple text-brand-purple py-4 rounded-2xl font-bold text-lg hover:bg-brand-purple/5 transition-colors"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>

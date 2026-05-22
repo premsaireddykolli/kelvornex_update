@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
 import { Search, ChevronDown, HelpCircle, BookOpen, User, CreditCard, Award } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';

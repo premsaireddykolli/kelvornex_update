@@ -1,6 +1,5 @@
-import React from 'react';
 import Layout from '../components/Layout';
-import { Target, Users, ShieldAlert, Award } from 'lucide-react';
+import { Target, Users, Award } from 'lucide-react';
 
 const About = () => {
   const stats = [
