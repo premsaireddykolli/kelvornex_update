@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Github, Youtube, CheckCircle2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import axios from 'axios';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     
     if (!email.trim()) {
@@ -21,8 +23,17 @@ const Footer = () => {
       return;
     }
 
-    showToast('Successfully subscribed to our newsletter!', 'success');
-    setEmail('');
+    setIsLoading(true);
+    try {
+      const response = await axios.post('/api/newsletter/subscribe', { email: email.trim() });
+      showToast(response.data.message || 'Successfully subscribed to our newsletter!', 'success');
+      setEmail('');
+    } catch (error) {
+      const errorMsg = error.response?.data?.message || error.response?.data?.validationErrors?.email || 'Failed to subscribe to newsletter. Please try again.';
+      showToast(errorMsg, 'error');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const showToast = (message, type) => {
@@ -157,9 +168,17 @@ const Footer = () => {
               />
               <button 
                 type="submit"
-                className="bg-brand-purple hover:bg-brand-purple-dark text-white font-bold px-5 py-3 rounded-xl transition-colors duration-200 text-sm shrink-0 cursor-pointer shadow-lg shadow-brand-purple/10"
+                disabled={isLoading}
+                className="bg-brand-purple hover:bg-brand-purple-dark text-white font-bold px-5 py-3 rounded-xl transition-colors duration-200 text-sm shrink-0 cursor-pointer shadow-lg shadow-brand-purple/10 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px]"
               >
-                Subscribe
+                {isLoading ? (
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : (
+                  'Subscribe'
+                )}
               </button>
             </form>
           </div>
