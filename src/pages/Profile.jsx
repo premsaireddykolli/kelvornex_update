@@ -198,8 +198,8 @@ const Profile = () => {
               {renderProfilePicture()}
               
               {isEditing && (
-                <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-[#00FF00] cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-full">
-                  <Camera className="w-6 h-6 mb-1 text-[#00FF00]" />
+                <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-full">
+                  <Camera className="w-6 h-6 mb-1 text-white" />
                   <span className="text-[10px] font-bold uppercase tracking-wider">Upload</span>
                   <input
                     type="file"
@@ -230,15 +230,15 @@ const Profile = () => {
                       setSuccess(null);
                       setError(null);
                     }}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-2xl font-bold transition-all border border-slate-900 text-sm cursor-pointer"
                   >
-                    <Edit2 className="w-4 h-4" />
+                    <Edit2 className="w-4 h-4 text-white" />
                     Edit Profile
                   </button>
                   <button
                     type="button"
                     onClick={logout}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer mt-2"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-rose-600 text-white py-3 rounded-2xl font-bold transition-all border border-slate-900 hover:border-rose-600 text-sm mt-2 cursor-pointer"
                   >
                     Logout
                   </button>
@@ -252,7 +252,7 @@ const Profile = () => {
                       setImagePreview(null);
                       setProfileImageFile(null);
                     }}
-                    className="flex-1 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer"
+                    className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-2xl font-semibold transition-all border border-slate-200 text-xs cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -260,12 +260,12 @@ const Profile = () => {
                     type="button"
                     onClick={handleSaveChanges}
                     disabled={saving}
-                    className="flex-1 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
+                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-2xl font-bold transition-all border border-slate-900 text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
                   >
                     {saving ? (
-                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
                     ) : (
-                      <Save className="w-3.5 h-3.5" />
+                      <Save className="w-3.5 h-3.5 text-white" />
                     )}
                     Save
                   </button>
@@ -379,12 +379,12 @@ const Profile = () => {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-slate-900 border border-slate-900 rounded-none px-8 py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-2xl font-bold transition-all border border-slate-900 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
                     {saving ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
                     ) : (
-                      <Save className="w-4 h-4" />
+                      <Save className="w-4 h-4 text-white" />
                     )}
                     Save Changes
                   </button>
