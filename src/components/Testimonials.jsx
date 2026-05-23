@@ -7,7 +7,7 @@ const Testimonials = () => {
       name: "Rahul Sharma",
       role: "Full Stack Developer",
       company: "Google",
-      text: "The web development program at Corizo was life-changing. The mentors are industry experts who guide you at every step. I landed my dream job within 3 months of completion.",
+      text: "The web development program at Kelvornex was life-changing. The mentors are industry experts who guide you at every step. I landed my dream job within 3 months of completion.",
       image: "https://i.pravatar.cc/150?u=rahul"
     },
     {
@@ -21,7 +21,7 @@ const Testimonials = () => {
       name: "Vikram Singh",
       role: "ML Engineer",
       company: "Microsoft",
-      text: "Corizo's Machine Learning program is one of the best out there. The focus on fundamentals combined with advanced topics like NLP and CV is unmatched.",
+      text: "Kelvornex's Machine Learning program is one of the best out there. The focus on fundamentals combined with advanced topics like NLP and CV is unmatched.",
       image: "https://i.pravatar.cc/150?u=vikram"
     }
   ];
@@ -30,11 +30,11 @@ const Testimonials = () => {
     <section className="py-32 bg-white">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl md:text-6xl font-extrabold font-display mb-8 text-gray-900 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-slate-900 tracking-tight font-sans">
             Success <span className="text-brand-purple">Stories</span>
           </h2>
-          <p className="text-gray-500 text-lg">
-            Hear from our alumni who have successfully transitioned into high-growth tech roles after learning with Corizo.
+          <p className="text-slate-655 text-lg font-sans font-light">
+            Hear from our alumni who have successfully transitioned into high-growth tech roles after learning with Kelvornex.
           </p>
         </div>
 
@@ -42,28 +42,28 @@ const Testimonials = () => {
           {stories.map((story, i) => (
             <motion.div 
               key={i}
-              whileHover={{ y: -5 }}
-              className="bg-gray-50 p-10 rounded-[2.5rem] relative border border-gray-100"
+              whileHover={{ y: -6 }}
+              className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:border-slate-200/80 hover:bg-white shadow-sm hover:shadow-xl hover:shadow-slate-100/60 transition-all duration-300 relative"
             >
-              <div className="absolute -top-6 -right-6 w-12 h-12 bg-brand-purple rounded-full flex items-center justify-center text-white shadow-xl shadow-brand-purple/20">
-                <Quote size={20} fill="currentColor" />
+              <div className="absolute -top-4 -right-4 w-10 h-10 bg-slate-900 rounded-full flex items-center justify-center text-white shadow-md">
+                <Quote size={16} fill="currentColor" />
               </div>
               
               <div className="flex gap-1 mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-brand-yellow fill-brand-yellow" />
+                  <Star key={i} size={14} className="text-amber-400 fill-amber-400" />
                 ))}
               </div>
               
-              <p className="text-gray-700 text-lg italic leading-relaxed mb-10">
+              <p className="text-slate-700 text-base italic leading-relaxed mb-8 font-sans font-medium">
                 "{story.text}"
               </p>
               
               <div className="flex items-center gap-4">
-                <img src={story.image} alt={story.name} className="w-14 h-14 rounded-full border-2 border-brand-purple/30 p-1" />
-                <div>
-                  <h4 className="font-bold text-gray-900">{story.name}</h4>
-                  <p className="text-gray-400 text-sm">{story.role} @ {story.company}</p>
+                <img src={story.image} alt={story.name} className="w-14 h-14 rounded-full border border-slate-200/60 p-0.5 bg-white shadow-sm" />
+                <div className="font-sans">
+                  <h4 className="font-bold text-slate-800">{story.name}</h4>
+                  <p className="text-slate-500 text-sm mt-0.5">{story.role} @ {story.company}</p>
                 </div>
               </div>
             </motion.div>
