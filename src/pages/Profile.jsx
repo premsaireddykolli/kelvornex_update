@@ -115,7 +115,7 @@ const Profile = () => {
     }
   };
 
-  // Profile Picture Renderer with Fallbacks (Square sharp borders)
+  // Profile Picture Renderer with Fallbacks (Circle layout)
   const renderProfilePicture = () => {
     const hasPreview = !!imagePreview;
     const hasProfilePic = profileData.profilePictureUrl &&
@@ -128,7 +128,7 @@ const Profile = () => {
         <img
           src={imagePreview}
           alt="Local Preview"
-          className="h-32 w-32 object-cover border-2 border-black rounded-none shadow-none"
+          className="h-32 w-32 rounded-full object-cover border-4 border-brand-purple shadow-md transition-transform duration-300 hover:scale-105"
         />
       );
     }
@@ -139,14 +139,14 @@ const Profile = () => {
           src={profileData.profilePictureUrl}
           referrerPolicy="no-referrer"
           alt="Profile Avatar"
-          className="h-32 w-32 object-cover border-2 border-black rounded-none shadow-none"
+          className="h-32 w-32 rounded-full object-cover border-4 border-slate-100 shadow-md transition-transform duration-300 hover:scale-105"
         />
       );
     }
 
-    // Traditional Vector SVG silhouette placeholder inside sharp box
+    // Traditional Vector SVG silhouette placeholder inside circular box
     return (
-      <div className="h-32 w-32 bg-white flex items-center justify-center border-2 border-black text-black rounded-none">
+      <div className="h-32 w-32 bg-slate-50 flex items-center justify-center border-4 border-slate-100 rounded-full shadow-inner text-slate-400">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-14 h-14">
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
         </svg>
@@ -160,8 +160,8 @@ const Profile = () => {
         <div className="container mx-auto px-6 py-12 bg-white">
           <div className="animate-pulse space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-              <div className="lg:col-span-4 h-80 bg-slate-100 rounded-none animate-pulse" />
-              <div className="lg:col-span-8 h-96 bg-slate-100 rounded-none animate-pulse" />
+              <div className="lg:col-span-4 h-80 bg-slate-100 rounded-3xl" />
+              <div className="lg:col-span-8 h-96 bg-slate-100 rounded-3xl" />
             </div>
           </div>
         </div>
@@ -179,13 +179,13 @@ const Profile = () => {
       <div className="container mx-auto max-w-5xl px-4 py-12 bg-white">
         {/* Status Alerts */}
         {error && (
-          <div className="mb-6 rounded-none bg-white border border-rose-500 p-4 text-sm text-rose-600 flex items-center gap-3 font-semibold">
+          <div className="mb-6 rounded-2xl bg-rose-50 border border-rose-100 p-4 text-sm text-rose-700 flex items-center gap-3 font-semibold">
             <AlertCircle className="w-5 h-5 flex-shrink-0" />
             <span>{error}</span>
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-none bg-white border border-emerald-500 p-4 text-sm text-emerald-600 flex items-center gap-3 font-semibold">
+          <div className="mb-6 rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-sm text-emerald-700 flex items-center gap-3 font-semibold">
             <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
             <span>{success}</span>
           </div>
@@ -193,12 +193,12 @@ const Profile = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start bg-white">
           {/* LEFT SIDEBAR: PROFILE PICTURE UPLOADER */}
-          <div className="lg:col-span-4 bg-white border border-black rounded-none p-6 flex flex-col items-center text-center space-y-6">
+          <div className="lg:col-span-4 bg-white border border-slate-200 rounded-3xl shadow-sm p-6 flex flex-col items-center text-center space-y-6">
             <div className="relative group">
               {renderProfilePicture()}
               
               {isEditing && (
-                <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-[#00FF00] cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-none">
+                <label className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-[#00FF00] cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity duration-150 rounded-full">
                   <Camera className="w-6 h-6 mb-1 text-[#00FF00]" />
                   <span className="text-[10px] font-bold uppercase tracking-wider">Upload</span>
                   <input
@@ -212,15 +212,15 @@ const Profile = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-black uppercase tracking-wide font-display">
+              <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wide font-display">
                 {profileData.firstName} {profileData.lastName}
               </h3>
-              <p className="text-xs font-bold text-gray-500 tracking-widest uppercase mt-1">
+              <p className="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">
                 {profileData.role}
               </p>
             </div>
 
-            <div className="w-full border-t border-black pt-4 flex flex-col gap-2">
+            <div className="w-full border-t border-slate-200 pt-4 flex flex-col gap-2">
               {!isEditing ? (
                 <>
                   <button
@@ -230,7 +230,7 @@ const Profile = () => {
                       setSuccess(null);
                       setError(null);
                     }}
-                    className="w-full flex items-center justify-center gap-2 bg-black text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-black rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer"
                   >
                     <Edit2 className="w-4 h-4" />
                     Edit Profile
@@ -238,7 +238,7 @@ const Profile = () => {
                   <button
                     type="button"
                     onClick={logout}
-                    className="w-full flex items-center justify-center gap-2 bg-black text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-black rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer mt-2"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer mt-2"
                   >
                     Logout
                   </button>
@@ -252,7 +252,7 @@ const Profile = () => {
                       setImagePreview(null);
                       setProfileImageFile(null);
                     }}
-                    className="flex-1 bg-black text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-black rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer"
+                    className="flex-1 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -260,7 +260,7 @@ const Profile = () => {
                     type="button"
                     onClick={handleSaveChanges}
                     disabled={saving}
-                    className="flex-1 bg-black text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-black rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
+                    className="flex-1 bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-slate-900 rounded-none py-3 font-bold uppercase tracking-wider text-xs transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
                   >
                     {saving ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -275,8 +275,8 @@ const Profile = () => {
           </div>
 
           {/* RIGHT PANEL: DYNAMIC FORM CARD */}
-          <div className="lg:col-span-8 bg-white border border-black rounded-none p-8">
-            <h2 className="text-xl font-bold text-black font-display mb-6 pb-4 border-b border-black uppercase tracking-wide">
+          <div className="lg:col-span-8 bg-white border border-slate-200 rounded-3xl shadow-sm p-8">
+            <h2 className="text-xl font-bold text-slate-800 font-display mb-6 pb-4 border-b border-slate-100 uppercase tracking-wide">
               Personal Information
             </h2>
             
@@ -284,11 +284,11 @@ const Profile = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-white">
                 {/* First Name Input */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-black uppercase tracking-wider">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     First Name
                   </label>
                   <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-black">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-800">
                       <UserIcon className="w-4 h-4" />
                     </span>
                     <input
@@ -298,10 +298,10 @@ const Profile = () => {
                       onChange={handleInputChange}
                       readOnly={!isEditing}
                       placeholder="e.g. Jane"
-                      className={`w-full pl-11 pr-4 py-3 rounded-none border text-sm transition-all focus:outline-none focus:ring-1 focus:ring-black ${
+                      className={`w-full pl-11 pr-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-purple/20 ${
                         isEditing
-                          ? 'border-black bg-white text-gray-900'
-                          : 'border-gray-200 bg-white text-gray-400 cursor-not-allowed'
+                          ? 'border-brand-purple/40 bg-white text-slate-900 font-semibold'
+                          : 'border-slate-200 bg-slate-50/50 text-slate-800 font-semibold cursor-not-allowed'
                       }`}
                     />
                   </div>
@@ -309,11 +309,11 @@ const Profile = () => {
 
                 {/* Last Name Input */}
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-black uppercase tracking-wider">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                     Last Name
                   </label>
                   <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-black">
+                    <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-800">
                       <UserIcon className="w-4 h-4" />
                     </span>
                     <input
@@ -323,10 +323,10 @@ const Profile = () => {
                       onChange={handleInputChange}
                       readOnly={!isEditing}
                       placeholder="e.g. Doe"
-                      className={`w-full pl-11 pr-4 py-3 rounded-none border text-sm transition-all focus:outline-none focus:ring-1 focus:ring-black ${
+                      className={`w-full pl-11 pr-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-brand-purple/20 ${
                         isEditing
-                          ? 'border-black bg-white text-gray-900'
-                          : 'border-gray-200 bg-white text-gray-400 cursor-not-allowed'
+                          ? 'border-brand-purple/40 bg-white text-slate-900 font-semibold'
+                          : 'border-slate-200 bg-slate-50/50 text-slate-800 font-semibold cursor-not-allowed'
                       }`}
                     />
                   </div>
@@ -335,11 +335,11 @@ const Profile = () => {
 
               {/* Email Input (Always Disabled/Read-only) */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-black uppercase tracking-wider">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                   Email Address
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-black">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-800">
                     <Mail className="w-4 h-4" />
                   </span>
                   <input
@@ -348,18 +348,18 @@ const Profile = () => {
                     value={profileData.email}
                     onChange={handleInputChange}
                     readOnly={true}
-                    className="w-full pl-11 pr-4 py-3 rounded-none border border-gray-200 bg-white text-gray-400 cursor-not-allowed text-sm focus:outline-none"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 font-semibold cursor-not-allowed text-sm focus:outline-none"
                   />
                 </div>
               </div>
 
               {/* Profile Role Input (Always Disabled/Read-only) */}
               <div className="space-y-2">
-                <label className="text-xs font-bold text-black uppercase tracking-wider">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
                   Platform Role
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-black">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-800">
                     <Shield className="w-4 h-4" />
                   </span>
                   <input
@@ -368,7 +368,7 @@ const Profile = () => {
                     value={profileData.role}
                     onChange={handleInputChange}
                     readOnly={true}
-                    className="w-full pl-11 pr-4 py-3 rounded-none border border-gray-200 bg-white text-gray-400 cursor-not-allowed text-sm focus:outline-none capitalize"
+                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 font-semibold cursor-not-allowed text-sm focus:outline-none capitalize"
                   />
                 </div>
               </div>
@@ -379,7 +379,7 @@ const Profile = () => {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="bg-black text-[#00FF00] hover:bg-[#00FF00] hover:text-black border border-black rounded-none px-8 py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="bg-slate-900 text-[#00FF00] hover:bg-[#00FF00] hover:text-slate-900 border border-slate-900 rounded-none px-8 py-3 font-bold uppercase tracking-wider text-sm transition-colors duration-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
                     {saving ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
