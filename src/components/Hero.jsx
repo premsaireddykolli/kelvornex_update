@@ -17,7 +17,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-bold tracking-wider uppercase mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/20 text-brand-purple text-xs font-semibold tracking-wider uppercase mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-purple"></span>
@@ -38,7 +38,7 @@ const Hero = () => {
                 }
               }
             }}
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold font-display leading-[1.1] mb-8 text-white drop-shadow-2xl"
+            className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[1.1] mb-8 text-white drop-shadow-2xl"
           >
             <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-block">Upskill</motion.span>{" "}
             <motion.span variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="inline-block">To</motion.span>{" "}
@@ -60,13 +60,13 @@ const Hero = () => {
 
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a href="#programs" className="bg-brand-purple hover:bg-brand-purple/90 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-all shadow-lg shadow-brand-purple/20 flex items-center gap-2 group">
+            <a href="#programs" className="bg-brand-purple hover:bg-brand-purple/95 text-white px-8 py-3 rounded-full font-medium text-base transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] flex items-center gap-2 group">
               Explore Programs
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             
-            <button className="flex items-center gap-3 text-white font-semibold hover:text-brand-purple transition-colors group">
-              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-brand-purple/50 transition-colors">
+            <button className="flex items-center gap-3 text-white font-medium hover:text-brand-purple transition-all duration-200 active:scale-[0.98] group cursor-pointer">
+              <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-brand-purple/50 group-hover:bg-white/5 transition-all duration-200">
                 <Play size={18} fill="currentColor" />
               </div>
               Watch Demo

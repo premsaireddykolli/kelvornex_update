@@ -13,27 +13,27 @@ const ProgramCard = ({ icon: Icon, title, description, count, duration = "2 Mont
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     exit={{ opacity: 0, scale: 0.9 }}
-    whileHover={{ y: -10 }}
-    className="bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-gray-100 shadow-xl shadow-gray-200/50 flex flex-col h-full"
+    whileHover={{ y: -5 }}
+    className="bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-slate-100 hover:border-slate-200/80 shadow-md hover:shadow-xl hover:shadow-slate-100/60 transition-all duration-300 flex flex-col h-full hover:-translate-y-[2px]"
   >
     <Link to={`/${title.toLowerCase().replace(/\s+/g, '-')}`} className="absolute inset-0 z-10" />
     <div className={`w-16 h-16 rounded-2xl bg-brand-purple/5 flex items-center justify-center mb-6 group-hover:bg-brand-purple transition-all duration-500`}>
       <Icon className="text-brand-purple group-hover:text-white group-hover:scale-110 transition-transform" size={32} />
     </div>
     
-    <h3 className="text-2xl font-bold font-display mb-3 text-gray-900 leading-tight">{title}</h3>
-    <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
+    <h3 className="text-xl font-bold mb-3 text-slate-800 leading-tight font-sans">{title}</h3>
+    <p className="text-slate-655 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
     
-    <div className="flex items-center justify-between pt-6 border-t border-gray-50">
+    <div className="flex items-center justify-between pt-6 border-t border-slate-100">
       <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-2 text-xs font-bold text-brand-purple uppercase">
+        <div className="flex items-center gap-2 text-xs font-semibold text-brand-purple uppercase">
           <Clock size={14} /> {duration}
         </div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-gray-400">
+        <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
           <Users size={14} /> {count} Mentees
         </div>
       </div>
-      <div className="text-brand-purple font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+      <div className="text-brand-purple font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
         Know More <ArrowRight size={16} />
       </div>
     </div>
@@ -158,10 +158,10 @@ const Programs = () => {
     <section id="programs" className="py-32 bg-gray-50/50">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl md:text-6xl font-extrabold font-display mb-6 text-gray-900 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 tracking-tight font-sans">
             Our Featured <span className="text-brand-purple">Programs</span>
           </h2>
-          <p className="text-gray-500 text-lg">
+          <p className="text-slate-600 text-lg font-sans">
             Select a category to explore our wide range of industry-vetted programs.
           </p>
         </div>
@@ -172,10 +172,10 @@ const Programs = () => {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-2xl font-bold transition-all text-sm md:text-base ${
+              className={`flex items-center gap-2 px-6 md:px-8 py-2.5 rounded-full font-medium transition-all duration-200 text-sm md:text-base hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer ${
                 activeTab === tab.id 
-                ? 'bg-brand-purple text-white shadow-xl shadow-brand-purple/40 scale-105' 
-                : 'bg-white text-gray-500 hover:bg-gray-100 border border-gray-100 shadow-sm'
+                ? 'bg-brand-purple text-white shadow-md shadow-brand-purple/15' 
+                : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
               }`}
             >
               <tab.icon size={20} />

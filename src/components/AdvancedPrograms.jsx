@@ -4,46 +4,46 @@ import { Download, ExternalLink, Users, Clock, ShieldCheck } from 'lucide-react'
 const AdvancedCard = ({ title, tag, description, mentees, duration, logos, image }) => (
   <motion.div 
     whileHover={{ y: -5 }}
-    className="bg-white rounded-[3rem] p-8 md:p-12 border border-gray-100 shadow-2xl shadow-gray-200/50 flex flex-col lg:flex-row gap-12 group"
+    className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-xl shadow-slate-200/20 hover:shadow-2xl hover:shadow-slate-200/30 transition-all duration-300 flex flex-col lg:flex-row gap-12 group hover:-translate-y-[2px]"
   >
     <div className="lg:w-2/3">
       <div className="flex items-center gap-3 mb-6">
-        <h3 className="text-3xl md:text-5xl font-extrabold font-display text-gray-900">{title}</h3>
-        <span className="bg-brand-gold text-brand-dark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">{tag}</span>
+        <h3 className="text-3xl md:text-4xl font-extrabold font-sans text-slate-800">{title}</h3>
+        <span className="bg-brand-gold text-brand-dark px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">{tag}</span>
       </div>
       
-      <p className="text-gray-500 text-lg leading-relaxed mb-8 max-w-2xl">
+      <p className="text-slate-655 text-base leading-relaxed mb-8 max-w-2xl font-sans">
         {description}
       </p>
 
-      <div className="mb-10 rounded-3xl overflow-hidden aspect-[21/9] bg-gray-100 shadow-inner">
+      <div className="mb-10 rounded-2xl overflow-hidden aspect-[21/9] bg-slate-50 border border-slate-100">
         <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" />
       </div>
       
       <div className="flex flex-wrap gap-8 mb-12">
-        <div className="flex items-center gap-2 text-gray-400 font-bold uppercase text-xs tracking-wider">
+        <div className="flex items-center gap-2 text-slate-500 font-medium uppercase text-xs tracking-wider font-sans">
           <Clock size={18} className="text-brand-purple" />
           {duration}
         </div>
-        <div className="flex items-center gap-2 text-gray-400 font-bold uppercase text-xs tracking-wider">
+        <div className="flex items-center gap-2 text-slate-500 font-medium uppercase text-xs tracking-wider font-sans">
           <Users size={18} className="text-brand-purple" />
           {mentees} Mentees
         </div>
       </div>
       
       <div className="flex flex-col sm:flex-row gap-4">
-        <button className="bg-brand-purple text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all">
-          View Details <ExternalLink size={18} />
+        <button className="bg-brand-purple hover:bg-brand-purple/95 text-white px-8 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer text-sm">
+          View Details <ExternalLink size={16} />
         </button>
-        <button className="border-2 border-gray-800 text-gray-800 px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-gray-800 hover:text-white transition-all">
-          Download Brochure <Download size={18} />
+        <button className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer text-sm">
+          Download Brochure <Download size={16} />
         </button>
       </div>
     </div>
     
-    <div className="lg:w-1/3 bg-gray-50 rounded-[2rem] p-8 border border-gray-100 flex flex-col justify-center items-center">
+    <div className="lg:w-1/3 bg-slate-50/50 rounded-2xl p-8 border border-slate-100 flex flex-col justify-center items-center">
       <div className="text-center mb-6">
-        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Certification From</p>
+        <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Certification From</p>
         <div className="flex flex-wrap justify-center gap-6">
           {logos.map((logo, i) => (
             <img 
@@ -59,8 +59,8 @@ const AdvancedCard = ({ title, tag, description, mentees, duration, logos, image
           ))}
         </div>
       </div>
-      <div className="w-full h-px bg-gray-200 my-6" />
-      <div className="flex items-center gap-3 text-brand-purple font-bold">
+      <div className="w-full h-px bg-slate-200/60 my-6" />
+      <div className="flex items-center gap-3 text-brand-purple font-semibold">
         <ShieldCheck size={24} />
         <span>Industry Ratified</span>
       </div>
@@ -73,11 +73,11 @@ const AdvancedPrograms = () => {
     <section className="py-32 bg-gray-50/30">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl md:text-6xl font-extrabold font-display mb-6 tracking-tight text-gray-900">
+          <div className="max-w-2xl font-sans">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-slate-900">
               Advanced <span className="text-brand-purple">Programs</span>
             </h2>
-            <p className="text-gray-500 text-lg">
+            <p className="text-slate-655 text-lg">
               Long-term, intensive certification programs designed for deep expertise and career transformation.
             </p>
           </div>
