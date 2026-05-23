@@ -7,38 +7,93 @@ import {
 } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-const ProgramCard = ({ icon: Icon, title, description, count, duration = "2 Months" }) => (
-  <motion.div 
-    layout
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.9 }}
-    whileHover={{ y: -5 }}
-    className="bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-slate-100 hover:border-slate-200/80 shadow-md hover:shadow-xl hover:shadow-slate-100/60 transition-all duration-300 flex flex-col h-full hover:-translate-y-[2px]"
-  >
-    <Link to={`/${title.toLowerCase().replace(/\s+/g, '-')}`} className="absolute inset-0 z-10" />
-    <div className={`w-16 h-16 rounded-2xl bg-brand-purple/5 flex items-center justify-center mb-6 group-hover:bg-slate-900 transition-all duration-500`}>
-      <Icon className="text-brand-purple group-hover:text-white group-hover:scale-110 transition-transform" size={32} />
-    </div>
-    
-    <h3 className="text-xl font-bold mb-3 text-slate-800 leading-tight font-sans">{title}</h3>
-    <p className="text-slate-655 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
-    
-    <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-2 text-xs font-semibold text-brand-purple uppercase">
-          <Clock size={14} /> {duration}
+const categoryStyles = {
+  'Tech & Data': {
+    iconBg: 'bg-indigo-50/70 text-indigo-600 border-indigo-100/50',
+    badgeBg: 'bg-indigo-50/50 border-indigo-100/50 text-indigo-700',
+    hoverBorder: 'hover:border-indigo-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(79,70,229,0.08)]',
+    iconGlow: 'group-hover:bg-indigo-600 group-hover:border-indigo-600',
+    clockColor: 'text-indigo-500'
+  },
+  'Mechanics': {
+    iconBg: 'bg-cyan-50/70 text-cyan-600 border-cyan-100/50',
+    badgeBg: 'bg-cyan-50/50 border-cyan-100/50 text-cyan-700',
+    hoverBorder: 'hover:border-cyan-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(6,182,212,0.08)]',
+    iconGlow: 'group-hover:bg-cyan-600 group-hover:border-cyan-600',
+    clockColor: 'text-cyan-500'
+  },
+  'Business': {
+    iconBg: 'bg-emerald-50/70 text-emerald-600 border-emerald-100/50',
+    badgeBg: 'bg-emerald-50/50 border-emerald-100/50 text-emerald-700',
+    hoverBorder: 'hover:border-emerald-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(16,185,129,0.08)]',
+    iconGlow: 'group-hover:bg-emerald-600 group-hover:border-emerald-600',
+    clockColor: 'text-emerald-500'
+  },
+  'Medical': {
+    iconBg: 'bg-rose-50/70 text-rose-600 border-rose-100/50',
+    badgeBg: 'bg-rose-50/50 border-rose-100/50 text-rose-700',
+    hoverBorder: 'hover:border-rose-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(244,63,94,0.08)]',
+    iconGlow: 'group-hover:bg-rose-600 group-hover:border-rose-600',
+    clockColor: 'text-rose-500'
+  },
+  'Design': {
+    iconBg: 'bg-orange-50/70 text-orange-600 border-orange-100/50',
+    badgeBg: 'bg-orange-50/50 border-orange-100/50 text-orange-700',
+    hoverBorder: 'hover:border-orange-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(249,115,22,0.08)]',
+    iconGlow: 'group-hover:bg-orange-600 group-hover:border-orange-600',
+    clockColor: 'text-orange-500'
+  },
+  'Bootcamp': {
+    iconBg: 'bg-violet-50/70 text-violet-600 border-violet-100/50',
+    badgeBg: 'bg-violet-50/50 border-violet-100/50 text-violet-700',
+    hoverBorder: 'hover:border-violet-200/80',
+    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(139,92,246,0.08)]',
+    iconGlow: 'group-hover:bg-violet-600 group-hover:border-violet-600',
+    clockColor: 'text-violet-500'
+  }
+};
+
+const ProgramCard = ({ icon: Icon, title, description, count, duration = "2 Months", category = "Tech & Data" }) => {
+  const styles = categoryStyles[category] || categoryStyles['Tech & Data'];
+  
+  return (
+    <motion.div 
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      whileHover={{ y: -5 }}
+      className={`bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-[2px] ${styles.hoverBorder} ${styles.hoverShadow}`}
+    >
+      <Link to={`/${title.toLowerCase().replace(/\s+/g, '-')}`} className="absolute inset-0 z-10" />
+      <div className={`w-16 h-16 rounded-2xl border flex items-center justify-center mb-6 transition-all duration-300 ${styles.iconBg} ${styles.iconGlow}`}>
+        <Icon className="group-hover:text-white group-hover:scale-110 transition-transform" size={28} />
+      </div>
+      
+      <h3 className="text-xl font-bold mb-3 text-slate-800 leading-tight font-sans">{title}</h3>
+      <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
+      
+      <div className="flex items-center justify-between pt-6 border-t border-slate-100">
+        <div className="flex flex-col gap-1.5">
+          <div className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide w-fit border ${styles.badgeBg}`}>
+            <Clock size={12} className={styles.clockColor} /> {duration}
+          </div>
+          <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 pl-1">
+            <Users size={13} className="text-slate-400" /> {count} Mentees
+          </div>
         </div>
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-500">
-          <Users size={14} /> {count} Mentees
+        <div className="text-slate-955 font-bold text-sm flex items-center gap-1 group-hover:gap-1.5 transition-all">
+          Know More <ArrowRight size={16} />
         </div>
       </div>
-      <div className="text-brand-purple font-medium text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
-        Know More <ArrowRight size={16} />
-      </div>
-    </div>
-  </motion.div>
-);
+    </motion.div>
+  );
+};
 
 const Programs = () => {
   const [searchParams] = useSearchParams();
@@ -191,7 +246,7 @@ const Programs = () => {
         >
           <AnimatePresence mode="popLayout">
             {programData[activeTab].map((prog) => (
-              <ProgramCard key={prog.title} {...prog} />
+              <ProgramCard key={prog.title} {...prog} category={activeTab} />
             ))}
           </AnimatePresence>
         </motion.div>

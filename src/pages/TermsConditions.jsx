@@ -81,14 +81,14 @@ const TermsConditions = () => {
               ))}
             </div>
 
-            <div className="mt-12 p-6 rounded-2xl bg-violet-500/5 border border-violet-550/10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="mt-12 p-6 rounded-2xl bg-violet-500/5 border border-violet-500/10 flex flex-col md:flex-row justify-between items-center gap-6">
               <div>
                 <h4 className="font-bold text-gray-900 text-lg mb-1">Require assistance or clarification?</h4>
                 <p className="text-sm text-gray-500">Contact our legal and operations team for any queries regarding learner contracts.</p>
               </div>
               <a 
                 href="mailto:support@kelvornex.com" 
-                className="bg-violet-600 hover:bg-violet-750 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg shrink-0 text-sm"
+                className="bg-violet-600 hover:bg-violet-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg shrink-0 text-sm"
               >
                 Contact Support
               </a>

@@ -33,7 +33,7 @@ const Testimonials = () => {
           <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-slate-900 tracking-tight font-sans">
             Success <span className="text-brand-purple">Stories</span>
           </h2>
-          <p className="text-slate-655 text-lg font-sans font-light">
+          <p className="text-slate-600 text-lg font-sans font-light">
             Hear from our alumni who have successfully transitioned into high-growth tech roles after learning with Kelvornex.
           </p>
         </div>

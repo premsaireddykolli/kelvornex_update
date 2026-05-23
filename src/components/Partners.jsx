@@ -25,7 +25,7 @@ const Partners = () => {
         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight font-sans">
           Hire talent that <span className="text-brand-purple">stands out!</span>
         </h2>
-        <p className="text-slate-655 font-medium font-sans">Our students are placed in top companies worldwide</p>
+        <p className="text-slate-600 font-medium font-sans">Our students are placed in top companies worldwide</p>
       </div>
       
       {/* Hiring Partners Marquee */}
@@ -53,7 +53,7 @@ const Partners = () => {
         <div className="bg-slate-50 rounded-3xl p-10 flex flex-col md:flex-row items-center justify-between gap-12 border border-slate-100">
           <div className="max-w-md font-sans">
             <h3 className="text-2xl font-bold text-slate-800 mb-3">Official Certifications</h3>
-            <p className="text-slate-655 leading-relaxed text-base font-light">Get certified by industry leaders and government bodies to validate your skills.</p>
+            <p className="text-slate-600 leading-relaxed text-base font-light">Get certified by industry leaders and government bodies to validate your skills.</p>
           </div>
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
             {certifications.map((cert, i) => (

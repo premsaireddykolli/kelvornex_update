@@ -1,83 +1,325 @@
-import { motion } from 'framer-motion';
-import { Video, Award, UserCheck, Briefcase, HelpCircle, Users } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Video, Award, UserCheck, Briefcase, HelpCircle, Users, Star, ArrowRight } from 'lucide-react';
 
-const FeatureItem = ({ icon: Icon, title }) => (
-  <motion.div 
-    whileHover={{ y: -4 }}
-    className="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-md hover:shadow-xl hover:shadow-slate-100/50 hover:border-slate-200 transition-all duration-300 group hover:-translate-y-[2px]"
-  >
-    <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-550 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300 border border-slate-200/50">
-      <Icon size={28} />
-    </div>
-    <h4 className="text-lg font-bold text-slate-800 font-sans leading-snug">{title}</h4>
-  </motion.div>
+/* ────────────────────────────────────────────────────────────────
+   GOOGLE COLORS
+   ──────────────────────────────────────────────────────────────── */
+const G = {
+  blue:   '#1A73E8',
+  red:    '#EA4335',
+  yellow: '#FBBC05',
+  green:  '#34A853',
+};
+
+/* ────────────────────────────────────────────────────────────────
+   PASTEL BLOB LAYER — opacity 0.08, high blur, fluid drift
+   ──────────────────────────────────────────────────────────────── */
+const PastelBlobs = () => (
+  <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+    <div style={{
+      position: 'absolute', top: '5%', left: '8%',
+      width: 480, height: 480, borderRadius: '60% 40% 55% 45% / 50% 60% 40% 50%',
+      background: `radial-gradient(circle, ${G.blue} 0%, #93c5fd 55%, transparent 80%)`,
+      opacity: 0.08, filter: 'blur(72px)',
+      animation: 'blobA 20s ease-in-out infinite',
+    }} />
+    <div style={{
+      position: 'absolute', bottom: '6%', right: '6%',
+      width: 440, height: 440, borderRadius: '45% 55% 40% 60% / 60% 40% 60% 40%',
+      background: `radial-gradient(circle, ${G.green} 0%, #86efac 55%, transparent 80%)`,
+      opacity: 0.08, filter: 'blur(80px)',
+      animation: 'blobB 24s ease-in-out infinite',
+    }} />
+    <div style={{
+      position: 'absolute', top: '42%', left: '46%',
+      width: 360, height: 360, borderRadius: '55% 45% 60% 40% / 45% 55% 45% 55%',
+      background: `radial-gradient(circle, ${G.red} 0%, #fca5a5 55%, transparent 80%)`,
+      opacity: 0.07, filter: 'blur(90px)',
+      animation: 'blobC 28s ease-in-out infinite',
+    }} />
+    <div style={{
+      position: 'absolute', top: '15%', right: '22%',
+      width: 300, height: 300, borderRadius: '50%',
+      background: `radial-gradient(circle, ${G.yellow} 0%, #fde68a 55%, transparent 80%)`,
+      opacity: 0.07, filter: 'blur(60px)',
+      animation: 'blobD 18s ease-in-out infinite',
+    }} />
+  </div>
 );
 
+/* ────────────────────────────────────────────────────────────────
+   FEATURE CARD — no 3D tilt, clean hover with border + shadow
+   ──────────────────────────────────────────────────────────────── */
+const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold: 0.18 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity:    inView ? 1 : 0,
+        transform:  inView ? 'translateY(0)' : 'translateY(28px)',
+        transition: `opacity 0.65s ease ${delay}ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
+      }}
+    >
+      <div
+        className="feature-card group"
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = accentColor;
+          e.currentTarget.style.boxShadow = `0 8px 32px ${accentColor}18, 0 2px 8px rgba(60,64,67,0.06)`;
+          e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(1)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = '#E0E0E0';
+          e.currentTarget.style.boxShadow = '0 1px 4px rgba(60,64,67,0.06)';
+          e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(0)';
+        }}
+        style={{
+          background:  '#FFFFFF',
+          border:      '1px solid #E0E0E0',
+          padding:     '1.75rem',
+          cursor:      'default',
+          transition:  'box-shadow 0.25s ease, border-color 0.25s ease',
+          position:    'relative',
+          overflow:    'hidden',
+          boxShadow:   '0 1px 4px rgba(60,64,67,0.06)',
+        }}
+      >
+        {/* Top color strip */}
+        <div
+          className="card-top-strip"
+          style={{
+            position:        'absolute',
+            top: 0, left: 0, right: 0,
+            height:          3,
+            background:      accentColor,
+            transform:       'scaleX(0)',
+            transformOrigin: 'left',
+            transition:      'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
+          }}
+        />
+
+        {/* Icon */}
+        <div
+          className="w-12 h-12 flex items-center justify-center mb-4 rounded-full"
+          style={{
+            background: `${accentColor}12`,
+            border: `1px solid ${accentColor}28`,
+          }}
+        >
+          <Icon size={22} style={{ color: accentColor }} />
+        </div>
+
+        <h4 className="text-base font-bold text-slate-800 font-sans mb-1.5 leading-snug">
+          {title}
+        </h4>
+        <p className="text-slate-500 text-sm leading-relaxed font-sans">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/* ────────────────────────────────────────────────────────────────
+   STAT PANEL — no 3D tilt, clean shadow on hover
+   ──────────────────────────────────────────────────────────────── */
+const StatPanel = () => {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setInView(true); },
+      { threshold: 0.2 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity:    inView ? 1 : 0,
+        transform:  inView ? 'translateX(0)' : 'translateX(40px)',
+        transition: 'opacity 0.9s ease 0.3s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s',
+      }}
+    >
+      <div
+        style={{
+          background: '#FFFFFF',
+          border: '1px solid #E8EAED',
+          padding: '3rem',
+          boxShadow: '0 4px 24px rgba(60,64,67,0.08)',
+          position: 'relative',
+          overflow: 'hidden',
+          transition: 'box-shadow 0.25s ease',
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 8px 40px rgba(60,64,67,0.12)'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 4px 24px rgba(60,64,67,0.08)'; }}
+      >
+        {/* Black top strip */}
+        <div className="absolute top-0 left-0 right-0" style={{ height: 4, background: '#000000' }} />
+
+        {/* Rating */}
+        <div className="text-center mb-8 mt-2">
+          <div className="text-6xl font-black font-sans mb-3" style={{ color: '#202124' }}>
+            4.8
+          </div>
+          <div className="flex justify-center gap-1 mb-3">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={20} fill={G.yellow} color={G.yellow} />
+            ))}
+          </div>
+          <div className="text-sm font-bold text-slate-700 font-sans">Google Rating</div>
+          <p className="text-slate-400 text-xs mt-0.5">From 10,000+ Students</p>
+        </div>
+
+        {/* Divider */}
+        <div className="mb-8" style={{ height: 1, background: '#E8EAED' }} />
+
+        {/* Stats */}
+        <div className="grid grid-cols-2 gap-8 text-center">
+          {[
+            { value: '50K+', label: 'Mentees'      },
+            { value: '500+', label: 'Partners'     },
+            { value: '120+', label: 'Mentors'      },
+            { value: '98%',  label: 'Satisfaction' },
+          ].map((s) => (
+            <div key={s.label}>
+              <div className="text-2xl font-black font-sans" style={{ color: '#000000' }}>
+                {s.value}
+              </div>
+              <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-1 font-sans">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ────────────────────────────────────────────────────────────────
+   WHY CHOOSE (MENTORS PANEL)
+   ──────────────────────────────────────────────────────────────── */
 const WhyChoose = () => {
-  const challenges = [
-    { icon: Video, title: "LIVE Interactive Session" },
-    { icon: Award, title: "Industry ratified certifications" },
-    { icon: UserCheck, title: "Expert Industry Mentor" },
-    { icon: Briefcase, title: "Portfolio worthy projects" },
-    { icon: HelpCircle, title: "Dedicated query session" },
-    { icon: Users, title: "Active Community" },
+  const headerRef = useRef(null);
+  const [hdrIn, setHdrIn] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setHdrIn(true); },
+      { threshold: 0.25 }
+    );
+    if (headerRef.current) obs.observe(headerRef.current);
+    return () => obs.disconnect();
+  }, []);
+
+  const features = [
+    { icon: Video,      title: 'LIVE Interactive Sessions',       description: 'Real-time sessions with practitioners — ask, debug, and get live feedback.',               accentColor: '#000000', delay: 0   },
+    { icon: Award,      title: 'Industry Ratified Certifications',description: 'Credentials validated by leading industry bodies and government organisations.',             accentColor: '#000000', delay: 80  },
+    { icon: UserCheck,  title: 'Expert Industry Mentors',         description: 'Learn from engineers and leaders with 10+ years of real-world experience.',                 accentColor: '#000000', delay: 160 },
+    { icon: Briefcase,  title: 'Portfolio-worthy Projects',       description: 'Build production-grade projects that impress senior engineers on day one.',                 accentColor: '#000000', delay: 240 },
+    { icon: HelpCircle, title: 'Dedicated Query Sessions',        description: 'One-on-one doubt resolution sessions with your mentor, at your convenience.',              accentColor: '#000000', delay: 320 },
+    { icon: Users,      title: 'Active Peer Community',           description: 'Join 50,000+ ambitious learners in a thriving, collaborative learning network.',           accentColor: '#000000', delay: 400 },
   ];
 
   return (
-    <section className="py-32 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
-          <div className="lg:w-1/2">
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight text-slate-900 leading-tight font-sans">
-              Why Choose <span className="text-brand-purple">Corizo?</span>
-            </h2>
-            <div className="flex items-center gap-3 mb-10">
-              <span className="text-sm font-semibold text-slate-550 uppercase tracking-wider">Learning Challenges</span>
-              <div className="h-px w-12 bg-slate-300" />
-              <span className="text-sm font-semibold text-brand-purple uppercase tracking-wider">How we encounter</span>
-            </div>
-            
-            <p className="text-slate-655 text-lg mb-12 max-w-xl font-sans font-light">
-              We bridge the gap between classroom learning and industry requirements by providing real-world experience and mentorship.
-            </p>
+    <section
+      id="why-choose"
+      className="relative py-32 overflow-hidden"
+      style={{ background: '#FFFFFF' }}
+    >
+      {/* Pastel blob layer */}
+      <PastelBlobs />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {challenges.map((item, i) => (
-                <FeatureItem key={i} {...item} />
-              ))}
-            </div>
-          </div>
-          
-          <div className="lg:w-1/2 relative">
-            <div className="absolute inset-0 bg-cyan-400/10 blur-[150px] rounded-full scale-75 animate-pulse-glow" />
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="relative bg-slate-900 rounded-3xl p-12 overflow-hidden shadow-xl shadow-slate-900/10 border border-slate-800"
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div
+          ref={headerRef}
+          style={{
+            opacity:   hdrIn ? 1 : 0,
+            transform: hdrIn ? 'translateY(0)' : 'translateY(28px)',
+            transition:'opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1)',
+          }}
+          className="flex flex-col lg:flex-row justify-between items-start mb-20 gap-8"
+        >
+          <div className="max-w-xl font-sans">
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest"
+              style={{ background: '#F5F5F5', color: '#000000', border: '1px solid #E0E0E0' }}
             >
-              <div className="aspect-square flex flex-col justify-center items-center text-center text-white">
-                <div className="text-6xl font-black mb-4 font-sans">4.8</div>
-                <div className="flex gap-1 text-brand-gold mb-6">
-                  {[...Array(5)].map((_, i) => <Award key={i} size={24} fill="currentColor" />)}
-                </div>
-                <div className="text-2xl font-bold mb-2 font-sans">Google Rating</div>
-                <p className="text-white/40 text-sm font-sans">From 10,000+ Students</p>
-                
-                <div className="grid grid-cols-2 gap-12 mt-12">
-                  <div>
-                    <div className="text-3xl font-bold font-sans">50K+</div>
-                    <div className="text-xs text-white/40 uppercase font-medium tracking-wider mt-1 font-sans">Mentees</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold font-sans">500+</div>
-                    <div className="text-xs text-white/40 uppercase font-medium tracking-wider mt-1 font-sans">Partners</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#000000' }} />
+              Our Advantage
+            </span>
+            <h2
+              className="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight leading-tight"
+              style={{ color: '#202124' }}
+            >
+              Why Choose{' '}
+              <span style={{ color: '#000000' }}>Kelvornex?</span>
+            </h2>
+            <p className="text-slate-600 text-lg font-light">
+              We bridge the gap between classroom theory and industry reality through
+              live mentorship, real projects, and community.
+            </p>
+          </div>
+          <a
+            href="/apply-as-mentor"
+            className="g-btn g-btn--primary group shrink-0"
+            id="mentors-apply-btn"
+          >
+            Apply as Mentor
+            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+
+        {/* Asymmetric bento layout — no 3D tilt */}
+        <div className="flex flex-col lg:flex-row gap-14 items-start">
+          <div className="lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {features.map((f) => (
+              <FeatureCard key={f.title} {...f} />
+            ))}
+          </div>
+          <div className="lg:w-2/5 lg:sticky lg:top-32">
+            <StatPanel />
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes blobA {
+          0%,100% { transform: translate(0,0) scale(1) rotate(0deg); }
+          33%      { transform: translate(40px,-28px) scale(1.08) rotate(12deg); }
+          66%      { transform: translate(-18px,36px) scale(0.95) rotate(-8deg); }
+        }
+        @keyframes blobB {
+          0%,100% { transform: translate(0,0) scale(1) rotate(0deg); }
+          40%      { transform: translate(-44px,28px) scale(1.1) rotate(-18deg); }
+          70%      { transform: translate(28px,-36px) scale(0.92) rotate(10deg); }
+        }
+        @keyframes blobC {
+          0%,100% { transform: translate(0,0) scale(1); }
+          50%      { transform: translate(56px,44px) scale(1.12); }
+        }
+        @keyframes blobD {
+          0%,100% { transform: translate(0,0) scale(1); }
+          50%      { transform: translate(-36px,28px) scale(1.06); }
+        }
+      `}</style>
     </section>
   );
 };

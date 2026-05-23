@@ -75,7 +75,7 @@ const Navbar = ({ onCartClick }) => {
               onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors flex items-center gap-1 py-2">
+              <button className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1 py-2">
                 {link.name}
                 {link.hasDropdown && <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
               </button>
@@ -93,7 +93,7 @@ const Navbar = ({ onCartClick }) => {
                       <Link 
                         key={item.name} 
                         to={item.path}
-                        className="block px-4 py-3 text-sm font-semibold text-gray-600 hover:text-brand-purple hover:bg-brand-purple/5 rounded-xl transition-all"
+                        className="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
                       >
                         {item.name}
                       </Link>
@@ -107,7 +107,7 @@ const Navbar = ({ onCartClick }) => {
 
         {/* Buttons & Cart */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link to="/about" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors mr-4">About Us</Link>
+          <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors mr-4">About Us</Link>
           {isAuthenticated ? (
             <Link to={`/profile/${user?.id}`} className="flex items-center mr-2">
               {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
@@ -121,10 +121,36 @@ const Navbar = ({ onCartClick }) => {
               )}
             </Link>
           ) : (
-            <Link to="/login" className="text-sm font-bold text-gray-700 hover:text-brand-purple transition-colors mr-2">Login</Link>
+            <Link to="/login" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors mr-2">Login</Link>
           )}
           
-          <Link to="/contact" className="bg-brand-purple text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-brand-purple-dark transition-all shadow-lg shadow-brand-purple/20">Contact Us</Link>
+          <Link
+            to="/contact"
+            style={{
+              background: '#1A73E8',
+              color: '#FFFFFF',
+              borderRadius: '9999px',
+              padding: '0.5rem 1.25rem',
+              fontSize: '0.875rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              transition: 'background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#1557B0';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(26,115,232,0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#1A73E8';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            Contact Us
+          </Link>
           
           <button 
             onClick={onCartClick}
@@ -212,9 +238,9 @@ const Navbar = ({ onCartClick }) => {
                     </Link>
                   </>
                 ) : (
-                  <Link to="/login" className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold text-center block">Login</Link>
+                  <Link to="/login" className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-full font-medium text-center block transition-all border border-slate-900 active:scale-[0.98]">Login</Link>
                 )}
-                <Link to="/contact" className="w-full border-2 border-gray-800 text-gray-800 py-4 rounded-2xl font-bold text-center block">Contact Us</Link>
+                <Link to="/contact" className="w-full border border-slate-200 hover:bg-slate-50 text-slate-700 py-3.5 rounded-full font-medium text-center block transition-all active:scale-[0.98]">Contact Us</Link>
               </div>
             </div>
           </motion.div>

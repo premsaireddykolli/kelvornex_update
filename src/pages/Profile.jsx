@@ -196,9 +196,9 @@ const Profile = () => {
   }
 
   const roleStyles = {
-    STUDENT: 'bg-violet-50 text-violet-750 border-violet-200/50',
-    ENTREPRENEUR: 'bg-amber-50 text-amber-855 border-amber-200/50',
-    MENTOR: 'bg-emerald-50 text-emerald-855 border-emerald-200/50'
+    STUDENT: 'bg-violet-50 text-violet-700 border-violet-200/50',
+    ENTREPRENEUR: 'bg-amber-50 text-amber-800 border-amber-200/50',
+    MENTOR: 'bg-emerald-50 text-emerald-800 border-emerald-200/50'
   };
 
   const currentRoleStyle = roleStyles[profileData.role] || 'bg-slate-50 text-slate-700 border-slate-100';
@@ -280,7 +280,7 @@ const Profile = () => {
 
             {/* Profile Completeness Tracker */}
             <div className="w-full space-y-2 pt-4 border-t border-slate-100 text-left">
-              <div className="flex justify-between text-sm font-medium text-slate-655">
+              <div className="flex justify-between text-sm font-medium text-slate-600">
                 <span>Profile Strength</span>
                 <span className="text-slate-800 font-bold text-sm">{completeness}%</span>
               </div>
@@ -420,7 +420,7 @@ const Profile = () => {
                       <div className="flex flex-wrap gap-2">
                         {skillsArray.map((skill, index) => (
                           <span key={index} className="inline-flex items-center px-3.5 py-1.5 rounded-full text-sm font-semibold bg-white text-slate-800 border border-slate-200/60 shadow-sm">
-                            <Code className="w-3.5 h-3.5 text-slate-550 mr-1.5" />
+                            <Code className="w-3.5 h-3.5 text-slate-500 mr-1.5" />
                             {skill}
                           </span>
                         ))}
@@ -461,7 +461,7 @@ const Profile = () => {
                           rel="noopener noreferrer" 
                           className="flex items-center gap-3.5 p-4 rounded-2xl border border-slate-100 bg-white hover:border-slate-300 hover:shadow-lg hover:shadow-slate-100/50 transition-all text-slate-700 hover:text-slate-900 group"
                         >
-                          <div className="p-2.5 bg-slate-50 rounded-xl text-slate-750 group-hover:bg-slate-100 transition-colors border border-slate-200/50">
+                          <div className="p-2.5 bg-slate-50 rounded-xl text-slate-700 group-hover:bg-slate-100 transition-colors border border-slate-200/50">
                             {profileData.role === 'STUDENT' ? <Github className="w-5 h-5" /> : <Globe className="w-5 h-5" />}
                           </div>
                           <div className="min-w-0 flex-1">
@@ -730,7 +730,7 @@ const DetailItem = ({ label, value, icon: Icon, placeholder = 'Not specified' })
     <div className="min-w-0 flex-1">
       <div className="text-xs font-medium text-slate-600 uppercase tracking-wider">{label}</div>
       <div className="text-base font-semibold text-slate-800 truncate mt-0.5">
-        {value ? value : <span className="text-slate-550 font-normal italic">{placeholder}</span>}
+        {value ? value : <span className="text-slate-500 font-normal italic">{placeholder}</span>}
       </div>
     </div>
   </div>
