@@ -176,7 +176,7 @@ const Profile = () => {
       title="My Kelvornex Profile"
       description="Kelvornex User Profile Dashboard page. Manage contact settings and upload high-resolution avatars."
     >
-      <div className="container mx-auto max-w-5xl px-4 py-12 bg-white">
+      <div className="container mx-auto max-w-5xl px-4 py-12 bg-white font-google-sans">
         {/* Status Alerts */}
         {error && (
           <div className="mb-6 rounded-2xl bg-rose-50 border border-rose-100 p-4 text-sm text-rose-700 flex items-center gap-3 font-semibold">
@@ -212,7 +212,7 @@ const Profile = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wide font-display">
+              <h3 className="text-xl font-bold text-slate-800 uppercase tracking-wide font-google-sans">
                 {profileData.firstName} {profileData.lastName}
               </h3>
               <p className="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">
@@ -276,7 +276,7 @@ const Profile = () => {
 
           {/* RIGHT PANEL: DYNAMIC FORM CARD */}
           <div className="lg:col-span-8 bg-white border border-slate-200 rounded-3xl shadow-sm p-8">
-            <h2 className="text-xl font-bold text-slate-800 font-display mb-6 pb-4 border-b border-slate-100 uppercase tracking-wide">
+            <h2 className="text-xl font-bold text-slate-800 font-google-sans mb-6 pb-4 border-b border-slate-100 uppercase tracking-wide">
               Personal Information
             </h2>
             
