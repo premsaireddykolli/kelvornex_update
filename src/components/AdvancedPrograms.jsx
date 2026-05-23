@@ -32,7 +32,7 @@ const AdvancedCard = ({ title, tag, description, mentees, duration, logos, image
       </div>
       
       <div className="flex flex-col sm:flex-row gap-4">
-        <button className="bg-brand-purple hover:bg-brand-purple/95 text-white px-8 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer text-sm">
+        <button className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-slate-900/10 hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer text-sm border border-slate-900">
           View Details <ExternalLink size={16} />
         </button>
         <button className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-8 py-2.5 rounded-full font-medium flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer text-sm">

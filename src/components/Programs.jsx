@@ -17,7 +17,7 @@ const ProgramCard = ({ icon: Icon, title, description, count, duration = "2 Mont
     className="bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-slate-100 hover:border-slate-200/80 shadow-md hover:shadow-xl hover:shadow-slate-100/60 transition-all duration-300 flex flex-col h-full hover:-translate-y-[2px]"
   >
     <Link to={`/${title.toLowerCase().replace(/\s+/g, '-')}`} className="absolute inset-0 z-10" />
-    <div className={`w-16 h-16 rounded-2xl bg-brand-purple/5 flex items-center justify-center mb-6 group-hover:bg-brand-purple transition-all duration-500`}>
+    <div className={`w-16 h-16 rounded-2xl bg-brand-purple/5 flex items-center justify-center mb-6 group-hover:bg-slate-900 transition-all duration-500`}>
       <Icon className="text-brand-purple group-hover:text-white group-hover:scale-110 transition-transform" size={32} />
     </div>
     
@@ -174,7 +174,7 @@ const Programs = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-6 md:px-8 py-2.5 rounded-full font-medium transition-all duration-200 text-sm md:text-base hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer ${
                 activeTab === tab.id 
-                ? 'bg-brand-purple text-white shadow-md shadow-brand-purple/15' 
+                ? 'bg-slate-900 text-white border border-slate-900 shadow-md shadow-slate-900/10' 
                 : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
               }`}
             >

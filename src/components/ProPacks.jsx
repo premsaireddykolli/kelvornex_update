@@ -24,7 +24,7 @@ const PackCard = ({ title, courses, features, highlight }) => (
       ))}
     </ul>
     
-    <button className={`w-full py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-2 group hover:-translate-y-[1px] active:scale-[0.98] ${highlight ? 'bg-gradient-gold text-brand-dark shadow-sm hover:shadow-md hover:shadow-brand-gold/20' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow-md hover:shadow-slate-900/10'}`}>
+    <button className="w-full py-2.5 rounded-full font-medium transition-all duration-200 flex items-center justify-center gap-2 group hover:-translate-y-[1px] active:scale-[0.98] bg-slate-900 text-white hover:bg-slate-800 shadow-sm hover:shadow-md hover:shadow-slate-900/10 border border-slate-900">
       Learn More <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
     </button>
   </motion.div>
@@ -77,7 +77,7 @@ const ProPacks = () => {
             <h3 className="text-3xl md:text-4xl font-extrabold mb-4 font-sans">Get premium Access to 20+ Courses</h3>
             <p className="text-white/90 font-normal text-lg font-sans">Invest in your future with our all-in-one lifetime access pass.</p>
           </div>
-          <button className="relative z-10 bg-gradient-gold text-brand-dark px-8 py-3 rounded-full font-semibold text-base hover:-translate-y-[1px] active:scale-[0.98] transition-all duration-200 shadow-md shadow-brand-gold/15 cursor-pointer">
+          <button className="relative z-10 bg-slate-900 border border-slate-900 text-white px-8 py-3 rounded-full font-medium text-base hover:bg-slate-800 hover:-translate-y-[1px] active:scale-[0.98] transition-all duration-200 shadow-md shadow-slate-900/10 cursor-pointer">
             Explore Gold
           </button>
         </div>
