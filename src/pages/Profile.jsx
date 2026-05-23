@@ -197,8 +197,8 @@ const Profile = () => {
 
   const roleStyles = {
     STUDENT: 'bg-violet-50 text-violet-750 border-violet-200/50',
-    ENTREPRENEUR: 'bg-amber-50 text-amber-800 border-amber-200/50',
-    MENTOR: 'bg-emerald-50 text-emerald-800 border-emerald-200/50'
+    ENTREPRENEUR: 'bg-amber-50 text-amber-855 border-amber-200/50',
+    MENTOR: 'bg-emerald-50 text-emerald-855 border-emerald-200/50'
   };
 
   const currentRoleStyle = roleStyles[profileData.role] || 'bg-slate-50 text-slate-700 border-slate-100';
@@ -218,10 +218,10 @@ const Profile = () => {
         
         {/* Visual Editorial Heading Banner */}
         <div className="mb-10 text-left border-b border-slate-100 pb-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
             Account Settings
           </h1>
-          <p className="text-sm text-slate-500 mt-1 font-light">
+          <p className="text-base text-slate-500 mt-1 font-light">
             Manage your personal profile details, dynamic credentials, and professional networks.
           </p>
         </div>
@@ -263,15 +263,15 @@ const Profile = () => {
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-xl font-bold text-slate-800 tracking-tight">
+              <h3 className="text-2xl font-bold text-slate-800 tracking-tight">
                 {profileData.firstName} {profileData.lastName}
               </h3>
               <div className="flex flex-col items-center gap-2">
-                <span className={`inline-flex items-center px-4 py-1 rounded-full text-xs font-bold border tracking-wide capitalize ${currentRoleStyle}`}>
+                <span className={`inline-flex items-center px-4 py-1 rounded-full text-sm font-bold border tracking-wide capitalize ${currentRoleStyle}`}>
                   {profileData.role?.toLowerCase()}
                 </span>
                 
-                <div className="flex items-center gap-1.5 text-[11px] text-emerald-600 font-semibold bg-emerald-50/50 px-2.5 py-0.5 rounded-full border border-emerald-100/50 mt-1">
+                <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-semibold bg-emerald-50/50 px-2.5 py-0.5 rounded-full border border-emerald-100/50 mt-1">
                   <Check className="w-3.5 h-3.5" />
                   <span>Verified Member</span>
                 </div>
@@ -280,9 +280,9 @@ const Profile = () => {
 
             {/* Profile Completeness Tracker */}
             <div className="w-full space-y-2 pt-4 border-t border-slate-100 text-left">
-              <div className="flex justify-between text-xs font-bold text-slate-500">
+              <div className="flex justify-between text-sm font-bold text-slate-500">
                 <span>Profile Strength</span>
-                <span className="text-slate-900 font-extrabold">{completeness}%</span>
+                <span className="text-slate-900 font-extrabold text-sm">{completeness}%</span>
               </div>
               <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
                 <div 
@@ -290,7 +290,7 @@ const Profile = () => {
                   style={{ width: `${completeness}%` }}
                 />
               </div>
-              <p className="text-[11px] text-slate-400 font-light leading-snug">
+              <p className="text-xs text-slate-400 font-light leading-snug">
                 {completeness === 100 
                   ? 'Awesome! Your profile details are fully complete.' 
                   : 'Fill out all professional details to reach 100% strength.'}
@@ -308,7 +308,7 @@ const Profile = () => {
                       setSuccess(null);
                       setError(null);
                     }}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-sm cursor-pointer shadow-sm hover:shadow"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-base cursor-pointer shadow-sm hover:shadow"
                   >
                     <Edit2 className="w-4 h-4 text-white" />
                     Edit Profile
@@ -316,7 +316,7 @@ const Profile = () => {
                   <button
                     type="button"
                     onClick={logout}
-                    className="w-full flex items-center justify-center gap-2 bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-600 py-2.5 rounded-full font-medium transition-all border border-slate-200 hover:border-rose-200 text-sm mt-1 cursor-pointer shadow-sm"
+                    className="w-full flex items-center justify-center gap-2 bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-600 py-2.5 rounded-full font-medium transition-all border border-slate-200 hover:border-rose-200 text-base mt-1 cursor-pointer shadow-sm"
                   >
                     Logout Account
                   </button>
@@ -330,7 +330,7 @@ const Profile = () => {
                       setImagePreview(null);
                       setProfileImageFile(null);
                     }}
-                    className="flex-1 bg-white hover:bg-slate-50 text-slate-700 py-2.5 rounded-full font-medium transition-all border border-slate-200 text-xs cursor-pointer shadow-sm"
+                    className="flex-1 bg-white hover:bg-slate-50 text-slate-700 py-2.5 rounded-full font-medium transition-all border border-slate-200 text-sm cursor-pointer shadow-sm"
                   >
                     Cancel
                   </button>
@@ -338,7 +338,7 @@ const Profile = () => {
                     type="button"
                     onClick={handleSaveChanges}
                     disabled={saving}
-                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
+                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
                   >
                     {saving ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
@@ -361,26 +361,26 @@ const Profile = () => {
                 
                 {/* Header */}
                 <div className="border-b border-slate-100 pb-5 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-slate-900">
+                  <h2 className="text-2xl font-bold text-slate-900">
                     Profile Overview
                   </h2>
-                  <span className="text-xs text-slate-400 font-medium bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-100">
+                  <span className="text-sm text-slate-400 font-medium bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-100">
                     ID: #{profileData.id || 'N/A'}
                   </span>
                 </div>
 
                 {/* Bio Section */}
                 <div className="space-y-3 bg-slate-50/50 border border-slate-50/60 rounded-2xl p-6">
-                  <h3 className="text-xs font-bold text-slate-450 uppercase tracking-widest flex items-center gap-2">
-                    <UserIcon className="w-3.5 h-3.5" />
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                    <UserIcon className="w-4 h-4 text-slate-400" />
                     About Me
                   </h3>
                   {profileData.bio ? (
-                    <p className="text-slate-700 leading-relaxed text-sm whitespace-pre-wrap font-medium">
+                    <p className="text-slate-700 leading-relaxed text-base whitespace-pre-wrap font-medium">
                       "{profileData.bio}"
                     </p>
                   ) : (
-                    <p className="text-sm text-slate-400 italic font-light">
+                    <p className="text-base text-slate-400 italic font-light">
                       No biography or professional bio has been added yet. Click Edit Profile to update.
                     </p>
                   )}
@@ -388,7 +388,7 @@ const Profile = () => {
 
                 {/* Personal Information Grid */}
                 <div className="space-y-4">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
                     General Information
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -401,7 +401,7 @@ const Profile = () => {
 
                 {/* Contact Information */}
                 <div className="space-y-4 pt-2">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
                     Contact Details
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -412,21 +412,21 @@ const Profile = () => {
 
                 {/* Professional Portfolio and Networks */}
                 <div className="space-y-4 pt-2">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
                     {profileData.role === 'STUDENT' ? 'Skills' : 'Domains & Interests'}
                   </h3>
                   <div className="p-5 bg-slate-50/50 border border-slate-50/60 rounded-2xl">
                     {skillsArray.length > 0 ? (
                       <div className="flex flex-wrap gap-2">
                         {skillsArray.map((skill, index) => (
-                          <span key={index} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white text-slate-800 border border-slate-200/60 shadow-sm">
-                            <Code className="w-3 h-3 text-slate-400 mr-1.5" />
+                          <span key={index} className="inline-flex items-center px-3.5 py-1.5 rounded-full text-sm font-semibold bg-white text-slate-800 border border-slate-200/60 shadow-sm">
+                            <Code className="w-3.5 h-3.5 text-slate-400 mr-1.5" />
                             {skill}
                           </span>
                         ))}
                       </div>
                     ) : (
-                      <span className="text-sm text-slate-400 italic font-light">No skills or startup domains registered.</span>
+                      <span className="text-base text-slate-400 italic font-light">No skills or startup domains registered.</span>
                     )}
                   </div>
                 </div>
@@ -434,7 +434,7 @@ const Profile = () => {
                 {/* Social links */}
                 {(profileData.linkedinUrl || profileData.githubUrl) && (
                   <div className="space-y-4 pt-2">
-                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">
                       Professional Networks
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -449,8 +449,8 @@ const Profile = () => {
                             <Linkedin className="w-5 h-5" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400">LinkedIn Profile</div>
-                            <div className="text-sm font-semibold truncate mt-0.5">{profileData.linkedinUrl.replace(/^https?:\/\/(www\.)?/, '')}</div>
+                            <div className="text-xs uppercase font-semibold tracking-wider text-slate-400">LinkedIn Profile</div>
+                            <div className="text-base font-semibold truncate mt-0.5">{profileData.linkedinUrl.replace(/^https?:\/\/(www\.)?/, '')}</div>
                           </div>
                         </a>
                       )}
@@ -465,10 +465,10 @@ const Profile = () => {
                             {profileData.role === 'STUDENT' ? <Github className="w-5 h-5" /> : <Globe className="w-5 h-5" />}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <div className="text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                            <div className="text-xs uppercase font-semibold tracking-wider text-slate-400">
                               {profileData.role === 'STUDENT' ? 'GitHub Portfolio' : 'Company Website'}
                             </div>
-                            <div className="text-sm font-semibold truncate mt-0.5">{profileData.githubUrl.replace(/^https?:\/\/(www\.)?/, '')}</div>
+                            <div className="text-base font-semibold truncate mt-0.5">{profileData.githubUrl.replace(/^https?:\/\/(www\.)?/, '')}</div>
                           </div>
                         </a>
                       )}
@@ -481,7 +481,7 @@ const Profile = () => {
               /* EDIT MODE LAYOUT (Active Interactive Form) */
               <div className="animate-fadeIn">
                 <div className="border-b border-slate-100 pb-5 mb-8">
-                  <h2 className="text-xl font-bold text-slate-900">
+                  <h2 className="text-2xl font-bold text-slate-900">
                     Edit Profile Details
                   </h2>
                 </div>
@@ -491,7 +491,7 @@ const Profile = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* First Name Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         First Name
                       </label>
                       <div className="relative group/input">
@@ -504,14 +504,14 @@ const Profile = () => {
                           value={profileData.firstName}
                           onChange={handleInputChange}
                           placeholder="e.g. Jane"
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
 
                     {/* Last Name Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         Last Name
                       </label>
                       <div className="relative group/input">
@@ -524,7 +524,7 @@ const Profile = () => {
                           value={profileData.lastName}
                           onChange={handleInputChange}
                           placeholder="e.g. Doe"
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
@@ -534,7 +534,7 @@ const Profile = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Email Input (Always Locked) */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         Email Address
                       </label>
                       <div className="relative bg-slate-50 border border-slate-100 rounded-2xl">
@@ -545,17 +545,17 @@ const Profile = () => {
                           type="email"
                           value={profileData.email}
                           readOnly={true}
-                          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-transparent text-slate-500 text-sm font-semibold cursor-not-allowed focus:outline-none"
+                          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-transparent text-slate-550 text-base font-semibold cursor-not-allowed focus:outline-none"
                         />
                         <span className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400">
-                          <Lock className="w-3.5 h-3.5" />
+                          <Lock className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
 
                     {/* Phone Number Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         Phone Number
                       </label>
                       <div className="relative group/input">
@@ -568,7 +568,7 @@ const Profile = () => {
                           value={profileData.phoneNumber || ''}
                           onChange={handleInputChange}
                           placeholder="e.g. +91 98765 43210"
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
@@ -578,7 +578,7 @@ const Profile = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Profile Role Input (Always Locked) */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         Platform Role
                       </label>
                       <div className="relative bg-slate-50 border border-slate-100 rounded-2xl">
@@ -589,17 +589,17 @@ const Profile = () => {
                           type="text"
                           value={profileData.role}
                           readOnly={true}
-                          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-transparent text-slate-500 text-sm font-semibold capitalize cursor-not-allowed focus:outline-none"
+                          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-transparent text-slate-555 text-base font-semibold capitalize cursor-not-allowed focus:outline-none"
                         />
                         <span className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400">
-                          <Lock className="w-3.5 h-3.5" />
+                          <Lock className="w-4 h-4" />
                         </span>
                       </div>
                     </div>
 
                     {/* Location Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         Location
                       </label>
                       <div className="relative group/input">
@@ -612,7 +612,7 @@ const Profile = () => {
                           value={profileData.location || ''}
                           onChange={handleInputChange}
                           placeholder="e.g. Bengaluru, India"
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
@@ -620,7 +620,7 @@ const Profile = () => {
 
                   {/* Bio Text Area */}
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                       Biography / Headline
                     </label>
                     <textarea
@@ -629,7 +629,7 @@ const Profile = () => {
                       onChange={handleInputChange}
                       placeholder="Tell us about yourself, your career aspirations, or startup vision..."
                       rows={4}
-                      className="w-full px-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400 resize-none"
+                      className="w-full px-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400 resize-none"
                     />
                   </div>
 
@@ -637,7 +637,7 @@ const Profile = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Skills/Interests Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         {profileData.role === 'STUDENT' ? 'Skills (comma separated)' : 'Startup Domain / Interests'}
                       </label>
                       <div className="relative group/input">
@@ -650,14 +650,14 @@ const Profile = () => {
                           value={profileData.skills || ''}
                           onChange={handleInputChange}
                           placeholder={profileData.role === 'STUDENT' ? 'e.g. React, Node.js, Python' : 'e.g. FinTech, SaaS, AI/ML'}
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
 
                     {/* LinkedIn URL Input */}
                     <div className="space-y-2">
-                      <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                      <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                         LinkedIn Profile URL
                       </label>
                       <div className="relative group/input">
@@ -670,7 +670,7 @@ const Profile = () => {
                           value={profileData.linkedinUrl || ''}
                           onChange={handleInputChange}
                           placeholder="e.g. https://linkedin.com/in/username"
-                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                          className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                         />
                       </div>
                     </div>
@@ -678,7 +678,7 @@ const Profile = () => {
 
                   {/* Row 5: Secondary Dev/Biz URL */}
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <label className="text-sm font-semibold text-slate-500 uppercase tracking-wider">
                       {profileData.role === 'STUDENT' ? 'GitHub Profile URL' : 'Company Website URL'}
                     </label>
                     <div className="relative group/input">
@@ -691,7 +691,7 @@ const Profile = () => {
                         value={profileData.githubUrl || ''}
                         onChange={handleInputChange}
                         placeholder={profileData.role === 'STUDENT' ? 'e.g. https://github.com/username' : 'e.g. https://company.com'}
-                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-sm font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 bg-white text-slate-900 text-base font-medium transition-all focus:outline-none focus:border-slate-900 focus:ring-4 focus:ring-slate-100 placeholder-slate-400"
                       />
                     </div>
                   </div>
@@ -701,7 +701,7 @@ const Profile = () => {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-2.5 rounded-full font-medium transition-all border border-slate-900 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm hover:shadow"
+                      className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-2.5 rounded-full font-medium transition-all border border-slate-900 text-base cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm hover:shadow"
                     >
                       {saving ? (
                         <Loader2 className="w-4 h-4 animate-spin text-white" />
@@ -723,13 +723,13 @@ const Profile = () => {
 };
 
 const DetailItem = ({ label, value, icon: Icon, placeholder = 'Not specified' }) => (
-  <div className="flex items-start gap-3.5 p-4 bg-slate-50/50 rounded-2xl border border-slate-50/50 hover:border-slate-100/80 transition-all hover:bg-slate-50">
-    <div className="p-2 bg-white rounded-xl text-slate-450 border border-slate-100 shadow-sm flex-shrink-0">
-      <Icon className="w-4 h-4 text-slate-500" />
+  <div className="flex items-start gap-4 p-4.5 bg-slate-50/50 rounded-2xl border border-slate-50/50 hover:border-slate-100/80 transition-all hover:bg-slate-50">
+    <div className="p-2.5 bg-white rounded-xl text-slate-400 border border-slate-100 shadow-sm flex-shrink-0">
+      <Icon className="w-5 h-5 text-slate-500" />
     </div>
     <div className="min-w-0 flex-1">
-      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{label}</div>
-      <div className="text-sm font-semibold text-slate-800 truncate mt-0.5">
+      <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{label}</div>
+      <div className="text-base font-semibold text-slate-800 truncate mt-0.5">
         {value ? value : <span className="text-slate-400 font-normal italic">{placeholder}</span>}
       </div>
     </div>
