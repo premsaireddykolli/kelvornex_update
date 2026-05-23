@@ -25,8 +25,15 @@ public class UserController {
             @PathVariable Long id,
             @RequestParam("firstName") String firstName,
             @RequestParam("lastName") String lastName,
+            @RequestParam(value = "bio", required = false) String bio,
+            @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
+            @RequestParam(value = "location", required = false) String location,
+            @RequestParam(value = "linkedinUrl", required = false) String linkedinUrl,
+            @RequestParam(value = "githubUrl", required = false) String githubUrl,
+            @RequestParam(value = "skills", required = false) String skills,
             @RequestParam(value = "profilePicture", required = false) MultipartFile profilePicture) {
-        ProfileResponseDTO response = userService.updateProfile(id, firstName, lastName, profilePicture);
+        ProfileResponseDTO response = userService.updateProfile(
+                id, firstName, lastName, bio, phoneNumber, location, linkedinUrl, githubUrl, skills, profilePicture);
         return ResponseEntity.ok(response);
     }
 }

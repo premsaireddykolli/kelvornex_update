@@ -19,8 +19,8 @@
   
   --font-display: "Montserrat", sans-serif;
   --font-body: "Poppins", sans-serif;
-  --font-google-sans: "Google Sans", sans-serif;
-  --font-playfair: "Playfair Display", serif;
+  --font-google-sans: "Product Sans", "Google Sans", "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 }
 
 :root {

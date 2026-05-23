@@ -42,14 +42,28 @@ public class UserService {
                 .email(user.getEmail())
                 .role(user.getRole().name())
                 .profilePictureUrl(user.getProfilePictureUrl())
+                .bio(user.getBio())
+                .phoneNumber(user.getPhoneNumber())
+                .location(user.getLocation())
+                .linkedinUrl(user.getLinkedinUrl())
+                .githubUrl(user.getGithubUrl())
+                .skills(user.getSkills())
                 .build();
     }
 
-    public ProfileResponseDTO updateProfile(Long id, String firstName, String lastName, MultipartFile file) {
+    public ProfileResponseDTO updateProfile(Long id, String firstName, String lastName, String bio, String phoneNumber, 
+                                           String location, String linkedinUrl, String githubUrl, String skills, 
+                                           MultipartFile file) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
 
         user.setName((firstName.trim() + " " + lastName.trim()).trim());
+        user.setBio(bio);
+        user.setPhoneNumber(phoneNumber);
+        user.setLocation(location);
+        user.setLinkedinUrl(linkedinUrl);
+        user.setGithubUrl(githubUrl);
+        user.setSkills(skills);
 
         if (file != null && !file.isEmpty()) {
             try {
@@ -94,6 +108,12 @@ public class UserService {
                 .email(updatedUser.getEmail())
                 .role(updatedUser.getRole().name())
                 .profilePictureUrl(updatedUser.getProfilePictureUrl())
+                .bio(updatedUser.getBio())
+                .phoneNumber(updatedUser.getPhoneNumber())
+                .location(updatedUser.getLocation())
+                .linkedinUrl(updatedUser.getLinkedinUrl())
+                .githubUrl(updatedUser.getGithubUrl())
+                .skills(updatedUser.getSkills())
                 .build();
     }
 }

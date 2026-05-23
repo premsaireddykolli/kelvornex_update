@@ -37,6 +37,24 @@ public class User {
     @Column(name = "profile_picture_url", length = 1024)
     private String profilePictureUrl;
 
+    @Column(length = 500)
+    private String bio;
+
+    @Column(name = "phone_number", length = 20)
+    private String phoneNumber;
+
+    @Column(length = 150)
+    private String location;
+
+    @Column(name = "linkedin_url", length = 255)
+    private String linkedinUrl;
+
+    @Column(name = "github_url", length = 255)
+    private String githubUrl;
+
+    @Column(length = 255)
+    private String skills;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;

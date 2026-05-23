@@ -16,4 +16,10 @@ public class ProfileResponseDTO {
     private String email;
     private String role;
     private String profilePictureUrl;
+    private String bio;
+    private String phoneNumber;
+    private String location;
+    private String linkedinUrl;
+    private String githubUrl;
+    private String skills;
 }
