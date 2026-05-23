@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-const Layout = ({ children, title, subtitle, description, hideBanner = false }) => {
+const Layout = ({ children, title, subtitle, description, hideBanner = false, bgClass = 'bg-slate-50/50' }) => {
   useEffect(() => {
     // Scroll to top instantly when component mounts
     window.scrollTo(0, 0);
@@ -29,7 +29,7 @@ const Layout = ({ children, title, subtitle, description, hideBanner = false }) 
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -15 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className={`min-h-screen bg-slate-50/50 pt-20 flex flex-col justify-between`}
+      className={`min-h-screen ${bgClass} pt-20 flex flex-col justify-between`}
     >
       <div>
         {/* Premium Header Banner */}
