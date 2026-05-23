@@ -308,7 +308,7 @@ const Profile = () => {
                       setSuccess(null);
                       setError(null);
                     }}
-                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-2xl font-bold transition-all border border-slate-900 text-sm cursor-pointer shadow-lg shadow-slate-900/10"
+                    className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-sm cursor-pointer shadow-sm hover:shadow"
                   >
                     <Edit2 className="w-4 h-4 text-white" />
                     Edit Profile
@@ -316,7 +316,7 @@ const Profile = () => {
                   <button
                     type="button"
                     onClick={logout}
-                    className="w-full flex items-center justify-center gap-2 text-slate-700 hover:text-rose-600 hover:bg-rose-50/50 py-3 rounded-2xl font-bold transition-all border border-transparent hover:border-rose-100 text-sm mt-1 cursor-pointer"
+                    className="w-full flex items-center justify-center gap-2 bg-white hover:bg-rose-50 text-slate-700 hover:text-rose-600 py-2.5 rounded-full font-medium transition-all border border-slate-200 hover:border-rose-200 text-sm mt-1 cursor-pointer shadow-sm"
                   >
                     Logout Account
                   </button>
@@ -330,7 +330,7 @@ const Profile = () => {
                       setImagePreview(null);
                       setProfileImageFile(null);
                     }}
-                    className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 py-3 rounded-2xl font-bold transition-all border border-slate-200 text-xs cursor-pointer"
+                    className="flex-1 bg-white hover:bg-slate-50 text-slate-700 py-2.5 rounded-full font-medium transition-all border border-slate-200 text-xs cursor-pointer shadow-sm"
                   >
                     Cancel
                   </button>
@@ -338,7 +338,7 @@ const Profile = () => {
                     type="button"
                     onClick={handleSaveChanges}
                     disabled={saving}
-                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-3 rounded-2xl font-bold transition-all border border-slate-900 text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
+                    className="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-full font-medium transition-all border border-slate-900 text-xs cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
                   >
                     {saving ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
@@ -701,7 +701,7 @@ const Profile = () => {
                     <button
                       type="submit"
                       disabled={saving}
-                      className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-2xl font-bold transition-all border border-slate-900 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-slate-900/10"
+                      className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-2.5 rounded-full font-medium transition-all border border-slate-900 text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-sm hover:shadow"
                     >
                       {saving ? (
                         <Loader2 className="w-4 h-4 animate-spin text-white" />
