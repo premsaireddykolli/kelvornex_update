@@ -111,7 +111,7 @@ const Navbar = ({ onCartClick }) => {
           {isAuthenticated ? (
             <Link to={`/profile/${user?.id}`} className="flex items-center mr-2">
               {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
-                <img src={user.profilePictureUrl} className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
+                <img src={user.profilePictureUrl} referrerPolicy="no-referrer" className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
               ) : (
                 <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-slate-400">
@@ -197,7 +197,7 @@ const Navbar = ({ onCartClick }) => {
                   <>
                     <Link to={`/profile/${user?.id}`} className="flex items-center gap-3 p-3 bg-gray-50 rounded-2xl">
                       {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
-                        <img src={user.profilePictureUrl} className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
+                        <img src={user.profilePictureUrl} referrerPolicy="no-referrer" className="h-9 w-9 rounded-full object-cover border border-slate-200" alt="Profile" />
                       ) : (
                         <div className="h-9 w-9 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 text-slate-400">

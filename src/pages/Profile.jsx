@@ -137,6 +137,7 @@ const Profile = () => {
       return (
         <img
           src={profileData.profilePictureUrl}
+          referrerPolicy="no-referrer"
           alt="Profile Avatar"
           className="h-32 w-32 rounded-full object-cover border-4 border-slate-100 shadow-md transition-transform duration-300 hover:scale-105"
         />
