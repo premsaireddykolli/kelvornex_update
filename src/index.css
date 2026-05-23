@@ -37,17 +37,21 @@
   --color-fuchsia-500:#EA4335;
 
   /* Google-style rounded sans */
-  --font-display: "Google Sans", "Product Sans", "Montserrat", sans-serif;
-  --font-body:    "Inter", "Poppins", sans-serif;
-  --font-sans:    "Plus Jakarta Sans", "Google Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Google Sans", "Product Sans", "Plus Jakarta Sans", sans-serif;
+  --font-body:    "Google Sans", "Product Sans", "Inter", sans-serif;
+  --font-sans:    "Google Sans", "Product Sans", "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
   --font-mono:    "Roboto Mono", "Fira Code", "JetBrains Mono", monospace;
+}
+
+/* Force Google Sans globally everywhere */
+*, *::before, *::after, body, html, section, button, a, h1, h2, h3, h4, p, span, div, li, input, select, textarea {
+  font-family: "Google Sans", "Product Sans", "Plus Jakarta Sans", "Inter", sans-serif !important;
 }
 
 /* ─── Root ──────────────────────────────────────────────────────*/
 :root {
   background-color: #FFFFFF;
   color: #202124;
-  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -82,7 +86,7 @@ html { scroll-behavior: smooth; }
   font-size:       0.875rem;
   font-weight:     600;
   letter-spacing:  0.01em;
-  border-radius:   9999px;
+  border-radius:   4px;
   cursor:          pointer;
   text-decoration: none;
   white-space:     nowrap;
@@ -133,7 +137,7 @@ html { scroll-behavior: smooth; }
   border:      1px solid #DADCE0;
   padding-left: 0.4rem;
   gap:          0.6rem;
-  border-radius: 9999px;
+  border-radius: 4px;
 }
 .g-btn--ghost:hover {
   color:       #202124;
@@ -261,3 +265,29 @@ html { scroll-behavior: smooth; }
 }
 .animate-marquee { animation: marquee 40s linear infinite; }
 .pause-marquee   { animation-play-state: paused; }
+
+/* Perfect configuration for the Kelvornex Navbar Button */
+.nav-btn-google {
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    border-radius: 4px; /* Micro roundness */
+    
+    background-color: #000000; /* Solid black initially */
+    color: #FFFFFF; /* White text */
+    border: 2px solid #000000;
+    
+    padding: 10px 20px; /* Slightly smaller than the hero button */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-btn-google:hover {
+    background-color: transparent; /* Transparent on hover */
+    color: #000000; /* Black text */
+}

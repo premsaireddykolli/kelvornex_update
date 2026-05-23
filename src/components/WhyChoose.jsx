@@ -75,24 +75,25 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
       <div
         className="feature-card group"
         onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = accentColor;
-          e.currentTarget.style.boxShadow = `0 8px 32px ${accentColor}18, 0 2px 8px rgba(60,64,67,0.06)`;
+          e.currentTarget.style.borderColor = '#1A73E8';
+          e.currentTarget.style.boxShadow = `0 8px 32px rgba(26,115,232,0.12), 0 2px 8px rgba(60,64,67,0.06)`;
           e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(1)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = '#E0E0E0';
+          e.currentTarget.style.borderColor = '#000000';
           e.currentTarget.style.boxShadow = '0 1px 4px rgba(60,64,67,0.06)';
           e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(0)';
         }}
         style={{
           background:  '#FFFFFF',
-          border:      '1px solid #E0E0E0',
+          border:      '2px solid #000000',
           padding:     '1.75rem',
           cursor:      'default',
           transition:  'box-shadow 0.25s ease, border-color 0.25s ease',
           position:    'relative',
           overflow:    'hidden',
           boxShadow:   '0 1px 4px rgba(60,64,67,0.06)',
+          borderRadius: '0px',
         }}
       >
         {/* Top color strip */}
@@ -113,17 +114,17 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
         <div
           className="w-12 h-12 flex items-center justify-center mb-4 rounded-full"
           style={{
-            background: `${accentColor}12`,
-            border: `1px solid ${accentColor}28`,
+            background: '#F5F5F5',
+            border: '1px solid #E0E0E0',
           }}
         >
-          <Icon size={22} style={{ color: accentColor }} />
+          <Icon size={22} style={{ color: '#000000' }} />
         </div>
 
         <h4 className="text-base font-bold text-slate-800 font-sans mb-1.5 leading-snug">
           {title}
         </h4>
-        <p className="text-slate-500 text-sm leading-relaxed font-sans">
+        <p className="text-slate-700 text-sm leading-relaxed font-medium">
           {description}
         </p>
       </div>
@@ -150,6 +151,7 @@ const StatPanel = () => {
   return (
     <div
       ref={ref}
+      className="h-full w-full flex flex-col"
       style={{
         opacity:    inView ? 1 : 0,
         transform:  inView ? 'translateX(0)' : 'translateX(40px)',
@@ -157,21 +159,27 @@ const StatPanel = () => {
       }}
     >
       <div
+        className="flex flex-col justify-between flex-grow"
         style={{
           background: '#FFFFFF',
-          border: '1px solid #E8EAED',
-          padding: '3rem',
+          border: '2px solid #000000',
+          padding: '4rem 3rem',
           boxShadow: '0 4px 24px rgba(60,64,67,0.08)',
           position: 'relative',
           overflow: 'hidden',
-          transition: 'box-shadow 0.25s ease',
+          transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+          height: '100%',
+          borderRadius: '0px',
         }}
-        onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 8px 40px rgba(60,64,67,0.12)'; }}
-        onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 4px 24px rgba(60,64,67,0.08)'; }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = '#1A73E8';
+          e.currentTarget.style.boxShadow = '0 8px 40px rgba(26,115,232,0.12), 0 4px 24px rgba(60,64,67,0.08)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = '#000000';
+          e.currentTarget.style.boxShadow = '0 4px 24px rgba(60,64,67,0.08)';
+        }}
       >
-        {/* Black top strip */}
-        <div className="absolute top-0 left-0 right-0" style={{ height: 4, background: '#000000' }} />
-
         {/* Rating */}
         <div className="text-center mb-8 mt-2">
           <div className="text-6xl font-black font-sans mb-3" style={{ color: '#202124' }}>
@@ -182,8 +190,8 @@ const StatPanel = () => {
               <Star key={i} size={20} fill={G.yellow} color={G.yellow} />
             ))}
           </div>
-          <div className="text-sm font-bold text-slate-700 font-sans">Google Rating</div>
-          <p className="text-slate-400 text-xs mt-0.5">From 10,000+ Students</p>
+          <div className="text-sm font-extrabold text-slate-800 font-sans">Google Rating</div>
+          <p className="text-slate-600 text-xs font-bold mt-0.5">From 10,000+ Students</p>
         </div>
 
         {/* Divider */}
@@ -198,10 +206,10 @@ const StatPanel = () => {
             { value: '98%',  label: 'Satisfaction' },
           ].map((s) => (
             <div key={s.label}>
-              <div className="text-2xl font-black font-sans" style={{ color: '#000000' }}>
+              <div className="text-2xl font-black font-sans" style={{ color: '#1A73E8' }}>
                 {s.value}
               </div>
-              <div className="text-[10px] uppercase tracking-widest text-slate-400 mt-1 font-sans">
+              <div className="text-xs uppercase tracking-wider text-slate-600 font-extrabold mt-1">
                 {s.label}
               </div>
             </div>
@@ -229,12 +237,12 @@ const WhyChoose = () => {
   }, []);
 
   const features = [
-    { icon: Video,      title: 'LIVE Interactive Sessions',       description: 'Real-time sessions with practitioners — ask, debug, and get live feedback.',               accentColor: '#000000', delay: 0   },
-    { icon: Award,      title: 'Industry Ratified Certifications',description: 'Credentials validated by leading industry bodies and government organisations.',             accentColor: '#000000', delay: 80  },
-    { icon: UserCheck,  title: 'Expert Industry Mentors',         description: 'Learn from engineers and leaders with 10+ years of real-world experience.',                 accentColor: '#000000', delay: 160 },
-    { icon: Briefcase,  title: 'Portfolio-worthy Projects',       description: 'Build production-grade projects that impress senior engineers on day one.',                 accentColor: '#000000', delay: 240 },
-    { icon: HelpCircle, title: 'Dedicated Query Sessions',        description: 'One-on-one doubt resolution sessions with your mentor, at your convenience.',              accentColor: '#000000', delay: 320 },
-    { icon: Users,      title: 'Active Peer Community',           description: 'Join 50,000+ ambitious learners in a thriving, collaborative learning network.',           accentColor: '#000000', delay: 400 },
+    { icon: Video,      title: 'LIVE Interactive Sessions',       description: 'Real-time sessions with practitioners — ask, debug, and get live feedback.',               accentColor: '#1A73E8', delay: 0   },
+    { icon: Award,      title: 'Industry Ratified Certifications',description: 'Credentials validated by leading industry bodies and government organisations.',             accentColor: '#1A73E8', delay: 80  },
+    { icon: UserCheck,  title: 'Expert Industry Mentors',         description: 'Learn from engineers and leaders with 10+ years of real-world experience.',                 accentColor: '#1A73E8', delay: 160 },
+    { icon: Briefcase,  title: 'Portfolio-worthy Projects',       description: 'Build production-grade projects that impress senior engineers on day one.',                 accentColor: '#1A73E8', delay: 240 },
+    { icon: HelpCircle, title: 'Dedicated Query Sessions',        description: 'One-on-one doubt resolution sessions with your mentor, at your convenience.',              accentColor: '#1A73E8', delay: 320 },
+    { icon: Users,      title: 'Active Peer Community',           description: 'Join 50,000+ ambitious learners in a thriving, collaborative learning network.',           accentColor: '#1A73E8', delay: 400 },
   ];
 
   return (
@@ -259,10 +267,10 @@ const WhyChoose = () => {
         >
           <div className="max-w-xl font-sans">
             <span
-              className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest"
-              style={{ background: '#F5F5F5', color: '#000000', border: '1px solid #E0E0E0' }}
+              className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-extrabold uppercase tracking-widest"
+              style={{ background: '#E8F0FE', color: '#1A73E8', border: '1px solid rgba(26,115,232,0.15)' }}
             >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#000000' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#1A73E8' }} />
               Our Advantage
             </span>
             <h2
@@ -270,31 +278,31 @@ const WhyChoose = () => {
               style={{ color: '#202124' }}
             >
               Why Choose{' '}
-              <span style={{ color: '#000000' }}>Kelvornex?</span>
+              <span style={{ color: '#1A73E8' }}>Kelvornex?</span>
             </h2>
-            <p className="text-slate-600 text-lg font-light">
+            <p className="text-slate-800 text-lg font-medium">
               We bridge the gap between classroom theory and industry reality through
               live mentorship, real projects, and community.
             </p>
           </div>
           <a
             href="/apply-as-mentor"
-            className="g-btn g-btn--primary group shrink-0"
+            className="nav-btn-google group shrink-0"
             id="mentors-apply-btn"
           >
             Apply as Mentor
-            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={15} className="ml-2 group-hover:translate-x-1.5 transition-transform duration-200" />
           </a>
         </div>
 
         {/* Asymmetric bento layout — no 3D tilt */}
-        <div className="flex flex-col lg:flex-row gap-14 items-start">
+        <div className="flex flex-col lg:flex-row gap-14 items-stretch">
           <div className="lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 gap-5">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}
           </div>
-          <div className="lg:w-2/5 lg:sticky lg:top-32">
+          <div className="lg:w-2/5 lg:sticky lg:top-32 flex flex-col self-stretch">
             <StatPanel />
           </div>
         </div>

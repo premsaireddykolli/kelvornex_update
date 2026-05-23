@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CreditCard, Check, ShoppingBag, Lock, Ticket, QrCode, 
+import {
+  CreditCard, Check, ShoppingBag, Lock, Ticket, QrCode,
   ShieldCheck, CheckCircle2, ArrowLeft, Loader2
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
@@ -32,7 +32,7 @@ const GPayLogo = () => (
 const PhonePeLogo = () => (
   <div className="flex items-center gap-1.5 bg-[#5f259f] px-2 py-1 rounded-xl shrink-0 shadow-sm">
     <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0 fill-white">
-      <path d="M10.206 9.941h2.949v4.692c-.402.201-.938.268-1.34.268-1.072 0-1.609-.536-1.609-1.743V9.941zm13.47 4.816c-1.523 6.449-7.985 10.442-14.433 8.919C2.794 22.154-1.199 15.691.324 9.243 1.847 2.794 8.309-1.199 14.757.324c6.449 1.523 10.442 7.985 8.919 14.433zm-6.231-5.888a.887.887 0 0 0-.871-.871h-1.609l-3.686-4.222c-.335-.402-.871-.536-1.407-.402l-1.274.401c-.201.067-.268.335-.134.469l4.021 3.82H6.386c-.201 0-.335.134-.335.335v.67c0 .469.402.871.871.871h.938v3.217c0 2.413 1.273 3.82 3.418 3.82.67 0 1.206-.067 1.877-.335v2.145c0 .603.469 1.072 1.072 1.072h.938a.432.432 0 0 0 .402-.402V9.874h1.542c.201 0 .335-.134.335-.335v-.67z"/>
+      <path d="M10.206 9.941h2.949v4.692c-.402.201-.938.268-1.34.268-1.072 0-1.609-.536-1.609-1.743V9.941zm13.47 4.816c-1.523 6.449-7.985 10.442-14.433 8.919C2.794 22.154-1.199 15.691.324 9.243 1.847 2.794 8.309-1.199 14.757.324c6.449 1.523 10.442 7.985 8.919 14.433zm-6.231-5.888a.887.887 0 0 0-.871-.871h-1.609l-3.686-4.222c-.335-.402-.871-.536-1.407-.402l-1.274.401c-.201.067-.268.335-.134.469l4.021 3.82H6.386c-.201 0-.335.134-.335.335v.67c0 .469.402.871.871.871h.938v3.217c0 2.413 1.273 3.82 3.418 3.82.67 0 1.206-.067 1.877-.335v2.145c0 .603.469 1.072 1.072 1.072h.938a.432.432 0 0 0 .402-.402V9.874h1.542c.201 0 .335-.134.335-.335v-.67z" />
     </svg>
     <span className="text-white font-extrabold text-[10px] tracking-wider uppercase">PhonePe</span>
   </div>
@@ -141,7 +141,7 @@ const Checkout = () => {
   const handleCardNumberChange = (e) => {
     const val = e.target.value.replace(/\D/g, '');
     let formattedVal = '';
-    
+
     // Format card number to groups of 4 digits
     for (let i = 0; i < val.length && i < 16; i++) {
       if (i > 0 && i % 4 === 0) formattedVal += ' ';
@@ -164,7 +164,7 @@ const Checkout = () => {
   const handleExpiryChange = (e) => {
     const val = e.target.value.replace(/\D/g, '');
     let formattedVal = '';
-    
+
     for (let i = 0; i < val.length && i < 4; i++) {
       if (i === 2) formattedVal += '/';
       formattedVal += val[i];
@@ -239,7 +239,7 @@ const Checkout = () => {
   // Handle Payment Submit
   const handlePayment = (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (activeTab === 'upi') {
       if (upiSubMethod === 'app') {
@@ -290,7 +290,7 @@ const Checkout = () => {
       setIsProcessing(false);
       setPaymentSuccess(true);
       setTransactionId('TXN' + Math.floor(1000000000 + Math.random() * 9000000000));
-      
+
       // If checking out the cart, clear it upon success
       if (checkoutId === 'cart') {
         clearCart();
@@ -299,11 +299,10 @@ const Checkout = () => {
   };
 
   // Payment tab helper
-  const tabClasses = (tab) => `flex items-center gap-3 p-4 rounded-2xl border font-bold text-sm transition-all ${
-    activeTab === tab 
-    ? 'bg-brand-purple/5 border-brand-purple text-brand-purple' 
-    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50 hover:border-gray-200'
-  }`;
+  const tabClasses = (tab) => `flex items-center gap-3 p-4 rounded border font-bold text-sm transition-all ${activeTab === tab
+      ? 'bg-brand-purple/5 border-brand-purple text-brand-purple'
+      : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50 hover:border-gray-200'
+    }`;
 
   return (
     <div className="pt-32 pb-24 min-h-screen bg-gray-50/50">
@@ -319,7 +318,7 @@ const Checkout = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Order Summary */}
           <div className="lg:col-span-5 space-y-8">
-            <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-xl shadow-gray-100/50">
+            <div className="bg-white rounded p-8 border border-gray-100 shadow-xl shadow-gray-100/50">
               <h2 className="text-xl font-bold font-display text-gray-900 mb-6 flex items-center gap-2">
                 <ShoppingBag size={20} className="text-brand-purple" /> Order Summary
               </h2>
@@ -327,8 +326,8 @@ const Checkout = () => {
               {/* Items List */}
               <div className="space-y-4 max-h-[260px] overflow-y-auto pr-2 mb-6">
                 {checkoutItems.map((item, index) => (
-                  <div key={index} className="flex gap-4 items-center p-3 rounded-2xl bg-gray-50 border border-gray-100">
-                    <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded-xl border border-gray-200 shadow-sm shrink-0" />
+                  <div key={index} className="flex gap-4 items-center p-3 rounded bg-gray-50 border border-gray-100">
+                    <img src={item.image} alt={item.title} className="w-16 h-16 object-cover rounded border border-gray-200 shadow-sm shrink-0" />
                     <div className="min-w-0">
                       <h4 className="font-extrabold text-gray-800 text-sm truncate">{item.title}</h4>
                       <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">{item.category}</p>
@@ -346,26 +345,26 @@ const Checkout = () => {
                 <div className="flex gap-2">
                   <div className="relative flex-1">
                     <Ticket className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                    <input 
-                      type="text" 
-                      placeholder="Promo Code" 
+                    <input
+                      type="text"
+                      placeholder="Promo Code"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
                       disabled={couponApplied}
-                      className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm font-bold placeholder-gray-400 focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple disabled:bg-gray-50"
+                      className="w-full pl-10 pr-4 py-3 rounded border border-gray-200 text-sm font-bold placeholder-gray-400 focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple disabled:bg-gray-50"
                     />
                   </div>
                   {couponApplied ? (
-                    <button 
+                    <button
                       onClick={removeCoupon}
-                      className="bg-red-50 hover:bg-red-100 text-red-500 px-4 rounded-xl text-xs font-bold transition-all"
+                      className="bg-red-50 hover:bg-red-100 text-red-500 px-4 rounded text-xs font-bold transition-all"
                     >
                       Remove
                     </button>
                   ) : (
-                    <button 
+                    <button
                       onClick={applyCoupon}
-                      className="bg-brand-dark hover:bg-gray-800 text-white px-6 rounded-xl text-sm font-bold transition-all"
+                      className="bg-brand-dark hover:bg-gray-800 text-white px-6 rounded text-sm font-bold transition-all"
                     >
                       Apply
                     </button>
@@ -400,7 +399,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            <div className="bg-brand-dark rounded-3xl p-6 text-white border border-white/10 flex items-center gap-4 relative overflow-hidden">
+            <div className="bg-brand-dark rounded p-6 text-white border border-white/10 flex items-center gap-4 relative overflow-hidden">
               <div className="absolute right-0 bottom-0 w-32 h-32 bg-brand-purple/10 blur-2xl rounded-full" />
               <ShieldCheck size={36} className="text-brand-gold shrink-0" />
               <div>
@@ -412,7 +411,7 @@ const Checkout = () => {
 
           {/* Right Column: Payment Form */}
           <div className="lg:col-span-7">
-            <form onSubmit={handlePayment} className="bg-white rounded-3xl p-8 border border-gray-100 shadow-xl shadow-gray-100/50 space-y-8">
+            <form onSubmit={handlePayment} className="bg-white rounded p-8 border border-gray-100 shadow-xl shadow-gray-100/50 space-y-8">
               <h2 className="text-xl font-bold font-display text-gray-900 flex items-center gap-2">
                 <CreditCard size={20} className="text-brand-purple" /> Select Payment Option
               </h2>
@@ -434,11 +433,11 @@ const Checkout = () => {
               </div>
 
               {/* Form Content Body */}
-              <div className="p-6 rounded-2xl bg-gray-50 border border-gray-100 min-h-[220px]">
+              <div className="p-6 rounded bg-gray-50 border border-gray-100 min-h-[220px]">
                 <AnimatePresence mode="wait">
                   {/* UPI Tab */}
                   {activeTab === 'upi' && (
-                    <motion.div 
+                    <motion.div
                       key="upi-tab"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -450,22 +449,20 @@ const Checkout = () => {
                         <button
                           type="button"
                           onClick={() => setUpiSubMethod('app')}
-                          className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${
-                            upiSubMethod === 'app'
-                            ? 'border-brand-purple text-brand-purple'
-                            : 'border-transparent text-gray-400 hover:text-gray-650'
-                          }`}
+                          className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'app'
+                              ? 'border-brand-purple text-brand-purple'
+                              : 'border-transparent text-gray-400 hover:text-gray-650'
+                            }`}
                         >
                           UPI Application
                         </button>
                         <button
                           type="button"
                           onClick={() => setUpiSubMethod('qr')}
-                          className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${
-                            upiSubMethod === 'qr'
-                            ? 'border-brand-purple text-brand-purple'
-                            : 'border-transparent text-gray-400 hover:text-gray-650'
-                          }`}
+                          className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'qr'
+                              ? 'border-brand-purple text-brand-purple'
+                              : 'border-transparent text-gray-400 hover:text-gray-650'
+                            }`}
                         >
                           Scan QR Code
                         </button>
@@ -491,11 +488,10 @@ const Checkout = () => {
                                     setSelectedUpiApp(app.id);
                                     setIsUpiVerified(false);
                                   }}
-                                  className={`flex flex-col items-center justify-center p-3 bg-white border rounded-xl hover:border-brand-purple hover:scale-[1.03] transition-all gap-2 h-20 ${
-                                    selectedUpiApp === app.id 
-                                    ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5' 
-                                    : 'border-gray-150 shadow-sm'
-                                  }`}
+                                  className={`flex flex-col items-center justify-center p-3 bg-white border rounded-xl hover:border-brand-purple hover:scale-[1.03] transition-all gap-2 h-20 ${selectedUpiApp === app.id
+                                      ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5'
+                                      : 'border-gray-150 shadow-sm'
+                                    }`}
                                 >
                                   {app.logo}
                                   <span className="text-[10px] font-extrabold text-gray-500 text-center leading-none mt-1">{app.name}</span>
@@ -509,9 +505,9 @@ const Checkout = () => {
                             <div className="space-y-2">
                               <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enter UPI ID (VPA)</label>
                               <div className="flex gap-2">
-                                <input 
-                                  type="text" 
-                                  placeholder="e.g. username@bank" 
+                                <input
+                                  type="text"
+                                  placeholder="e.g. username@bank"
                                   value={upiId}
                                   onChange={(e) => {
                                     setUpiId(e.target.value);
@@ -519,15 +515,14 @@ const Checkout = () => {
                                   }}
                                   className="flex-1 px-4 py-3 bg-white rounded-xl border border-gray-250 text-sm font-bold focus:outline-none focus:border-brand-purple"
                                 />
-                                <button 
-                                  type="button" 
+                                <button
+                                  type="button"
                                   onClick={handleVerifyUpi}
                                   disabled={isVerifyingUpi || !upiId}
-                                  className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${
-                                    isUpiVerified 
-                                    ? 'bg-green-50 text-green-650 border border-green-200' 
-                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
-                                  }`}
+                                  className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
+                                      ? 'bg-green-50 text-green-650 border border-green-200'
+                                      : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    }`}
                                 >
                                   {isVerifyingUpi ? (
                                     <Loader2 size={14} className="animate-spin" />
@@ -544,9 +539,9 @@ const Checkout = () => {
                               <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest">Enter UPI Username</label>
                               <div className="flex gap-2">
                                 <div className="relative flex-1">
-                                  <input 
-                                    type="text" 
-                                    placeholder="e.g. name" 
+                                  <input
+                                    type="text"
+                                    placeholder="e.g. name"
                                     value={upiUsername}
                                     onChange={(e) => {
                                       setUpiUsername(e.target.value);
@@ -559,15 +554,14 @@ const Checkout = () => {
                                     {UPI_APP_HANDLES[selectedUpiApp]}
                                   </span>
                                 </div>
-                                <button 
-                                  type="button" 
+                                <button
+                                  type="button"
                                   onClick={handleVerifyUpi}
                                   disabled={isVerifyingUpi || !upiUsername}
-                                  className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${
-                                    isUpiVerified 
-                                    ? 'bg-green-50 text-green-650 border border-green-200' 
-                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
-                                  }`}
+                                  className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
+                                      ? 'bg-green-50 text-green-650 border border-green-200'
+                                      : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    }`}
                                 >
                                   {isVerifyingUpi ? (
                                     <Loader2 size={14} className="animate-spin" />
@@ -585,9 +579,9 @@ const Checkout = () => {
                       ) : (
                         <div className="flex flex-col md:flex-row items-center gap-8 bg-white p-6 rounded-2xl border border-gray-150 shadow-sm animate-fadeIn">
                           <div className="shrink-0 flex flex-col items-center p-3 border border-gray-100 rounded-xl shadow-inner bg-gray-50">
-                            <img 
-                              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=kelvornex@okhdfc&pn=Kelvornex&am=${finalTotal}&cu=INR`)}`} 
-                              alt="Payment QR" 
+                            <img
+                              src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=kelvornex@okhdfc&pn=Kelvornex&am=${finalTotal}&cu=INR`)}`}
+                              alt="Payment QR"
                               className="w-28 h-28"
                             />
                             <div className="flex items-center gap-1.5 mt-2">
@@ -629,7 +623,7 @@ const Checkout = () => {
 
                   {/* Cards Tab */}
                   {activeTab === 'card' && (
-                    <motion.div 
+                    <motion.div
                       key="card-tab"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -647,17 +641,17 @@ const Checkout = () => {
 
                       {/* Virtual Card Preview */}
                       <div className="w-full max-w-[320px] mx-auto h-[180px] mb-8 animate-fadeIn" style={{ perspective: '1000px' }}>
-                        <div 
-                          className="relative w-full h-full duration-500" 
-                          style={{ 
-                            transformStyle: 'preserve-3d', 
+                        <div
+                          className="relative w-full h-full duration-500"
+                          style={{
+                            transformStyle: 'preserve-3d',
                             transform: isCardFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
                             transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
                           }}
                         >
                           {/* Card Front */}
-                          <div 
-                            className="absolute inset-0 w-full h-full rounded-xl p-5 text-white bg-gradient-to-br from-brand-purple via-indigo-600 to-indigo-800 shadow-lg flex flex-col justify-between overflow-hidden border border-white/10" 
+                          <div
+                            className="absolute inset-0 w-full h-full rounded-xl p-5 text-white bg-gradient-to-br from-brand-purple via-indigo-600 to-indigo-800 shadow-lg flex flex-col justify-between overflow-hidden border border-white/10"
                             style={{ backfaceVisibility: 'hidden' }}
                           >
                             {/* Glass overlay shine */}
@@ -710,11 +704,11 @@ const Checkout = () => {
                           </div>
 
                           {/* Card Back */}
-                          <div 
-                            className="absolute inset-0 w-full h-full rounded-xl text-white bg-gradient-to-br from-gray-800 to-gray-950 shadow-lg flex flex-col justify-between py-5 border border-white/5" 
-                            style={{ 
-                              backfaceVisibility: 'hidden', 
-                              transform: 'rotateY(180deg)' 
+                          <div
+                            className="absolute inset-0 w-full h-full rounded-xl text-white bg-gradient-to-br from-gray-800 to-gray-950 shadow-lg flex flex-col justify-between py-5 border border-white/5"
+                            style={{
+                              backfaceVisibility: 'hidden',
+                              transform: 'rotateY(180deg)'
                             }}
                           >
                             {/* Stripe */}
@@ -724,8 +718,8 @@ const Checkout = () => {
                             <div className="px-5 space-y-1">
                               <div className="text-[7px] uppercase tracking-wider text-white/30 font-bold">Authorized Signature</div>
                               <div className="flex items-center">
-                                <div 
-                                  className="flex-1 h-6 bg-white/10 rounded-l flex items-center px-2 pointer-events-none" 
+                                <div
+                                  className="flex-1 h-6 bg-white/10 rounded-l flex items-center px-2 pointer-events-none"
                                   style={{
                                     backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,0.05) 4px, rgba(255,255,255,0.05) 8px)'
                                   }}
@@ -747,9 +741,9 @@ const Checkout = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="md:col-span-2">
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Card Number</label>
-                          <input 
-                            type="text" 
-                            placeholder="4000 1234 5678 9010" 
+                          <input
+                            type="text"
+                            placeholder="4000 1234 5678 9010"
                             value={cardNumber}
                             onChange={handleCardNumberChange}
                             onFocus={() => setIsCardFlipped(false)}
@@ -760,9 +754,9 @@ const Checkout = () => {
 
                         <div>
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Expiry Date</label>
-                          <input 
-                            type="text" 
-                            placeholder="MM/YY" 
+                          <input
+                            type="text"
+                            placeholder="MM/YY"
                             value={cardExpiry}
                             onChange={handleExpiryChange}
                             onFocus={() => setIsCardFlipped(false)}
@@ -773,9 +767,9 @@ const Checkout = () => {
 
                         <div>
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">CVV Code</label>
-                          <input 
-                            type="password" 
-                            placeholder="•••" 
+                          <input
+                            type="password"
+                            placeholder="•••"
                             value={cardCvv}
                             onChange={handleCvvChange}
                             onFocus={() => setIsCardFlipped(true)}
@@ -787,9 +781,9 @@ const Checkout = () => {
 
                         <div className="md:col-span-2">
                           <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Cardholder Name</label>
-                          <input 
-                            type="text" 
-                            placeholder="Full Name as on card" 
+                          <input
+                            type="text"
+                            placeholder="Full Name as on card"
                             value={cardName}
                             onChange={(e) => setCardName(e.target.value)}
                             onFocus={() => setIsCardFlipped(false)}
@@ -802,7 +796,7 @@ const Checkout = () => {
 
                   {/* Netbanking Tab */}
                   {activeTab === 'netbanking' && (
-                    <motion.div 
+                    <motion.div
                       key="netbanking-tab"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -822,14 +816,13 @@ const Checkout = () => {
                       </div>
 
                       <div className="flex justify-center py-2">
-                        <button 
+                        <button
                           type="button"
                           onClick={() => setNetBank('hdfc')}
-                          className={`flex flex-col items-center justify-center p-6 bg-white border rounded-2xl hover:border-brand-purple hover:scale-[1.02] transition-all gap-4 w-full max-w-md ${
-                            netBank === 'hdfc' 
-                            ? 'border-brand-purple shadow-md ring-2 ring-brand-purple/20 bg-brand-purple/5' 
-                            : 'border-gray-200 shadow-sm'
-                          }`}
+                          className={`flex flex-col items-center justify-center p-6 bg-white border rounded-2xl hover:border-brand-purple hover:scale-[1.02] transition-all gap-4 w-full max-w-md ${netBank === 'hdfc'
+                              ? 'border-brand-purple shadow-md ring-2 ring-brand-purple/20 bg-brand-purple/5'
+                              : 'border-gray-200 shadow-sm'
+                            }`}
                         >
                           <div className="w-20 h-10 flex items-center justify-center shrink-0 bg-[#003366] rounded-xl shadow-md border border-[#002244]/20 p-2">
                             <svg viewBox="0 0 50 24" className="w-full h-full shrink-0">
@@ -849,7 +842,7 @@ const Checkout = () => {
 
                   {/* Wallets Tab */}
                   {activeTab === 'wallet' && (
-                    <motion.div 
+                    <motion.div
                       key="wallet-tab"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -864,13 +857,12 @@ const Checkout = () => {
                           { id: 'phonepe', name: 'PhonePe' },
                           { id: 'amazon', name: 'Amazon Pay' }
                         ].map((w) => (
-                          <button 
+                          <button
                             key={w.id}
                             type="button"
                             onClick={() => setWallet(w.id)}
-                            className={`flex flex-col items-center justify-center p-4 bg-white border rounded-xl hover:border-brand-purple hover:scale-105 transition-all gap-3 ${
-                              wallet === w.id ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5' : 'border-gray-100 shadow-sm'
-                            }`}
+                            className={`flex flex-col items-center justify-center p-4 bg-white border rounded-xl hover:border-brand-purple hover:scale-105 transition-all gap-3 ${wallet === w.id ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5' : 'border-gray-100 shadow-sm'
+                              }`}
                           >
                             {w.id === 'paytm' && <PaytmLogo />}
                             {w.id === 'phonepe' && <PhonePeLogo />}
@@ -885,10 +877,10 @@ const Checkout = () => {
               </div>
 
               {/* Pay Button */}
-              <button 
+              <button
                 type="submit"
                 disabled={isProcessing}
-                className="w-full bg-gradient-vibrant hover:scale-[1.01] transition-transform text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 shadow-xl shadow-brand-purple/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-vibrant hover:scale-[1.01] transition-transform text-white py-4 rounded font-bold text-lg flex items-center justify-center gap-2 shadow-xl shadow-brand-purple/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isProcessing ? (
                   <>
@@ -909,11 +901,11 @@ const Checkout = () => {
       <AnimatePresence>
         {paymentSuccess && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-[2.5rem] p-8 max-w-md w-full border border-gray-100 shadow-2xl relative text-center overflow-hidden"
+              className="bg-white rounded p-8 max-w-md w-full border border-gray-100 shadow-2xl relative text-center overflow-hidden"
             >
               {/* Confetti Micro-Animations */}
               <div className="absolute inset-0 pointer-events-none">
@@ -948,7 +940,7 @@ const Checkout = () => {
               <p className="text-gray-500 text-sm mb-6">Congratulations! You have successfully enrolled in your program(s).</p>
 
               {/* Receipt Details Card */}
-              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100 text-left text-xs space-y-3 mb-8">
+              <div className="bg-gray-50 rounded p-5 border border-gray-100 text-left text-xs space-y-3 mb-8">
                 <div className="flex justify-between">
                   <span className="text-gray-400 font-bold uppercase">Transaction ID</span>
                   <span className="font-extrabold text-gray-800">{transactionId}</span>
@@ -969,9 +961,9 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <button 
+              <button
                 onClick={() => navigate('/')}
-                className="w-full bg-brand-dark hover:bg-gray-800 text-white py-4 rounded-xl font-bold text-sm transition-all"
+                className="w-full bg-brand-dark hover:bg-gray-800 text-white py-4 rounded font-bold text-sm transition-all"
               >
                 Go to Courses Dashboard
               </button>

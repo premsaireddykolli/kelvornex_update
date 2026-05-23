@@ -33,27 +33,12 @@ const Navbar = ({ onCartClick }) => {
       name: 'Programs', 
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Self Paced Courses', path: '/self-paced' },
-        { name: 'Internship Programs', path: '/internships' },
-        { name: 'Placement Programs', path: '/placement' },
-      ]
-    },
-    { 
-      name: 'Advanced Programs', 
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'Digital Marketing', path: '/advanced-digital-marketing' },
-        { name: 'Data Science', path: '/advanced-data-science' },
-        { name: 'Cyber Security', path: '/advanced-cyber-security' },
-      ]
-    },
-    { 
-      name: 'Pro Packs', 
-      hasDropdown: true,
-      dropdownItems: [
-        { name: 'MBA Lite Pack', path: '/pro/mba-lite' },
-        { name: 'Tech Starter Pack', path: '/pro/tech-starter' },
-        { name: 'Creator Pack', path: '/pro/creator-pack' },
+        { name: 'Cyber Security', path: '/cyber-security' },
+        { name: 'Gen AI', path: '/gen-ai' },
+        { name: 'Agentic AI', path: '/agentic-ai' },
+        { name: 'VLSI', path: '/vlsi' },
+        { name: 'Quantum Computing', path: '/quantum-computing' },
+        { name: 'Microsoft Fabric', path: '/microsoft-fabric' },
       ]
     },
   ];
@@ -66,7 +51,7 @@ const Navbar = ({ onCartClick }) => {
           <img src="/Kelvornex.jpeg" alt="kelvornex" className="h-8 md:h-10" />
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Links (Right-Aligned next to About Us) */}
         <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <div 
@@ -75,25 +60,27 @@ const Navbar = ({ onCartClick }) => {
               onMouseEnter={() => link.hasDropdown && setActiveDropdown(link.name)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1 py-2">
+              <button className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1 py-2 cursor-pointer">
                 {link.name}
                 {link.hasDropdown && <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === link.name ? 'rotate-180' : ''}`} />}
               </button>
 
-              {/* Dropdown Menu */}
+              {/* Dropdown Menu (Aligned Right, Zero-Radius) */}
               <AnimatePresence>
                 {link.hasDropdown && activeDropdown === link.name && (
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 w-64 bg-white shadow-2xl rounded-2xl p-4 border border-gray-100 overflow-hidden"
+                    className="absolute top-full right-0 w-64 bg-white shadow-2xl rounded-none p-4 border border-gray-100 overflow-hidden"
+                    style={{ borderRadius: '0px' }}
                   >
                     {link.dropdownItems.map((item) => (
                       <Link 
                         key={item.name} 
                         to={item.path}
-                        className="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-all"
+                        className="block px-4 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-none transition-all"
+                        style={{ borderRadius: '0px' }}
                       >
                         {item.name}
                       </Link>
@@ -103,11 +90,8 @@ const Navbar = ({ onCartClick }) => {
               </AnimatePresence>
             </div>
           ))}
-        </div>
 
-        {/* Buttons & Cart */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors mr-4">About Us</Link>
+          <Link to="/about" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors mr-2">About Us</Link>
           {isAuthenticated ? (
             <Link to={`/profile/${user?.id}`} className="flex items-center mr-2">
               {user?.profilePictureUrl && !user.profilePictureUrl.includes('unsplash') && !user.profilePictureUrl.includes('placeholder') ? (
@@ -126,28 +110,7 @@ const Navbar = ({ onCartClick }) => {
           
           <Link
             to="/contact"
-            style={{
-              background: '#1A73E8',
-              color: '#FFFFFF',
-              borderRadius: '9999px',
-              padding: '0.5rem 1.25rem',
-              fontSize: '0.875rem',
-              fontWeight: 600,
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              transition: 'background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#1557B0';
-              e.currentTarget.style.transform = 'translateY(-1px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(26,115,232,0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#1A73E8';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
+            className="nav-btn-google"
           >
             Contact Us
           </Link>
@@ -238,9 +201,9 @@ const Navbar = ({ onCartClick }) => {
                     </Link>
                   </>
                 ) : (
-                  <Link to="/login" className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3.5 rounded-full font-medium text-center block transition-all border border-slate-900 active:scale-[0.98]">Login</Link>
+                  <Link to="/login" className="w-full bg-black hover:bg-slate-900 text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded">Login</Link>
                 )}
-                <Link to="/contact" className="w-full border border-slate-200 hover:bg-slate-50 text-slate-700 py-3.5 rounded-full font-medium text-center block transition-all active:scale-[0.98]">Contact Us</Link>
+                <Link to="/contact" className="w-full bg-black border-2 border-black hover:bg-transparent hover:text-black text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded">Contact Us</Link>
               </div>
             </div>
           </motion.div>

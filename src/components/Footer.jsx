@@ -45,8 +45,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-slate-400 py-12 px-6 md:px-16 border-t border-slate-800 relative">
-      <div className="container mx-auto">
+    <footer className="bg-[#202124] text-slate-400 py-12 px-6 md:px-16 border-t border-white/10 relative overflow-hidden">
+      {/* Blueprint grid overlay */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none z-0" />
+
+      <div className="container mx-auto relative z-10">
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           
@@ -63,7 +66,7 @@ const Footer = () => {
                 href="https://linkedin.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-slate-500 hover:text-white transition-colors duration-200"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
@@ -72,7 +75,7 @@ const Footer = () => {
                 href="https://twitter.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-slate-500 hover:text-white transition-colors duration-200"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
                 aria-label="Twitter"
               >
                 <Twitter size={20} />
@@ -81,7 +84,7 @@ const Footer = () => {
                 href="https://github.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-slate-500 hover:text-white transition-colors duration-200"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
                 aria-label="GitHub"
               >
                 <Github size={20} />
@@ -90,7 +93,7 @@ const Footer = () => {
                 href="https://youtube.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-slate-500 hover:text-white transition-colors duration-200"
+                className="text-slate-400 hover:text-white transition-colors duration-200"
                 aria-label="YouTube"
               >
                 <Youtube size={20} />
@@ -131,11 +134,12 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               {[
-                { name: 'Tech & Development', path: '/programs?cat=tech' },
-                { name: 'Data Science', path: '/programs?cat=data' },
-                { name: 'Product Management', path: '/programs?cat=product' },
-                { name: 'Digital Marketing', path: '/programs?cat=marketing' },
-                { name: 'UI/UX Design', path: '/programs?cat=design' }
+                { name: 'Cyber Security', path: '/cyber-security' },
+                { name: 'Gen AI', path: '/gen-ai' },
+                { name: 'Agentic AI', path: '/agentic-ai' },
+                { name: 'VLSI', path: '/vlsi' },
+                { name: 'Quantum Computing', path: '/quantum-computing' },
+                { name: 'Microsoft Fabric', path: '/microsoft-fabric' }
               ].map((link) => (
                 <li key={link.name}>
                   <Link 
@@ -164,15 +168,15 @@ const Footer = () => {
                 placeholder="Enter your email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-slate-800 text-white placeholder:text-slate-500 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-white/20 border border-slate-700 w-full"
+                className="bg-white/5 text-white placeholder:text-slate-500 rounded px-5 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#1A73E8] border border-white/10 w-full"
               />
               <button 
                 type="submit"
                 disabled={isLoading}
-                className="bg-white hover:bg-slate-100 text-slate-900 font-semibold px-6 py-3 rounded-full transition-all duration-200 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] border border-white active:scale-[0.98]"
+                className="bg-[#1A73E8] hover:bg-[#1557B0] border border-[#1A73E8] text-white font-semibold px-6 py-3 rounded transition-all duration-200 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] active:scale-[0.98]"
               >
                 {isLoading ? (
-                  <svg className="animate-spin h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -186,7 +190,7 @@ const Footer = () => {
         </div>
 
         {/* Separating Rule */}
-        <div className="border-t border-slate-800 mt-12 pt-6">
+        <div className="border-t border-white/10 mt-12 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
             {/* Copyright */}
             <p className="text-slate-500 text-sm">
@@ -229,13 +233,13 @@ const Footer = () => {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className={`fixed bottom-8 right-8 z-50 rounded-2xl p-5 shadow-2xl border max-w-sm flex gap-4 items-start ${
+            className={`fixed bottom-8 right-8 z-50 rounded p-5 shadow-2xl border max-w-sm flex gap-4 items-start ${
               toast.type === 'success'
-                ? 'bg-slate-900 text-white border-slate-800'
+                ? 'bg-[#202124] text-white border-white/10'
                 : 'bg-red-950 text-red-200 border-red-900/50'
             }`}
           >
-            <div className={`p-2 rounded-xl text-white shrink-0 ${
+            <div className={`p-2 rounded text-white shrink-0 ${
               toast.type === 'success' ? 'bg-emerald-500' : 'bg-red-500'
             }`}>
               {toast.type === 'success' ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}

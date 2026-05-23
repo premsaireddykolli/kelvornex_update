@@ -17,7 +17,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             onClick={onClose}
             className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
           />
-          
+
           {/* Sidebar */}
           <motion.div
             initial={{ x: '100%' }}
@@ -35,14 +35,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   {cartCount}
                 </span>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
               >
                 <X size={20} />
               </button>
             </div>
-            
+
             {/* Body */}
             <div className="flex-1 overflow-y-auto p-6">
               {cartCount === 0 ? (
@@ -54,10 +54,10 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   <p className="text-gray-500 text-sm mb-8 max-w-xs">
                     Looks like you haven't added any programs to your cart yet.
                   </p>
-                  <Link 
+                  <Link
                     to="/"
                     onClick={onClose}
-                    className="bg-brand-purple text-white px-6 py-3 rounded-xl font-bold hover:bg-brand-purple-dark transition-colors flex items-center gap-2 text-sm"
+                    className="bg-brand-purple text-white px-6 py-3 rounded font-bold hover:bg-brand-purple-dark transition-colors flex items-center gap-2 text-sm"
                   >
                     Browse Courses <ArrowRight size={16} />
                   </Link>
@@ -65,12 +65,12 @@ const CartSidebar = ({ isOpen, onClose }) => {
               ) : (
                 <div className="space-y-4">
                   {cart.map((item) => (
-                    <div key={item.id} className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-100 items-center justify-between group">
+                    <div key={item.id} className="flex gap-4 p-4 rounded bg-gray-50 border border-gray-100 items-center justify-between group">
                       <div className="flex items-center gap-3">
-                        <img 
-                          src={item.image} 
-                          alt={item.title} 
-                          className="w-16 h-16 object-cover rounded-xl border border-gray-200"
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-16 h-16 object-cover rounded border border-gray-200"
                         />
                         <div>
                           <h4 className="font-bold text-gray-800 text-sm line-clamp-1">{item.title}</h4>
@@ -80,9 +80,9 @@ const CartSidebar = ({ isOpen, onClose }) => {
                           </p>
                         </div>
                       </div>
-                      <button 
+                      <button
                         onClick={() => removeFromCart(item.id)}
-                        className="w-8 h-8 rounded-lg bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-100 transition-colors shadow-sm"
+                        className="w-8 h-8 rounded bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-100 transition-colors shadow-sm"
                       >
                         <Trash2 size={16} />
                       </button>
@@ -91,7 +91,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 </div>
               )}
             </div>
-            
+
             {/* Footer */}
             <div className="p-6 border-t border-gray-100 bg-gray-50/50">
               {cartCount > 0 ? (
@@ -102,18 +102,18 @@ const CartSidebar = ({ isOpen, onClose }) => {
                       ₹{cartTotal.toLocaleString('en-IN')}
                     </span>
                   </div>
-                  <Link 
+                  <Link
                     to="/checkout/cart"
                     onClick={onClose}
-                    className="w-full bg-brand-purple text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all text-center block shadow-lg shadow-brand-purple/20"
+                    className="w-full bg-brand-purple text-white py-4 rounded font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all text-center block shadow-lg shadow-brand-purple/20"
                   >
                     Proceed to Checkout <ArrowRight size={18} />
                   </Link>
                 </>
               ) : (
-                <button 
+                <button
                   disabled
-                  className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded-xl font-bold cursor-not-allowed"
+                  className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded font-bold cursor-not-allowed"
                 >
                   Return to Course
                 </button>

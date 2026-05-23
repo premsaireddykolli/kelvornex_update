@@ -1,255 +1,177 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Code, Database, Brain, Globe, Shield, BarChart3, Users, Clock, 
-  ArrowRight, Zap, Briefcase, HeartPulse, PenTool, Layout, 
-  Smartphone, Cpu, Binary, Car, Scale, Palette, Scissors, Gamepad2, Plane, Settings
-} from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Clock, Shield, Brain, Cpu, Database, Binary, Settings, ArrowRight } from 'lucide-react';
+import { getCatalogList } from '../utils/courseCatalog';
 
-const categoryStyles = {
-  'Tech & Data': {
-    iconBg: 'bg-indigo-50/70 text-indigo-600 border-indigo-100/50',
-    badgeBg: 'bg-indigo-50/50 border-indigo-100/50 text-indigo-700',
-    hoverBorder: 'hover:border-indigo-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(79,70,229,0.08)]',
-    iconGlow: 'group-hover:bg-indigo-600 group-hover:border-indigo-600',
-    clockColor: 'text-indigo-500'
-  },
-  'Mechanics': {
-    iconBg: 'bg-cyan-50/70 text-cyan-600 border-cyan-100/50',
-    badgeBg: 'bg-cyan-50/50 border-cyan-100/50 text-cyan-700',
-    hoverBorder: 'hover:border-cyan-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(6,182,212,0.08)]',
-    iconGlow: 'group-hover:bg-cyan-600 group-hover:border-cyan-600',
-    clockColor: 'text-cyan-500'
-  },
-  'Business': {
-    iconBg: 'bg-emerald-50/70 text-emerald-600 border-emerald-100/50',
-    badgeBg: 'bg-emerald-50/50 border-emerald-100/50 text-emerald-700',
-    hoverBorder: 'hover:border-emerald-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(16,185,129,0.08)]',
-    iconGlow: 'group-hover:bg-emerald-600 group-hover:border-emerald-600',
-    clockColor: 'text-emerald-500'
-  },
-  'Medical': {
-    iconBg: 'bg-rose-50/70 text-rose-600 border-rose-100/50',
-    badgeBg: 'bg-rose-50/50 border-rose-100/50 text-rose-700',
-    hoverBorder: 'hover:border-rose-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(244,63,94,0.08)]',
-    iconGlow: 'group-hover:bg-rose-600 group-hover:border-rose-600',
-    clockColor: 'text-rose-500'
-  },
-  'Design': {
-    iconBg: 'bg-orange-50/70 text-orange-600 border-orange-100/50',
-    badgeBg: 'bg-orange-50/50 border-orange-100/50 text-orange-700',
-    hoverBorder: 'hover:border-orange-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(249,115,22,0.08)]',
-    iconGlow: 'group-hover:bg-orange-600 group-hover:border-orange-600',
-    clockColor: 'text-orange-500'
-  },
-  'Bootcamp': {
-    iconBg: 'bg-violet-50/70 text-violet-600 border-violet-100/50',
-    badgeBg: 'bg-violet-50/50 border-violet-100/50 text-violet-700',
-    hoverBorder: 'hover:border-violet-200/80',
-    hoverShadow: 'hover:shadow-[0_20px_45px_rgba(139,92,246,0.08)]',
-    iconGlow: 'group-hover:bg-violet-600 group-hover:border-violet-600',
-    clockColor: 'text-violet-500'
-  }
+const iconMap = {
+  'cyber-security': Shield,
+  'gen-ai': Brain,
+  'agentic-ai': Cpu,
+  'vlsi': Binary,
+  'quantum-computing': Database,
+  'microsoft-fabric': Settings
 };
 
-const ProgramCard = ({ icon: Icon, title, description, count, duration = "2 Months", category = "Tech & Data" }) => {
-  const styles = categoryStyles[category] || categoryStyles['Tech & Data'];
-  
+const ProgramCard = ({ id, title, description, price, originalPrice, duration }) => {
+  const Icon = iconMap[id] || Shield;
   return (
     <motion.div 
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ y: -5 }}
-      className={`bg-white p-8 rounded-3xl group cursor-pointer relative overflow-hidden border border-slate-100 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full hover:-translate-y-[2px] ${styles.hoverBorder} ${styles.hoverShadow}`}
+      whileHover={{ y: -6 }}
+      className="bg-white p-8 rounded-none border-2 border-black hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative"
     >
-      <Link to={`/${title.toLowerCase().replace(/\s+/g, '-')}`} className="absolute inset-0 z-10" />
-      <div className={`w-16 h-16 rounded-2xl border flex items-center justify-center mb-6 transition-all duration-300 ${styles.iconBg} ${styles.iconGlow}`}>
-        <Icon className="group-hover:text-white group-hover:scale-110 transition-transform" size={28} />
-      </div>
-      
-      <h3 className="text-xl font-bold mb-3 text-slate-800 leading-tight font-sans">{title}</h3>
-      <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{description}</p>
-      
-      <div className="flex items-center justify-between pt-6 border-t border-slate-100">
-        <div className="flex flex-col gap-1.5">
-          <div className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide w-fit border ${styles.badgeBg}`}>
-            <Clock size={12} className={styles.clockColor} /> {duration}
+      <Link to={`/${id}`} className="absolute inset-0 z-10" />
+      <div>
+        {/* Icon & Category */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="w-14 h-14 bg-slate-50 border border-slate-100 flex items-center justify-center text-black">
+            <Icon size={24} className="text-slate-800" />
           </div>
-          <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500 pl-1">
-            <Users size={13} className="text-slate-400" /> {count} Mentees
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+            Internship Program
+          </span>
+        </div>
+        
+        {/* Title & Description */}
+        <h3 className="text-2xl font-bold mb-4 text-black tracking-tight">{title}</h3>
+        <p className="text-slate-800 text-sm leading-relaxed mb-8 font-medium">{description}</p>
+      </div>
+
+      <div>
+        {/* Pricing */}
+        <div className="flex items-baseline gap-2.5 mb-5 pt-5 border-t border-slate-150">
+          <span className="text-3xl font-black text-black">₹{price}/-</span>
+          {originalPrice && (
+            <span className="text-sm text-slate-400 line-through">₹{originalPrice}/-</span>
+          )}
+        </div>
+
+        {/* Benefits List */}
+        <div className="flex flex-col gap-2 mb-8 text-xs sm:text-[13px] text-slate-700 font-medium">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[#1A73E8] rounded-full shrink-0" />
+            <span>3 Months In-Depth Training</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[#1A73E8] rounded-full shrink-0" />
+            <span>Internship Offer Letter Included</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[#1A73E8] rounded-full shrink-0" />
+            <span>Capstone Live Project Work</span>
           </div>
         </div>
-        <div className="text-slate-955 font-bold text-sm flex items-center gap-1 group-hover:gap-1.5 transition-all">
-          Know More <ArrowRight size={16} />
+
+        {/* Action Link */}
+        <div className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#1A73E8] border-b-2 border-[#1A73E8]/35 pb-0.5 transition-all">
+          Explore Program <ArrowRight size={14} className="ml-0.5" />
         </div>
       </div>
     </motion.div>
   );
 };
 
+const GroupOffers = () => (
+  <div className="mt-20 border-2 border-black p-8 sm:p-12 bg-white relative overflow-hidden rounded-none flex flex-col lg:flex-row items-center justify-between gap-10 hover:shadow-[10px_10px_0px_rgba(0,0,0,0.04)] transition-all duration-300">
+    <div className="max-w-xl relative z-10">
+      <span className="inline-block px-3 py-1 bg-[#1A73E8] text-white text-[10px] font-bold uppercase tracking-widest mb-6 rounded-none">
+        Group Enrollment Savings
+      </span>
+      <h3 className="text-2xl sm:text-3xl font-extrabold text-black mb-4 tracking-tight">
+        Learn with your team & save big
+      </h3>
+      <p className="text-slate-800 text-sm leading-relaxed font-medium">
+        We also support customized group packages. Choose any of our premium technical training courses and enroll as a group to unlock massive budget discounts.
+      </p>
+    </div>
+
+    <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-6 relative z-10 shrink-0">
+      {/* Pack Alpha */}
+      <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col justify-between w-full sm:w-60 rounded-none shadow-sm">
+        <div>
+          <span className="text-[9px] font-bold tracking-wider text-slate-400 uppercase">Pack Alpha</span>
+          <h4 className="text-lg font-bold text-black mt-1">Group of 5</h4>
+        </div>
+        <div className="mt-6">
+          <div className="text-2xl font-black text-[#1A73E8]">₹4,999/-</div>
+          <p className="text-[10px] text-slate-500 mt-1">Choose any course</p>
+        </div>
+      </div>
+
+      {/* Pack Beta */}
+      <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col justify-between w-full sm:w-60 rounded-none shadow-sm">
+        <div>
+          <span className="text-[9px] font-bold tracking-wider text-slate-400 uppercase">Pack Beta</span>
+          <h4 className="text-lg font-bold text-black mt-1">Group of 10</h4>
+        </div>
+        <div className="mt-6">
+          <div className="text-2xl font-black text-[#1A73E8]">₹9,999/-</div>
+          <p className="text-[10px] text-slate-500 mt-1">Choose any course + get 2 FREE</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Background blueprint details */}
+    <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-[0.03] pointer-events-none select-none">
+      <svg className="w-full h-full text-black" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+        <circle cx="50" cy="50" r="40" strokeWidth="0.5" />
+        <line x1="10" y1="10" x2="90" y2="90" strokeWidth="0.5" />
+      </svg>
+    </div>
+  </div>
+);
+
 const Programs = () => {
-  const [searchParams] = useSearchParams();
-  const categoryParam = searchParams.get('category');
-  const catParam = searchParams.get('cat');
-
-  const tabs = [
-    { id: 'Tech & Data', icon: Code },
-    { id: 'Mechanics', icon: PenTool },
-    { id: 'Business', icon: Briefcase },
-    { id: 'Medical', icon: HeartPulse },
-    { id: 'Design', icon: Layout },
-    { id: 'Bootcamp', icon: Zap },
-  ];
-
-  // Helper to map search params
-  const getMappedCategory = () => {
-    if (categoryParam) return categoryParam;
-    if (catParam) {
-      const lower = catParam.toLowerCase();
-      if (lower === 'tech' || lower === 'data') return 'Tech & Data';
-      if (lower === 'product' || lower === 'marketing') return 'Business';
-      if (lower === 'design') return 'Design';
-    }
-    return null;
-  };
-
-  // Set initial active tab based on query param if matched
-  const getInitialTab = () => {
-    const targetCategory = getMappedCategory();
-    if (targetCategory) {
-      const matchedTab = tabs.find(t => 
-        t.id.toLowerCase().includes(targetCategory.toLowerCase()) || 
-        targetCategory.toLowerCase().includes(t.id.toLowerCase())
-      );
-      if (matchedTab) return matchedTab.id;
-    }
-    return 'Tech & Data';
-  };
-
-  const [activeTab, setActiveTab] = useState(getInitialTab);
-
-  const [prevParams, setPrevParams] = useState({ categoryParam, catParam });
-  if (categoryParam !== prevParams.categoryParam || catParam !== prevParams.catParam) {
-    setPrevParams({ categoryParam, catParam });
-    const targetCategory = getMappedCategory();
-    if (targetCategory) {
-      const matchedTab = tabs.find(t => 
-        t.id.toLowerCase().includes(targetCategory.toLowerCase()) || 
-        targetCategory.toLowerCase().includes(t.id.toLowerCase())
-      );
-      if (matchedTab) {
-        setActiveTab(matchedTab.id);
-      }
-    }
-  }
-
-  useEffect(() => {
-    const targetCategory = getMappedCategory();
-    if (targetCategory) {
-      // Allow DOM to settle, then smooth scroll to the section container
-      const timer = setTimeout(() => {
-        const element = document.getElementById('programs');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 150);
-      return () => clearTimeout(timer);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryParam, catParam]);
-
-  const programData = {
-    'Tech & Data': [
-      { icon: Code, title: "Web Development", description: "Master Web Fundamentals to Build Your Own Website", count: "13k+" },
-      { icon: Smartphone, title: "Android Development", description: "Master Android Programming to Create Your Own Mobile", count: "10k+" },
-      { icon: Shield, title: "Cyber Security", description: "Master Cloud Security to Safeguard Your Digital Assets", count: "12k+" },
-      { icon: Brain, title: "Artificial Intelligence", description: "Master AI to Innovate and Transform Industries", count: "10k+" },
-      { icon: Database, title: "Data Science", description: "Master Data Science to Unlock Insights from Data", count: "15k+" },
-      { icon: Cpu, title: "Machine Learning", description: "Master Machine Learning to Develop Intelligent Systems", count: "9k+" },
-      { icon: Settings, title: "IoT & Robotics", description: "Master IoT & Robotics to Build Automated Systems", count: "16k+" },
-      { icon: Globe, title: "Cloud Computing", description: "Master in Revolutionize Digital Infrastructure", count: "13k+" },
-      { icon: Binary, title: "Embedded System", description: "Master in Developing High-Performance Devices", count: "10k+" },
-      { icon: Code, title: "DSA", description: "Master Data Structures and Algorithms for Top Companies", count: "8k+" },
-    ],
-    'Mechanics': [
-      { icon: Car, title: "Hybrid & Electric Vehicles", description: "Master the future of automotive technology.", count: "5k+" },
-      { icon: PenTool, title: "Auto CAD", description: "Master 2D and 3D computer-aided design.", count: "12k+" },
-    ],
-    'Business': [
-      { icon: Globe, title: "Digital Marketing", description: "Boost online presence and engage with audience.", count: "20k+" },
-      { icon: BarChart3, title: "Finance", description: "Master financial planning and analysis.", count: "11k+" },
-      { icon: Briefcase, title: "Human Resource", description: "Master talent management and strategy.", count: "8k+" },
-      { icon: BarChart3, title: "Stock Market", description: "Learn trading and investment strategies.", count: "14k+" },
-      { icon: BarChart3, title: "Business Analytics", description: "Turn data into actionable business insights.", count: "10k+" },
-      { icon: Scale, title: "Corporate Law", description: "Understand legal frameworks for businesses.", count: "4k+" },
-    ],
-    'Medical': [
-      { icon: Binary, title: "Genetics Engineering", description: "Explore the future of biotechnology.", count: "3k+" },
-      { icon: HeartPulse, title: "Psychology", description: "Understand human behavior and mental health.", count: "12k+" },
-      { icon: HeartPulse, title: "Medical Coding", description: "Master healthcare classification systems.", count: "9k+" },
-    ],
-    'Design': [
-      { icon: Layout, title: "UI/UX Design", description: "Design beautiful and functional user experiences.", count: "18k+" },
-      { icon: Palette, title: "Graphic Design", description: "Master visual communication and branding.", count: "15k+" },
-      { icon: Scissors, title: "Fashion Designing", description: "Explore the world of fashion and apparel design.", count: "6k+" },
-    ],
-    'Bootcamp': [
-      { icon: Gamepad2, title: "AR VR", description: "Build immersive virtual and augmented realities.", count: "4k+" },
-      { icon: Plane, title: "Drone Engineering", description: "Master drone design and flight technology.", count: "3k+" },
-      { icon: Settings, title: "Robot Engineering", description: "Design and build advanced robotic systems.", count: "5k+" },
-      { icon: Zap, title: "Career Advancement", description: "Intensive program for professional growth.", count: "7k+" },
-    ]
-  };
+  const programs = getCatalogList();
 
   return (
-    <section id="programs" className="py-32 bg-gray-50/50">
-      <div className="container mx-auto px-6">
+    <section id="programs" className="py-32 bg-white relative border-t border-slate-100 overflow-hidden">
+      {/* Grid Background Element (Subtle black grid on white bg) */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02] z-0 select-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="sectionGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#000000" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#sectionGrid)" />
+        </svg>
+      </div>
+
+      {/* Geometric Thin Construction Lines (Faint Black/Grey) */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02] z-0 select-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <line x1="0" y1="30%" x2="100%" y2="30%" stroke="#000000" strokeWidth="0.5" strokeDasharray="5,5" />
+          <line x1="0%" y1="0" x2="100%" y2="100%" stroke="#000000" strokeWidth="0.5" />
+          <circle cx="15%" cy="20%" r="90" fill="none" stroke="#000000" strokeWidth="0.5" />
+          <circle cx="85%" cy="75%" r="120" fill="none" stroke="#000000" strokeWidth="0.5" strokeDasharray="3,3" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 tracking-tight font-sans">
-            Our Featured <span className="text-brand-purple">Programs</span>
+          <span 
+            className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest border border-[#1A73E8]/20"
+            style={{ background: 'rgba(26,115,232,0.06)', color: '#1A73E8' }}
+          >
+            Specialized Training
+          </span>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-black tracking-tight font-sans">
+            Our Technical <span className="text-[#1A73E8]">Programs</span>
           </h2>
-          <p className="text-slate-600 text-lg font-sans">
-            Select a category to explore our wide range of industry-vetted programs.
+          <p className="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
+            All programs include an official Internship Offer Letter, 3 Months of Training, and a Live Capstone Project to build your career.
           </p>
         </div>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-6 md:px-8 py-2.5 rounded-full font-medium transition-all duration-200 text-sm md:text-base hover:-translate-y-[1px] active:scale-[0.98] cursor-pointer ${
-                activeTab === tab.id 
-                ? 'bg-slate-900 text-white border border-slate-900 shadow-md shadow-slate-900/10' 
-                : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200'
-              }`}
-            >
-              <tab.icon size={20} />
-              {tab.id}
-            </button>
+        {/* Program Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {programs.map((prog) => (
+            <ProgramCard key={prog.id} {...prog} />
           ))}
         </div>
 
-        {/* Program Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {programData[activeTab].map((prog) => (
-              <ProgramCard key={prog.title} {...prog} category={activeTab} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* Group Offers Banner */}
+        <GroupOffers />
       </div>
     </section>
   );
