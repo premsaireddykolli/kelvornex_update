@@ -367,7 +367,7 @@ public class AuthService {
 
         } catch (Exception e) {
             System.err.println("[OTP SERVICE] Failed to send email to " + email + ": " + e.getMessage());
-            // OTP is still cached — flow continues even if email fails
+            throw new RuntimeException("Failed to send OTP email. Please check your SMTP configuration in .env: " + e.getMessage(), e);
         }
     }
 
