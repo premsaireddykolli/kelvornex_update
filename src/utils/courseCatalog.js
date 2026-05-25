@@ -29,7 +29,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Build autonomous AI agents, multi-agent systems, task planning, and orchestrate intelligent workflows using leading agentic frameworks.',
-    image: 'https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&q=80&w=1200',
+    image: '/agentic-ai.png',
     category: 'Internship Program'
   },
   'vlsi': {
@@ -40,7 +40,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Very Large Scale Integration engineering. Master digital design, Verilog, FPGA, and physical design concepts for modern semiconductor chips.',
-    image: 'https://images.unsplash.com/photo-1601662528567-526cd06f6582?auto=format&fit=crop&q=80&w=1200',
+    image: '/vlsi.png',
     category: 'Internship Program'
   },
   'quantum-computing': {
