@@ -40,7 +40,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Very Large Scale Integration engineering. Master digital design, Verilog, FPGA, and physical design concepts for modern semiconductor chips.',
-    image: 'https://images.unsplash.com/photo-1607252631355-89dddb30e7a4?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1601662528567-526cd06f6582?auto=format&fit=crop&q=80&w=1200',
     category: 'Internship Program'
   },
   'quantum-computing': {

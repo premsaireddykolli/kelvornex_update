@@ -34,7 +34,7 @@ const ProgramCard = ({ id, title, description, price, originalPrice, image }) =>
         </div>
       </div>
 
-      <div>
+      <div className="p-8 pt-0">
         {/* Pricing */}
         <div className="flex items-baseline gap-2.5 mb-5 pt-5 border-t border-slate-100">
           <span className="text-3xl font-black text-black">₹{price}/-</span>
