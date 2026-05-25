@@ -18,7 +18,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Learn to build applications with Large Language Models (LLMs), prompt engineering, and integrate generative capabilities into software solutions.',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200',
     category: 'Internship Program'
   },
   'agentic-ai': {
