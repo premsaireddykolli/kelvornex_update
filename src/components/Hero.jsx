@@ -22,8 +22,15 @@ const Hero = () => {
       ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex flex-col justify-between overflow-hidden"
-      style={{ background: '#FFFFFF' }}
+      style={{
+        backgroundImage: "url('/hero_background.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
+      {/* Light glassmorphic overlay for high readability of dark text */}
+      <div className="absolute inset-0 bg-white/88 backdrop-blur-[1.5px] z-0" />
       {/* ── Architectural Blueprint Grid (Faint & Precise) ── */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04] z-0 select-none">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
