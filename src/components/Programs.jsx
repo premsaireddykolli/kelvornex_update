@@ -1,39 +1,37 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Brain, Cpu, Database, Binary, Settings, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { getCatalogList } from '../utils/courseCatalog';
 
-const iconMap = {
-  'cyber-security': Shield,
-  'gen-ai': Brain,
-  'agentic-ai': Cpu,
-  'vlsi': Binary,
-  'quantum-computing': Database,
-  'microsoft-fabric': Settings
-};
-
-const ProgramCard = ({ id, title, description, price, originalPrice }) => {
-  const Icon = iconMap[id] || Shield;
+const ProgramCard = ({ id, title, description, price, originalPrice, image }) => {
   return (
     <motion.div 
       whileHover={{ y: -6 }}
-      className="bg-white p-8 rounded-none border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative"
+      className="bg-white rounded-none border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden group"
     >
       <Link to={`/${id}`} className="absolute inset-0 z-10" />
       <div>
-        {/* Icon & Category */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="w-14 h-14 bg-slate-50 border border-slate-100 flex items-center justify-center text-black">
-            <Icon size={24} className="text-slate-800" />
-          </div>
-          <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
-            Internship Program
-          </span>
+        {/* Course Image Header */}
+        <div className="aspect-video w-full overflow-hidden bg-slate-100 border-b border-slate-200">
+          <img 
+            src={image} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+            alt={title} 
+          />
         </div>
         
-        {/* Title & Description */}
-        <h3 className="text-2xl font-bold mb-4 text-black tracking-tight">{title}</h3>
-        <p className="text-slate-800 text-sm leading-relaxed mb-8 font-medium">{description}</p>
+        <div className="p-8 pb-0">
+          {/* Category */}
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#1A73E8]">
+              Internship Program
+            </span>
+          </div>
+          
+          {/* Title & Description */}
+          <h3 className="text-2xl font-bold mb-4 text-black tracking-tight">{title}</h3>
+          <p className="text-slate-800 text-sm leading-relaxed mb-8 font-medium">{description}</p>
+        </div>
       </div>
 
       <div>
