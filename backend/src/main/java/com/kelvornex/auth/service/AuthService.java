@@ -328,7 +328,7 @@ public class AuthService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-            helper.setFrom(mailFrom, "Kelvornex Support");
+            helper.setFrom(mailFrom, "Kelvornex");
             helper.setTo(email);
             helper.setSubject("Your Kelvornex Password Reset OTP");
 

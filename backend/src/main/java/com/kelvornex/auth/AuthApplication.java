@@ -13,6 +13,32 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AuthApplication {
 
     public static void main(String[] args) {
+        // Load .env variables into system properties for Spring Boot config to pick up
+        try {
+            java.nio.file.Path envPath = java.nio.file.Paths.get("..", ".env").toAbsolutePath().normalize();
+            if (!java.nio.file.Files.exists(envPath)) {
+                // fall back to current directory .env
+                envPath = java.nio.file.Paths.get(".env").toAbsolutePath().normalize();
+            }
+            if (java.nio.file.Files.exists(envPath)) {
+                System.out.println("[ENV LOADER] Loading environment variables from: " + envPath);
+                java.nio.file.Files.readAllLines(envPath).forEach(line -> {
+                    String trimmed = line.trim();
+                    if (!trimmed.isEmpty() && !trimmed.startsWith("#") && trimmed.contains("=")) {
+                        String[] parts = trimmed.split("=", 2);
+                        String key = parts[0].trim();
+                        String val = parts[1].trim();
+                        if (System.getenv(key) == null && System.getProperty(key) == null) {
+                            System.setProperty(key, val);
+                        }
+                    }
+                });
+            } else {
+                System.out.println("[ENV LOADER] No .env file found at root or current directory.");
+            }
+        } catch (Exception e) {
+            System.err.println("[ENV LOADER] Failed to load .env file: " + e.getMessage());
+        }
         SpringApplication.run(AuthApplication.class, args);
     }
 
