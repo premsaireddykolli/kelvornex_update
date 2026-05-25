@@ -7,7 +7,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Ethical hacking, network defense, penetration testing, and cloud security protocols. Protect systems and build a secure digital future.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1200',
+    image: '/cyber-security.png',
     category: 'Internship Program'
   },
   'gen-ai': {
@@ -51,7 +51,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Introduction to quantum bits (qubits), quantum circuits, algorithms like Shor\'s and Grover\'s, and hands-on programming on quantum hardware.',
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=1200',
+    image: '/quantum-computing.png',
     category: 'Internship Program'
   },
   'microsoft-fabric': {
@@ -62,7 +62,7 @@ const catalog = {
     duration: '3 Months Training + Project',
     level: 'Beginner to Advanced',
     description: 'Master Microsoft\'s all-in-one analytics platform. Learn data engineering, data factory pipelines, Synapse data science, and Power BI integration.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+    image: '/microsoft-fabric.png',
     category: 'Internship Program'
   }
 };
