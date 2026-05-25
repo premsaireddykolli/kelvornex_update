@@ -94,7 +94,7 @@ const Partners = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {certification.benefits.map((benefit, i) => (
                 <div key={i} className="flex items-center gap-2.5 text-xs text-slate-800 font-semibold">
-                  <span className="w-2 h-2 bg-[#34A853] rounded-full shrink-0" />
+                  <span className="w-2 h-2 bg-[#1A73E8] rounded-full shrink-0" />
                   <span>{benefit}</span>
                 </div>
               ))}
@@ -102,7 +102,7 @@ const Partners = () => {
 
             {/* Active Status Badge */}
             <div className="mt-8 pt-4 border-t border-slate-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              <span className="w-2.5 h-2.5 bg-[#34A853] rounded-full animate-pulse" />
+              <span className="w-2.5 h-2.5 bg-[#1A73E8] rounded-full animate-pulse" />
               <span>Microsoft Certified Curriculum ratifications active</span>
             </div>
           </div>
