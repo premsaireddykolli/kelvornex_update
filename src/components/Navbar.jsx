@@ -201,9 +201,9 @@ const Navbar = ({ onCartClick }) => {
                     </Link>
                   </>
                 ) : (
-                  <Link to="/login" className="w-full bg-black hover:bg-slate-900 text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded">Login</Link>
+                  <Link to="/login" className="w-full bg-black hover:bg-slate-900 text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded-full">Login</Link>
                 )}
-                <Link to="/contact" className="w-full bg-black border-2 border-black hover:bg-transparent hover:text-black text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded">Contact Us</Link>
+                <Link to="/contact" className="w-full bg-black border-2 border-black hover:bg-transparent hover:text-black text-white py-3 font-bold uppercase tracking-widest text-[11px] text-center block transition-all rounded-full">Contact Us</Link>
               </div>
             </div>
           </motion.div>

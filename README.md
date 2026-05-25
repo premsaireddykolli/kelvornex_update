@@ -1,20 +1,46 @@
-<<<<<<< HEAD
-# React + Vite
+# Kelvornex Update
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kelvornex is a collaborative platform designed for students and entrepreneurs.
 
-Currently, two official plugins are available:
+## Features
+- **Modern Authentication Flow**: Unified secure login with support for role selection (Student vs. Entrepreneur) and Google OAuth integration.
+- **Robust OTP-based Password Reset**: Secure OTP (One-Time Password) generation, email delivery, verification, and password reset functionality.
+- **Tailwind CSS Styling**: Premium, sleek, and responsive UI with modern typography and animations.
+- **Spring Boot Backend**: Robust Java Spring Boot REST API for auth logic, database operations, and support mailing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
+- **Frontend**: React, Vite, Tailwind CSS, Lucide Icons, Framer Motion
+- **Backend**: Spring Boot, Java 17, JPA/Hibernate, MySQL, Java Mail Sender
 
-## React Compiler
+## Setup & Running
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
+- Java 17 or higher
+- Node.js 18 or higher
+- Maven 3.x
+- MySQL Database
 
-## Expanding the ESLint configuration
+### Environment Variables
+Create a `.env` file in the root directory (already configured with a fallback):
+```env
+VITE_GOOGLE_CLIENT_ID=your-google-client-id
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# kelvornex_update
->>>>>>> 7483ff8b30e0f1e6500ad1de90fc847152b6d8d0
+### Running the Backend
+1. Configure your database settings in `backend/src/main/resources/application.properties`.
+2. Run from the `backend` folder:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+### Running the Frontend
+1. Install dependencies from the root directory:
+   ```bash
+   npm install
+   ```
+2. Run Vite dev server:
+   ```bash
+   npm run dev
+   ```

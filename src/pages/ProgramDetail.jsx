@@ -4,10 +4,10 @@ import { useCart } from '../context/CartContext';
 import { getProgramDetails } from '../utils/courseCatalog';
 
 const ProgramDetail = () => {
-  const { programId, cat } = useParams();
+  const { programId } = useParams();
   const { addToCart } = useCart();
-  
-  const program = getProgramDetails(programId, cat);
+
+  const program = getProgramDetails(programId);
   const { title, description, duration, level, image, price } = program;
 
   return (
@@ -19,7 +19,7 @@ const ProgramDetail = () => {
           <Link to="/" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold mb-8 transition-colors">
             <ArrowLeft size={20} /> Back to Programs
           </Link>
-          
+
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2">
               <span className="inline-block px-4 py-1.5 rounded bg-brand-gold/20 text-brand-gold text-xs font-bold uppercase tracking-widest mb-6 border border-brand-gold/30">
@@ -31,7 +31,7 @@ const ProgramDetail = () => {
               <p className="text-white/85 text-base sm:text-lg mb-8 leading-relaxed font-medium">
                 {description}
               </p>
-              
+
               <div className="flex flex-wrap items-center gap-6 mb-10">
                 <div className="flex items-center gap-2 text-brand-gold font-bold">
                   <Star fill="currentColor" size={20} /> 4.8 Rating
@@ -40,12 +40,12 @@ const ProgramDetail = () => {
                   <Users size={20} className="text-brand-purple-light" /> 10k+ Enrolled
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to={`/checkout/${program.id}`} className="bg-brand-purple text-white px-8 py-4 rounded font-bold hover:bg-brand-purple-light transition-all flex items-center justify-center gap-2">
                   Enroll Now <GraduationCap size={20} />
                 </Link>
-                <button 
+                <button
                   onClick={() => {
                     addToCart(program);
                     window.dispatchEvent(new Event('open-cart'));
@@ -56,7 +56,7 @@ const ProgramDetail = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className="lg:w-1/2">
               <div className="glass-dark rounded p-8 border border-white/10">
                 <div className="aspect-video bg-black/50 rounded overflow-hidden relative group">
@@ -92,7 +92,7 @@ const ProgramDetail = () => {
                 </div>
               ))}
             </div>
-            
+
             <h2 className="text-3xl font-bold font-display text-gray-900 mb-8">Curriculum</h2>
             <div className="space-y-4">
               {[1, 2, 3, 4].map((module) => (
@@ -105,11 +105,11 @@ const ProgramDetail = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="lg:col-span-1">
             <div className="sticky top-32 bg-gray-50 rounded p-8 border border-gray-200 shadow-xl shadow-gray-200/50">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Program Details</h3>
-              
+
               <div className="space-y-6 mb-8">
                 <div className="flex items-center gap-4 pb-6 border-b border-gray-200">
                   <div className="w-12 h-12 rounded bg-white flex items-center justify-center text-brand-purple shadow-sm border border-slate-100">
@@ -120,7 +120,7 @@ const ProgramDetail = () => {
                     <p className="font-bold text-gray-800">{duration}</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center gap-4 pb-6 border-b border-gray-200">
                   <div className="w-12 h-12 rounded bg-white flex items-center justify-center text-brand-purple shadow-sm border border-slate-100">
                     <BookOpen size={24} />
@@ -131,7 +131,7 @@ const ProgramDetail = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="text-center">
                 <div className="mb-4">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">Course Price</span>
@@ -139,13 +139,13 @@ const ProgramDetail = () => {
                 </div>
                 <p className="text-gray-500 text-sm mb-6">Limited seats available for the next batch</p>
                 <div className="flex flex-col gap-3">
-                  <Link 
+                  <Link
                     to={`/checkout/${program.id}`}
                     className="w-full bg-brand-dark text-white py-4 rounded font-bold text-lg hover:bg-gray-800 transition-colors block text-center shadow-lg"
                   >
                     Apply Now
                   </Link>
-                  <button 
+                  <button
                     onClick={() => {
                       addToCart(program);
                       window.dispatchEvent(new Event('open-cart'));

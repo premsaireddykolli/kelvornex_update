@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Clock, Shield, Brain, Cpu, Database, Binary, Settings, ArrowRight } from 'lucide-react';
+import { Shield, Brain, Cpu, Database, Binary, Settings, ArrowRight } from 'lucide-react';
 import { getCatalogList } from '../utils/courseCatalog';
 
 const iconMap = {
@@ -12,12 +12,12 @@ const iconMap = {
   'microsoft-fabric': Settings
 };
 
-const ProgramCard = ({ id, title, description, price, originalPrice, duration }) => {
+const ProgramCard = ({ id, title, description, price, originalPrice }) => {
   const Icon = iconMap[id] || Shield;
   return (
     <motion.div 
       whileHover={{ y: -6 }}
-      className="bg-white p-8 rounded-none border-2 border-black hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative"
+      className="bg-white p-8 rounded-none border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative"
     >
       <Link to={`/${id}`} className="absolute inset-0 z-10" />
       <div>
@@ -38,7 +38,7 @@ const ProgramCard = ({ id, title, description, price, originalPrice, duration })
 
       <div>
         {/* Pricing */}
-        <div className="flex items-baseline gap-2.5 mb-5 pt-5 border-t border-slate-150">
+        <div className="flex items-baseline gap-2.5 mb-5 pt-5 border-t border-slate-100">
           <span className="text-3xl font-black text-black">₹{price}/-</span>
           {originalPrice && (
             <span className="text-sm text-slate-400 line-through">₹{originalPrice}/-</span>
@@ -71,7 +71,7 @@ const ProgramCard = ({ id, title, description, price, originalPrice, duration })
 };
 
 const GroupOffers = () => (
-  <div className="mt-20 border-2 border-black p-8 sm:p-12 bg-white relative overflow-hidden rounded-none flex flex-col lg:flex-row items-center justify-between gap-10 hover:shadow-[10px_10px_0px_rgba(0,0,0,0.04)] transition-all duration-300">
+  <div className="mt-20 border border-slate-200 p-8 sm:p-12 bg-white relative overflow-hidden rounded-none flex flex-col lg:flex-row items-center justify-between gap-10 hover:shadow-[10px_10px_0px_rgba(0,0,0,0.04)] transition-all duration-300">
     <div className="max-w-xl relative z-10">
       <span className="inline-block px-3 py-1 bg-[#1A73E8] text-white text-[10px] font-bold uppercase tracking-widest mb-6 rounded-none">
         Group Enrollment Savings

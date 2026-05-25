@@ -67,13 +67,13 @@ const PopupBanner = () => {
                   <Link
                     to="/careers"
                     onClick={handleClose}
-                    className="bg-slate-900 text-white px-6 py-2.5 rounded font-medium text-sm hover:bg-slate-800 transition-all border border-slate-900 hover:border-slate-800 active:scale-[0.98] shadow-sm hover:shadow-md hover:shadow-slate-900/10"
+                    className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-slate-800 transition-all border border-slate-900 hover:border-slate-800 active:scale-[0.98] shadow-sm hover:shadow-md hover:shadow-slate-900/10"
                   >
                     Apply Now
                   </Link>
                   <button
                     onClick={handleClose}
-                    className="border border-slate-200 text-slate-600 px-6 py-2.5 rounded font-medium text-sm hover:bg-slate-50 transition-all active:scale-[0.98]"
+                    className="border border-slate-200 text-slate-600 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-slate-50 transition-all active:scale-[0.98]"
                   >
                     Maybe Later
                   </button>

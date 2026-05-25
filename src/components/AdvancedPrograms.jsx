@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import { Download, ExternalLink, Users, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
 
 /* ────────────────────────────────────────────────────────────────
    GOOGLE COLORS
    ──────────────────────────────────────────────────────────────── */
 const G = {
-  blue:   '#1A73E8',
-  red:    '#EA4335',
+  blue: '#1A73E8',
+  red: '#EA4335',
   yellow: '#FBBC05',
-  green:  '#34A853',
+  green: '#34A853',
 };
 
 /* ────────────────────────────────────────────────────────────────
@@ -17,14 +16,14 @@ const G = {
    ──────────────────────────────────────────────────────────────── */
 const FloatingShapes = ({ scrollY }) => {
   const shapes = [
-    { type: 'bracket', x: '4%',  y: '12%', size: 48, color: G.blue,   delay: 0    },
-    { type: 'circle',  x: '88%', y: '8%',  size: 32, color: G.red,    delay: 0.3  },
-    { type: 'code',    x: '92%', y: '55%', size: 40, color: G.green,  delay: 0.6  },
-    { type: 'circle',  x: '5%',  y: '72%', size: 24, color: G.yellow, delay: 0.9  },
-    { type: 'bracket', x: '48%', y: '4%',  size: 36, color: G.red,    delay: 0.2  },
-    { type: 'code',    x: '18%', y: '88%', size: 44, color: G.blue,   delay: 0.5  },
-    { type: 'circle',  x: '75%', y: '80%', size: 28, color: G.green,  delay: 0.8  },
-    { type: 'bracket', x: '60%', y: '92%', size: 38, color: G.yellow, delay: 0.1  },
+    { type: 'bracket', x: '4%', y: '12%', size: 48, color: G.blue, delay: 0 },
+    { type: 'circle', x: '88%', y: '8%', size: 32, color: G.red, delay: 0.3 },
+    { type: 'code', x: '92%', y: '55%', size: 40, color: G.green, delay: 0.6 },
+    { type: 'circle', x: '5%', y: '72%', size: 24, color: G.yellow, delay: 0.9 },
+    { type: 'bracket', x: '48%', y: '4%', size: 36, color: G.red, delay: 0.2 },
+    { type: 'code', x: '18%', y: '88%', size: 44, color: G.blue, delay: 0.5 },
+    { type: 'circle', x: '75%', y: '80%', size: 28, color: G.green, delay: 0.8 },
+    { type: 'bracket', x: '60%', y: '92%', size: 38, color: G.yellow, delay: 0.1 },
   ];
 
   return (
@@ -51,7 +50,7 @@ const FloatingShapes = ({ scrollY }) => {
           {s.type === 'circle' && (
             <svg width={s.size} height={s.size} viewBox="0 0 32 32">
               <circle cx="16" cy="16" r="12" fill="none" stroke={s.color} strokeWidth="1.5" />
-              <circle cx="16" cy="16" r="4"  fill={s.color} />
+              <circle cx="16" cy="16" r="4" fill={s.color} />
             </svg>
           )}
           {s.type === 'bracket' && (
@@ -94,8 +93,8 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
     <div
       ref={ref}
       style={{
-        opacity:    inView ? 1 : 0,
-        clipPath:   inView ? 'inset(0% 0% 0% 0%)' : 'inset(6% 3% 6% 3%)',
+        opacity: inView ? 1 : 0,
+        clipPath: inView ? 'inset(0% 0% 0% 0%)' : 'inset(6% 3% 6% 3%)',
         transition: 'opacity 0.9s ease, clip-path 0.9s cubic-bezier(0.22,1,0.36,1)',
       }}
     >
@@ -124,7 +123,7 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
             minHeight: 340,
             order: reversed ? 1 : 0,
             borderRight: reversed ? 'none' : '1px solid #E8EAED',
-            borderLeft:  reversed ? '1px solid #E8EAED' : 'none',
+            borderLeft: reversed ? '1px solid #E8EAED' : 'none',
           }}
         >
           <img
@@ -193,7 +192,7 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               className="g-btn g-btn--primary group"
-              id={`showcase-${title.replace(/\s+/g,'-').toLowerCase()}`}
+              id={`showcase-${title.replace(/\s+/g, '-').toLowerCase()}`}
             >
               View Details <ExternalLink size={13} />
             </button>
@@ -218,9 +217,9 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
    ──────────────────────────────────────────────────────────────── */
 const AdvancedPrograms = () => {
   const sectionRef = useRef(null);
-  const headerRef  = useRef(null);
-  const [scrollY,  setScrollY] = useState(0);
-  const [hdrIn,    setHdrIn]   = useState(false);
+  const headerRef = useRef(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [hdrIn, setHdrIn] = useState(false);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -254,9 +253,9 @@ const AdvancedPrograms = () => {
         <div
           ref={headerRef}
           style={{
-            opacity:   hdrIn ? 1 : 0,
+            opacity: hdrIn ? 1 : 0,
             transform: hdrIn ? 'translateY(0)' : 'translateY(28px)',
-            transition:'opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1)',
+            transition: 'opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1)',
           }}
           className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
         >

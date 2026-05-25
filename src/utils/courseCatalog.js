@@ -67,7 +67,7 @@ const catalog = {
   }
 };
 
-export const getProgramDetails = (programId, cat, pathname = '') => {
+export const getProgramDetails = (programId) => {
   const cleanId = (programId || '').toLowerCase().trim().replace(/\s+/g, '-');
   
   // Find in catalog

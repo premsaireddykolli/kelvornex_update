@@ -6,6 +6,10 @@ import com.kelvornex.auth.dto.SignupRequestDTO;
 import com.kelvornex.auth.dto.GoogleLoginRequestDTO;
 import com.kelvornex.auth.entity.User;
 import com.kelvornex.auth.service.AuthService;
+import com.kelvornex.auth.dto.CompleteOauthRoleRequestDTO;
+import com.kelvornex.auth.dto.ForgotPasswordRequestDTO;
+import com.kelvornex.auth.dto.VerifyOtpRequestDTO;
+import com.kelvornex.auth.dto.ResetPasswordRequestDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.kelvornex.auth.dto.CompleteOauthRoleRequestDTO;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -51,5 +53,23 @@ public class AuthController {
     public ResponseEntity<String> resetUser(@org.springframework.web.bind.annotation.RequestParam String email) {
         authService.deleteUserByEmail(email);
         return ResponseEntity.ok("User deleted successfully: " + email);
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<String> forgotPassword(@Valid @RequestBody ForgotPasswordRequestDTO request) {
+        authService.forgotPassword(request);
+        return ResponseEntity.ok("OTP sent to registered email successfully.");
+    }
+
+    @PostMapping("/verify-otp")
+    public ResponseEntity<String> verifyOtp(@Valid @RequestBody VerifyOtpRequestDTO request) {
+        authService.verifyOtp(request);
+        return ResponseEntity.ok("OTP verified successfully.");
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordRequestDTO request) {
+        authService.resetPassword(request);
+        return ResponseEntity.ok("Password reset successfully.");
     }
 }

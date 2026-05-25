@@ -80,13 +80,13 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
           e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(1)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = '#000000';
+          e.currentTarget.style.borderColor = '#E2E8F0';
           e.currentTarget.style.boxShadow = '0 1px 4px rgba(60,64,67,0.06)';
           e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(0)';
         }}
         style={{
           background:  '#FFFFFF',
-          border:      '2px solid #000000',
+          border:      '1px solid #E2E8F0',
           padding:     '1.75rem',
           cursor:      'default',
           transition:  'box-shadow 0.25s ease, border-color 0.25s ease',
@@ -162,7 +162,7 @@ const StatPanel = () => {
         className="flex flex-col justify-between flex-grow"
         style={{
           background: '#FFFFFF',
-          border: '2px solid #000000',
+          border: '1px solid #E2E8F0',
           padding: '4rem 3rem',
           boxShadow: '0 4px 24px rgba(60,64,67,0.08)',
           position: 'relative',
@@ -176,7 +176,7 @@ const StatPanel = () => {
           e.currentTarget.style.boxShadow = '0 8px 40px rgba(26,115,232,0.12), 0 4px 24px rgba(60,64,67,0.08)';
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = '#000000';
+          e.currentTarget.style.borderColor = '#E2E8F0';
           e.currentTarget.style.boxShadow = '0 4px 24px rgba(60,64,67,0.08)';
         }}
       >

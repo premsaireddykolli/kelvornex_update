@@ -168,12 +168,12 @@ const Footer = () => {
                 placeholder="Enter your email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-white/5 text-white placeholder:text-slate-500 rounded px-5 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#1A73E8] border border-white/10 w-full"
+                className="bg-white/5 text-white placeholder:text-slate-500 rounded-full px-5 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#1A73E8] border border-white/10 w-full"
               />
               <button 
                 type="submit"
                 disabled={isLoading}
-                className="bg-[#1A73E8] hover:bg-[#1557B0] border border-[#1A73E8] text-white font-semibold px-6 py-3 rounded transition-all duration-200 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] active:scale-[0.98]"
+                className="bg-[#1A73E8] hover:bg-[#1557B0] border border-[#1A73E8] text-white font-semibold px-6 py-3 rounded-full transition-all duration-200 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] active:scale-[0.98]"
               >
                 {isLoading ? (
                   <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

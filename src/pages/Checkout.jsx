@@ -300,8 +300,8 @@ const Checkout = () => {
 
   // Payment tab helper
   const tabClasses = (tab) => `flex items-center gap-3 p-4 rounded border font-bold text-sm transition-all ${activeTab === tab
-      ? 'bg-brand-purple/5 border-brand-purple text-brand-purple'
-      : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50 hover:border-gray-200'
+    ? 'bg-brand-purple/5 border-brand-purple text-brand-purple'
+    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50 hover:border-gray-200'
     }`;
 
   return (
@@ -450,8 +450,8 @@ const Checkout = () => {
                           type="button"
                           onClick={() => setUpiSubMethod('app')}
                           className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'app'
-                              ? 'border-brand-purple text-brand-purple'
-                              : 'border-transparent text-gray-400 hover:text-gray-650'
+                            ? 'border-brand-purple text-brand-purple'
+                            : 'border-transparent text-gray-400 hover:text-gray-650'
                             }`}
                         >
                           UPI Application
@@ -460,8 +460,8 @@ const Checkout = () => {
                           type="button"
                           onClick={() => setUpiSubMethod('qr')}
                           className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'qr'
-                              ? 'border-brand-purple text-brand-purple'
-                              : 'border-transparent text-gray-400 hover:text-gray-650'
+                            ? 'border-brand-purple text-brand-purple'
+                            : 'border-transparent text-gray-400 hover:text-gray-650'
                             }`}
                         >
                           Scan QR Code
@@ -489,8 +489,8 @@ const Checkout = () => {
                                     setIsUpiVerified(false);
                                   }}
                                   className={`flex flex-col items-center justify-center p-3 bg-white border rounded-xl hover:border-brand-purple hover:scale-[1.03] transition-all gap-2 h-20 ${selectedUpiApp === app.id
-                                      ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5'
-                                      : 'border-gray-150 shadow-sm'
+                                    ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5'
+                                    : 'border-gray-150 shadow-sm'
                                     }`}
                                 >
                                   {app.logo}
@@ -520,8 +520,8 @@ const Checkout = () => {
                                   onClick={handleVerifyUpi}
                                   disabled={isVerifyingUpi || !upiId}
                                   className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
-                                      ? 'bg-green-50 text-green-650 border border-green-200'
-                                      : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    ? 'bg-green-50 text-green-650 border border-green-200'
+                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
                                     }`}
                                 >
                                   {isVerifyingUpi ? (
@@ -559,8 +559,8 @@ const Checkout = () => {
                                   onClick={handleVerifyUpi}
                                   disabled={isVerifyingUpi || !upiUsername}
                                   className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
-                                      ? 'bg-green-50 text-green-650 border border-green-200'
-                                      : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    ? 'bg-green-50 text-green-650 border border-green-200'
+                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
                                     }`}
                                 >
                                   {isVerifyingUpi ? (
@@ -820,8 +820,8 @@ const Checkout = () => {
                           type="button"
                           onClick={() => setNetBank('hdfc')}
                           className={`flex flex-col items-center justify-center p-6 bg-white border rounded-2xl hover:border-brand-purple hover:scale-[1.02] transition-all gap-4 w-full max-w-md ${netBank === 'hdfc'
-                              ? 'border-brand-purple shadow-md ring-2 ring-brand-purple/20 bg-brand-purple/5'
-                              : 'border-gray-200 shadow-sm'
+                            ? 'border-brand-purple shadow-md ring-2 ring-brand-purple/20 bg-brand-purple/5'
+                            : 'border-gray-200 shadow-sm'
                             }`}
                         >
                           <div className="w-20 h-10 flex items-center justify-center shrink-0 bg-[#003366] rounded-xl shadow-md border border-[#002244]/20 p-2">

@@ -105,7 +105,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   <Link
                     to="/checkout/cart"
                     onClick={onClose}
-                    className="w-full bg-brand-purple text-white py-4 rounded font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all text-center block shadow-lg shadow-brand-purple/20"
+                    className="w-full bg-brand-purple text-white py-4 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-brand-purple-dark transition-all text-center block shadow-lg shadow-brand-purple/20"
                   >
                     Proceed to Checkout <ArrowRight size={18} />
                   </Link>
@@ -113,7 +113,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
               ) : (
                 <button
                   disabled
-                  className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded font-bold cursor-not-allowed"
+                  className="w-full bg-gray-200 text-gray-400 px-6 py-4 rounded-full font-bold cursor-not-allowed"
                 >
                   Return to Course
                 </button>

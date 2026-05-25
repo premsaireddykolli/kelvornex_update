@@ -63,7 +63,7 @@ const SelectRole = () => {
         <div className="max-w-2xl w-full mx-auto">
           {/* Card Wrapper */}
           <div className="bg-white rounded-[1.75rem] border border-slate-200/60 shadow-[0_10px_35px_rgba(2,6,23,0.06)] p-8 sm:p-10 relative overflow-hidden">
-            
+
             {/* Soft background glow */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-600/10 rounded-full blur-[80px] pointer-events-none" />
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-[90px] pointer-events-none" />
@@ -101,7 +101,7 @@ const SelectRole = () => {
 
             {/* Side-by-Side Selectable Columns using Soft Square Geometry (rounded-md, max 8px corner radius) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8 relative z-10">
-              
+
               {/* Column 1: Student */}
               {/* Column 1: Student */}
               <button
@@ -111,23 +111,20 @@ const SelectRole = () => {
                   setError('');
                 }}
                 disabled={loading}
-                className={`flex flex-col items-center text-center p-6 border rounded-md cursor-pointer transition-all duration-300 select-none group text-left ${
-                  selectedRole === 'STUDENT'
-                    ? 'border-slate-900 bg-slate-50/50 shadow-md ring-2 ring-slate-900/10'
-                    : 'border-slate-200 hover:border-slate-400 hover:bg-slate-50/50'
-                }`}
+                className={`flex flex-col items-center text-center p-6 border rounded-md cursor-pointer transition-all duration-300 select-none group text-left ${selectedRole === 'STUDENT'
+                  ? 'border-slate-900 bg-slate-50/50 shadow-md ring-2 ring-slate-900/10'
+                  : 'border-slate-200 hover:border-slate-400 hover:bg-slate-50/50'
+                  }`}
               >
                 {/* Clean Graduation Icon with subtle background */}
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${
-                  selectedRole === 'STUDENT'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200/80 group-hover:text-slate-700'
-                }`}>
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${selectedRole === 'STUDENT'
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200/80 group-hover:text-slate-700'
+                  }`}>
                   <GraduationCap size={24} />
                 </div>
-                <h3 className={`text-lg font-bold transition-colors duration-300 mb-2 ${
-                  selectedRole === 'STUDENT' ? 'text-slate-900' : 'text-slate-800'
-                }`}>
+                <h3 className={`text-lg font-bold transition-colors duration-300 mb-2 ${selectedRole === 'STUDENT' ? 'text-slate-900' : 'text-slate-800'
+                  }`}>
                   Student
                 </h3>
                 <p className="text-xs text-slate-500 font-normal leading-relaxed">
@@ -143,23 +140,20 @@ const SelectRole = () => {
                   setError('');
                 }}
                 disabled={loading}
-                className={`flex flex-col items-center text-center p-6 border rounded-md cursor-pointer transition-all duration-300 select-none group text-left ${
-                  selectedRole === 'ENTREPRENEUR'
-                    ? 'border-slate-900 bg-slate-50/50 shadow-md ring-2 ring-slate-900/10'
-                    : 'border-slate-200 hover:border-slate-400 hover:bg-slate-50/50'
-                }`}
+                className={`flex flex-col items-center text-center p-6 border rounded-md cursor-pointer transition-all duration-300 select-none group text-left ${selectedRole === 'ENTREPRENEUR'
+                  ? 'border-slate-900 bg-slate-50/50 shadow-md ring-2 ring-slate-900/10'
+                  : 'border-slate-200 hover:border-slate-400 hover:bg-slate-50/50'
+                  }`}
               >
                 {/* Clean Rocket/Startup Icon with subtle background */}
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${
-                  selectedRole === 'ENTREPRENEUR'
-                    ? 'bg-slate-900 text-white'
-                    : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200/80 group-hover:text-slate-700'
-                }`}>
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors duration-300 ${selectedRole === 'ENTREPRENEUR'
+                  ? 'bg-slate-900 text-white'
+                  : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200/80 group-hover:text-slate-700'
+                  }`}>
                   <Rocket size={24} />
                 </div>
-                <h3 className={`text-lg font-bold transition-colors duration-300 mb-2 ${
-                  selectedRole === 'ENTREPRENEUR' ? 'text-slate-900' : 'text-slate-800'
-                }`}>
+                <h3 className={`text-lg font-bold transition-colors duration-300 mb-2 ${selectedRole === 'ENTREPRENEUR' ? 'text-slate-900' : 'text-slate-800'
+                  }`}>
                   Entrepreneur
                 </h3>
                 <p className="text-xs text-slate-500 font-normal leading-relaxed">
@@ -175,11 +169,10 @@ const SelectRole = () => {
                 type="button"
                 onClick={handleCompleteRegistration}
                 disabled={!selectedRole || loading || !tempToken}
-                className={`w-full font-medium py-3.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
-                  selectedRole && tempToken && !loading
-                    ? 'bg-slate-900 text-white hover:bg-gradient-to-r hover:from-indigo-600 hover:to-violet-600 border border-slate-900 hover:border-indigo-600 hover:-translate-y-[1px] active:scale-[0.98] shadow-md hover:shadow-lg hover:shadow-indigo-500/20'
-                    : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                }`}
+                className={`w-full font-medium py-3.5 px-6 rounded-full transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer shadow-sm ${selectedRole && tempToken && !loading
+                  ? 'bg-slate-900 text-white hover:bg-gradient-to-r hover:from-indigo-600 hover:to-violet-600 border border-slate-900 hover:border-indigo-600 hover:-translate-y-[1px] active:scale-[0.98] shadow-md hover:shadow-lg hover:shadow-indigo-500/20'
+                  : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+                  }`}
               >
                 {loading ? (
                   <>
