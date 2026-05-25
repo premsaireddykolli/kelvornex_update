@@ -173,7 +173,7 @@ const Footer = () => {
               <button 
                 type="submit"
                 disabled={isLoading}
-                className="bg-white hover:bg-slate-100 border border-white text-slate-900 font-semibold px-6 py-3 rounded-full transition-all duration-200 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] active:scale-[0.98]"
+                className="bg-white hover:bg-slate-50 border border-white text-slate-900 font-semibold px-6 py-3 rounded-full hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(255,255,255,0.15)] transition-all duration-300 text-sm shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[100px] active:scale-[0.98]"
               >
                 {isLoading ? (
                   <svg className="animate-spin h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
