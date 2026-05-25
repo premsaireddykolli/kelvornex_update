@@ -44,7 +44,7 @@ const ProPacks = () => {
       {/* Background blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 blur-[150px] -translate-y-1/2 translate-x-1/2 rounded-full" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-slate-900 font-sans">
             Discover Value <span className="text-brand-purple">Packs</span>

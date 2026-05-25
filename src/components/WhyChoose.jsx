@@ -254,7 +254,7 @@ const WhyChoose = () => {
       {/* Pastel blob layer */}
       <PastelBlobs />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         {/* Header */}
         <div
           ref={headerRef}

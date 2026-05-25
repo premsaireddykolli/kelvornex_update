@@ -49,7 +49,7 @@ const Footer = () => {
       {/* Blueprint grid overlay */}
       <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none z-0" />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Responsive Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           

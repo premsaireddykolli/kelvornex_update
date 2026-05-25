@@ -11,7 +11,7 @@ const Headlines = () => {
 
   return (
     <div className="bg-gray-50 py-16 overflow-hidden">
-      <div className="container mx-auto px-6 mb-10 text-center">
+      <div className="container mx-auto px-6 mb-10 text-center max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
           Kelvornex Is Making <span className="text-brand-purple">Headlines</span>
         </h2>

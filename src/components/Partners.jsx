@@ -21,7 +21,7 @@ const Partners = () => {
 
   return (
     <div className="py-24 bg-white overflow-hidden relative border-y border-slate-100">
-      <div className="container mx-auto px-6 mb-16 text-center">
+      <div className="container mx-auto px-6 mb-16 text-center max-w-7xl">
         <h2 className="text-3xl md:text-4xl font-extrabold text-black mb-4 tracking-tight font-sans">
           Hire talent that <span style={{ color: '#1A73E8' }}>stands out!</span>
         </h2>
@@ -49,7 +49,7 @@ const Partners = () => {
       </div>
 
       {/* Certifications Section */}
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 max-w-7xl">
         <div className="bg-white p-10 flex flex-col md:flex-row items-center justify-between gap-12 border-2 border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.05)] transition-all duration-300 rounded-none">
           <div className="max-w-md font-sans">
             <h3 className="text-3xl font-extrabold text-black mb-3 tracking-tight">Official Certifications</h3>

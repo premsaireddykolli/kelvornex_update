@@ -45,7 +45,7 @@ const Navbar = ({ onCartClick }) => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-md py-3' : 'bg-white py-5'}`}>
-      <div className="container mx-auto px-6 flex items-center justify-between">
+      <div className="container mx-auto px-6 flex items-center justify-between max-w-7xl">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img src="/Kelvornex.jpeg" alt="kelvornex" className="h-8 md:h-10" />
