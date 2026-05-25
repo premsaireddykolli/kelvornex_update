@@ -12,32 +12,18 @@ const Partners = () => {
     { name: 'Microsoft', logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
   ];
 
-  const certifications = [
-    {
-      name: 'Skill India',
-      tag: 'Govt. Recognized',
-      desc: 'National campaign to create empowerment through technical skill development.',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/c/c5/Skill_India_logo.png'
-    },
-    {
-      name: 'NSDC',
-      tag: 'National Body',
-      desc: 'National Skill Development Corporation certified programs for career readiness.',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/3/3c/NSDC_logo.png'
-    },
-    {
-      name: 'Startup India',
-      tag: 'Govt. Initiative',
-      desc: 'Department for Promotion of Industry and Internal Trade (DPIIT) recognized training partner.',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e9/Startup_India_logo.svg/1200px-Startup_India_logo.svg.png'
-    },
-    {
-      name: 'Microsoft Certified',
-      tag: 'Industry Standard',
-      desc: 'Global curriculum standards verified by industry leader Microsoft.',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg'
-    }
-  ];
+  const certification = {
+    name: 'Microsoft Certified Partner',
+    tag: 'Official Education Partner',
+    desc: 'Our specialized technical programs and curriculum align with Microsoft standards. Students receive industry-ratified validation recognized by technology companies globally.',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg',
+    benefits: [
+      'Microsoft Curriculum Standards Alignment',
+      'Globally Recognized Career Credentials',
+      'Official Industry-Vetted Project Work',
+      'Direct Path to Advanced Technical Roles'
+    ]
+  };
 
   return (
     <div className="py-24 bg-white overflow-hidden relative border-y border-slate-100">
@@ -70,66 +56,57 @@ const Partners = () => {
 
       {/* Certifications Section */}
       <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span 
-            className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest border border-[#1A73E8]/20"
-            style={{ background: 'rgba(26,115,232,0.06)', color: '#1A73E8' }}
-          >
-            Verified Credentials
-          </span>
-          <h3 className="text-3xl md:text-4xl font-extrabold text-black mb-4 tracking-tight font-sans">
-            Official Certification Partners
-          </h3>
-          <p className="text-slate-700 text-sm md:text-base font-semibold leading-relaxed">
-            All our specialized technical and internship programs are ratified and certified in partnership with global tech giants and national skill development bodies.
-          </p>
-        </div>
+        <div className="bg-white p-8 md:p-12 border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 rounded-none flex flex-col md:flex-row items-center justify-between gap-12 relative group">
+          
+          {/* Left side: Large Logo and Badges */}
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left border-b md:border-b-0 md:border-r border-slate-100 pb-8 md:pb-0 md:pr-12">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-[10px] font-bold uppercase tracking-widest border border-[#1A73E8]/20 bg-[#1A73E8]/5 text-[#1A73E8] rounded-none">
+              Official Partner
+            </span>
+            <div className="h-16 flex items-center justify-center md:justify-start mb-6">
+              <img 
+                src={certification.logo} 
+                alt={certification.name} 
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                onError={(e) => {
+                  e.target.src = `https://logo.clearbit.com/microsoft.com`;
+                }}
+              />
+            </div>
+            <h4 className="text-xl font-bold text-black tracking-tight mb-2">
+              {certification.name}
+            </h4>
+            <p className="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">
+              Authorized Technical Training
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {certifications.map((cert, i) => {
-            const isMicrosoft = cert.name.toLowerCase().includes('microsoft');
-            return (
-              <div 
-                key={i} 
-                className="bg-white p-8 border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 flex flex-col justify-between h-full relative group rounded-none"
-              >
-                <div>
-                  {/* Logo container */}
-                  <div className="h-16 flex items-center justify-start mb-6">
-                    <img 
-                      src={cert.logo} 
-                      alt={cert.name} 
-                      className={`h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${isMicrosoft ? '' : 'filter grayscale opacity-75 hover:grayscale-0 hover:opacity-100'}`} 
-                      onError={(e) => {
-                        e.target.src = `https://via.placeholder.com/150?text=${cert.name}`;
-                      }}
-                    />
-                  </div>
-
-                  {/* Tag */}
-                  <span className="text-[9px] font-extrabold uppercase tracking-wider text-[#1A73E8] bg-[#1A73E8]/5 px-2 py-0.5 border border-[#1A73E8]/10 rounded-none">
-                    {cert.tag}
-                  </span>
-
-                  {/* Title */}
-                  <h4 className="text-lg font-bold text-black mt-4 mb-2 tracking-tight">
-                    {cert.name}
-                  </h4>
-
-                  {/* Description */}
-                  <p className="text-slate-800 text-xs leading-relaxed font-medium">
-                    {cert.desc}
-                  </p>
+          {/* Right side: Certification Details and Benefits */}
+          <div className="w-full md:w-2/3 font-sans">
+            <h3 className="text-2xl md:text-3xl font-extrabold text-black mb-4 tracking-tight">
+              Validate your skills with global standards
+            </h3>
+            <p className="text-slate-800 leading-relaxed text-sm mb-6 font-medium">
+              {certification.desc}
+            </p>
+            
+            {/* Benefits Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {certification.benefits.map((benefit, i) => (
+                <div key={i} className="flex items-center gap-2.5 text-xs text-slate-800 font-semibold">
+                  <span className="w-2 h-2 bg-[#34A853] rounded-full shrink-0" />
+                  <span>{benefit}</span>
                 </div>
+              ))}
+            </div>
 
-                {/* Status Badge */}
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                  <span className="w-1.5 h-1.5 bg-[#34A853] rounded-full" />
-                  <span>Active Partner</span>
-                </div>
-              </div>
-            );
-          })}
+            {/* Active Status Badge */}
+            <div className="mt-8 pt-4 border-t border-slate-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+              <span className="w-2.5 h-2.5 bg-[#34A853] rounded-full animate-pulse" />
+              <span>Microsoft Certified Curriculum ratifications active</span>
+            </div>
+          </div>
+          
         </div>
       </div>
       
