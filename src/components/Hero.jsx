@@ -25,8 +25,11 @@ const Hero = () => {
     >
       {/* Background Image on the right half (desktop only) */}
       <div
-        className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%] z-0 bg-cover bg-center bg-no-repeat hidden lg:block"
-        style={{ backgroundImage: "url('/hero_background.jpg')" }}
+        className="absolute right-0 top-0 bottom-0 w-full lg:w-[55%] z-0 bg-cover bg-no-repeat hidden lg:block"
+        style={{
+          backgroundImage: "url('/hero_background.png')",
+          backgroundPosition: 'right bottom'
+        }}
       >
         {/* Smooth gradient fade overlay to blend the image into the white background on the left */}
         <div
