@@ -28,8 +28,9 @@ public class AuthApplication {
                         String[] parts = trimmed.split("=", 2);
                         String key = parts[0].trim();
                         String val = parts[1].trim();
-                        if (System.getenv(key) == null && System.getProperty(key) == null) {
-                            System.setProperty(key, val);
+                        System.setProperty(key, val);
+                        if (key.startsWith("MAIL_") || key.contains("GOOGLE")) {
+                            System.out.println("[ENV LOADER] Set " + key + "=" + (key.contains("PASSWORD") ? "******" : val));
                         }
                     }
                 });
