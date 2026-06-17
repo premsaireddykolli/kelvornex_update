@@ -1,30 +1,27 @@
-# Stage 1: Build React Application
-FROM node:18-alpine AS build
+# Stage 1: Build the Spring Boot application using Maven
+FROM maven:3.8.8-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install
+# Copy the backend configuration files first to leverage Docker layer caching
+COPY backend/pom.xml ./backend/
+WORKDIR /app/backend
+RUN mvn dependency:go-offline -B
 
-# Copy the rest of the application files
-COPY . .
+# Copy the rest of your Java source files and build the package
+WORKDIR /app
+COPY backend/ ./backend/
+WORKDIR /app/backend
+RUN mvn clean package -DskipTests
 
-# Accept build argument for Google Client ID (Vite embeds this at build time)
-ARG VITE_GOOGLE_CLIENT_ID
-ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+# Stage 2: Create the runtime image using a lightweight JRE
+FROM eclipse-temurin:17-jre-alpine
+WORKDIR /app
 
-# Build static files
-RUN npm run build
+# Copy the compiled JAR file from the build stage
+COPY --from=build /app/backend/target/*.jar app.jar
 
-# Stage 2: Serve built assets using Nginx
-FROM nginx:1.25-alpine
+# Spring Boot default port
+EXPOSE 8080
 
-# Copy built assets from stage 1
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
