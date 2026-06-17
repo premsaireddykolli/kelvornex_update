@@ -40,37 +40,37 @@ const PaymentRefund = () => {
 
   return (
     <Layout 
-      title="Payment & Refund Policy" 
+      title="Payment &amp; Refund Policy" 
       subtitle="Understand our enrollment transaction guidelines, EMI facilities, and transparent refund timelines."
-      description="Kelvornex Payment & Refund Policy: Clear details on billing options, interest-free EMIs, course cancellations, and refund processing."
+      description="Kelvornex Payment &amp; Refund Policy: Clear details on billing options, interest-free EMIs, course cancellations, and refund processing."
     >
-      <div className="space-y-16">
+      <div className="space-y-16 font-sans">
         {/* Intro Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center space-y-4">
-            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-none p-8 border border-slate-200 hover:border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,0.04)] transition-all duration-300 text-center space-y-4">
+            <div className="w-12 h-12 bg-slate-50 text-black border border-slate-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
               <ShieldCheck size={24} />
             </div>
-            <h3 className="font-bold text-lg text-gray-900">Secure Payments</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <h3 className="font-extrabold text-lg text-gray-900">Secure Payments</h3>
+            <p className="text-sm text-slate-500 leading-relaxed font-semibold">
               We integrate with top-tier industry gateways supporting 256-bit encryption. Your financial data is fully encrypted and secure.
             </p>
           </div>
-          <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center space-y-4">
-            <div className="w-12 h-12 bg-violet-50 text-violet-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-none p-8 border border-slate-200 hover:border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,0.04)] transition-all duration-300 text-center space-y-4">
+            <div className="w-12 h-12 bg-slate-50 text-black border border-slate-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
               <Calendar size={24} />
             </div>
-            <h3 className="font-bold text-lg text-gray-900">EMI Plans Available</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <h3 className="font-extrabold text-lg text-gray-900">EMI Plans Available</h3>
+            <p className="text-sm text-slate-500 leading-relaxed font-semibold">
               Upskill without budget constraints. Avail 0% interest EMI schemes on premium cohorts in partnership with leading consumer credit networks.
             </p>
           </div>
-          <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center space-y-4">
-            <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+          <div className="bg-white rounded-none p-8 border border-slate-200 hover:border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,0.04)] transition-all duration-300 text-center space-y-4">
+            <div className="w-12 h-12 bg-slate-50 text-black border border-slate-100 rounded-full flex items-center justify-center mx-auto shadow-sm">
               <RefreshCw size={24} />
             </div>
-            <h3 className="font-bold text-lg text-gray-900">Simple Refunds</h3>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <h3 className="font-extrabold text-lg text-gray-900">Simple Refunds</h3>
+            <p className="text-sm text-slate-500 leading-relaxed font-semibold">
               Change of plans? We provide a hassle-free cancellation process. Get refunds directly credited back to your bank account or wallet.
             </p>
           </div>
@@ -78,18 +78,18 @@ const PaymentRefund = () => {
 
         {/* Guidelines section */}
         <div className="space-y-8">
-          <h2 className="text-2xl md:text-3xl font-extrabold font-display text-gray-900 text-center">Program Specific Refund Rules</h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold font-display text-gray-900 text-center tracking-tight">Program Specific Refund Rules</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {guidelines.map((guide, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col justify-between">
+              <div key={idx} className="bg-white rounded-none border border-slate-200 hover:border-black hover:shadow-[8px_8px_0px_rgba(0,0,0,0.04)] transition-all duration-300 overflow-hidden flex flex-col justify-between">
                 <div className="p-8 space-y-4">
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-brand-purple/10 text-brand-purple">
+                  <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-black/5 text-black border border-black/10">
                     {guide.condition}
                   </span>
-                  <h3 className="text-xl font-bold text-gray-900">{guide.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{guide.details}</p>
+                  <h3 className="text-xl font-extrabold text-gray-900">{guide.title}</h3>
+                  <p className="text-slate-650 text-sm leading-relaxed font-medium">{guide.details}</p>
                 </div>
-                <div className="bg-slate-50 p-4 border-t border-gray-100 text-xs font-semibold text-gray-400 flex items-center gap-2">
+                <div className="bg-slate-50/50 p-4 border-t border-slate-100 text-xs font-bold text-slate-400 flex items-center gap-2">
                   <CheckCircle2 size={14} className="text-emerald-500" />
                   Refund Policy Compliant
                 </div>
@@ -99,31 +99,31 @@ const PaymentRefund = () => {
         </div>
 
         {/* Process steps */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-100 shadow-sm space-y-12">
+        <div className="bg-white rounded-none p-8 md:p-12 border border-slate-200 shadow-sm space-y-12">
           <div className="text-center max-w-xl mx-auto space-y-3">
-            <h2 className="text-2xl md:text-3xl font-extrabold font-display text-gray-900">How to request a refund?</h2>
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed">Follow these simple steps to claim a refund on eligible transactions.</p>
+            <h2 className="text-2xl md:text-3xl font-extrabold font-display text-gray-900 tracking-tight">How to request a refund?</h2>
+            <p className="text-slate-500 text-sm md:text-base leading-relaxed font-semibold">Follow these simple steps to claim a refund on eligible transactions.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {refundSteps.map((step, idx) => (
               <div key={idx} className="relative z-10 space-y-4">
-                <div className="w-14 h-14 bg-brand-purple text-white rounded-2xl flex items-center justify-center font-extrabold text-xl shadow-lg shadow-brand-purple/20">
+                <div className="w-14 h-14 bg-black text-white rounded-full flex items-center justify-center font-extrabold text-xl shadow-lg shadow-black/10 border-2 border-black">
                   {step.step}
                 </div>
-                <h3 className="font-bold text-lg text-gray-900">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                <h3 className="font-extrabold text-lg text-gray-900">{step.title}</h3>
+                <p className="text-sm text-slate-500 leading-relaxed font-semibold">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Note Alert */}
-        <div className="p-6 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 space-y-2">
+        <div className="p-6 rounded-none bg-amber-50 border border-amber-200 text-amber-900 space-y-2">
           <h4 className="font-bold text-base flex items-center gap-2">
             <FileText size={18} /> Important Note regarding EMI Cancellations
           </h4>
-          <p className="text-sm leading-relaxed text-amber-700">
+          <p className="text-sm leading-relaxed text-amber-800 font-medium">
             For courses purchased using EMI plans, interest charges paid to third-party lenders and processing fees charged by banks are non-refundable. The base amount returned will be processed through our financial partners, which could require additional verification documents.
           </p>
         </div>

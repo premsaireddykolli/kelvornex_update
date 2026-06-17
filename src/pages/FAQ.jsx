@@ -66,11 +66,11 @@ const FAQ = () => {
 
   const getCategoryIcon = (category) => {
     switch (category) {
-      case 'Program Enrollment': return <BookOpen size={18} className="text-violet-500" />;
-      case 'Certification Validity': return <Award size={18} className="text-blue-500" />;
-      case 'Refund Timelines': return <CreditCard size={18} className="text-amber-500" />;
-      case 'Placement Support': return <User size={18} className="text-emerald-500" />;
-      default: return <HelpCircle size={18} className="text-gray-500" />;
+      case 'Program Enrollment': return <BookOpen size={18} className="text-black" />;
+      case 'Certification Validity': return <Award size={18} className="text-black" />;
+      case 'Refund Timelines': return <CreditCard size={18} className="text-black" />;
+      case 'Placement Support': return <User size={18} className="text-black" />;
+      default: return <HelpCircle size={18} className="text-black" />;
     }
   };
 
@@ -80,7 +80,7 @@ const FAQ = () => {
       subtitle="Find quick answers to common questions about courses, certifications, placements, and billing."
       description="Kelvornex FAQs: Get immediate answers about enrollment, cohort structures, placements, refund policies, and online certificates."
     >
-      <div className="max-w-4xl mx-auto space-y-12">
+      <div className="max-w-4xl mx-auto space-y-12 font-sans">
         {/* Search Bar */}
         <div className="relative">
           <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none text-gray-400">
@@ -91,12 +91,12 @@ const FAQ = () => {
             placeholder="Search FAQs (e.g. refund, certificate, placements)..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white border border-gray-200 rounded-2xl pl-14 pr-6 py-5 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/10 shadow-sm transition-all text-lg"
+            className="w-full bg-white border border-slate-250 rounded-none pl-14 pr-6 py-5 text-slate-805 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-black focus:border-black shadow-sm transition-all text-lg"
           />
         </div>
 
         {/* Category Filter Tabs */}
-        <div className="flex flex-wrap gap-2 justify-center pb-2 border-b border-gray-150">
+        <div className="flex flex-wrap gap-2 justify-center pb-2 border-b border-slate-150">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -104,10 +104,10 @@ const FAQ = () => {
                 setActiveCategory(cat);
                 setOpenIndex(null);
               }}
-              className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer ${
+              className={`px-6 py-3 rounded-full font-bold text-xs tracking-wider uppercase transition-all cursor-pointer border-2 ${
                 activeCategory === cat 
-                  ? 'bg-brand-purple text-white shadow-md shadow-brand-purple/20' 
-                  : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'bg-black border-black text-white shadow-md shadow-black/10' 
+                  : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-black hover:border-black'
               }`}
             >
               {cat}
@@ -123,23 +123,23 @@ const FAQ = () => {
               return (
                 <div 
                   key={index}
-                  className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-200 hover:border-gray-200"
+                  className="bg-white rounded-none border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:border-black hover:shadow-[6px_6px_0px_rgba(0,0,0,0.03)]"
                 >
                   <button
                     onClick={() => handleToggle(index)}
                     className="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      <span className="shrink-0 p-2 rounded-lg bg-gray-50">
+                      <span className="shrink-0 p-2 rounded-md bg-slate-50 border border-slate-100">
                         {getCategoryIcon(faq.category)}
                       </span>
-                      <span className="font-bold text-gray-800 text-base md:text-lg leading-snug">
+                      <span className="font-bold text-slate-800 text-base md:text-lg leading-snug">
                         {faq.question}
                       </span>
                     </div>
                     <ChevronDown 
                       size={20} 
-                      className={`text-gray-400 shrink-0 transition-transform duration-350 ${isOpen ? 'rotate-180 text-brand-purple' : ''}`} 
+                      className={`text-gray-400 shrink-0 transition-transform duration-350 ${isOpen ? 'rotate-180 text-black' : ''}`} 
                     />
                   </button>
 
@@ -151,7 +151,7 @@ const FAQ = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.35, ease: 'easeInOut' }}
                       >
-                        <div className="px-6 pb-6 pt-1 text-gray-600 border-t border-gray-50 leading-relaxed text-sm md:text-base">
+                        <div className="px-6 pb-6 pt-1 text-slate-600 border-t border-slate-50 leading-relaxed text-sm md:text-base font-medium">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -161,28 +161,28 @@ const FAQ = () => {
               );
             })
           ) : (
-            <div className="text-center py-16 bg-white rounded-2xl border border-gray-100 shadow-sm">
+            <div className="text-center py-16 bg-white rounded-none border border-slate-200 shadow-sm">
               <HelpCircle className="mx-auto text-gray-300 mb-4" size={48} />
-              <h3 className="font-bold text-lg text-gray-700 mb-1">No FAQs found</h3>
-              <p className="text-gray-400 text-sm">Try modifying your keyword search or selecting another category.</p>
+              <h3 className="font-bold text-lg text-slate-700 mb-1">No FAQs found</h3>
+              <p className="text-slate-400 text-sm">Try modifying your keyword search or selecting another category.</p>
             </div>
           )}
         </div>
 
         {/* Contact/Help Box */}
-        <div className="bg-gradient-vibrant rounded-2xl p-8 text-white relative overflow-hidden shadow-xl">
+        <div className="bg-black rounded-none p-8 text-white relative overflow-hidden shadow-xl hover:shadow-[10px_10px_0px_rgba(0,0,0,0.06)] border border-black/10 transition-all duration-300">
           <div className="absolute inset-0 grid-pattern opacity-10" />
           <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left font-sans">
               <h3 className="text-2xl font-extrabold mb-2 font-display">Still have unanswered questions?</h3>
-              <p className="text-white/80 max-w-xl text-sm md:text-base font-light">
+              <p className="text-white/80 max-w-xl text-sm md:text-base font-medium leading-relaxed">
                 Our support team is available 24/7 to clear up any doubts. Shoot us a message or call directly!
               </p>
             </div>
             <div className="flex gap-4 shrink-0">
               <a 
                 href="mailto:help@kelvornex.com" 
-                className="bg-white text-gray-900 font-bold px-6 py-3 rounded-xl hover:bg-gray-100 transition-all text-sm shadow-md"
+                className="bg-white text-black hover:bg-transparent hover:text-white border-2 border-white font-bold px-6 py-3 rounded-full transition-all text-xs tracking-wider uppercase shadow-md cursor-pointer"
               >
                 Email Support
               </a>

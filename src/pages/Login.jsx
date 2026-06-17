@@ -19,6 +19,9 @@ const Login = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
+  // Fallback if environment variable isn't loaded locally
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+
   const navigateToView = (view) => {
     setError('');
     setViewState(view);
@@ -29,7 +32,8 @@ const Login = () => {
   const handleGoogleLogin = useCallback(async (accessToken) => {
     setError('');
     try {
-      const response = await fetch('/api/auth/google', {
+      // FIX 1: Attached baseUrl
+      const response = await fetch(`${baseUrl}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +64,7 @@ const Login = () => {
     } catch (err) {
       setError(err.message || 'Something went wrong during Google login.');
     }
-  }, [navigate, login]);
+  }, [navigate, login, baseUrl]);
 
   useEffect(() => {
     const initGoogle = () => {
@@ -130,14 +134,14 @@ const Login = () => {
       return;
     }
 
-    // Backend-ready payload for POST /auth/login (endpoint integration point)
     const payload = {
       email,
       password,
     };
 
     try {
-      const response = await fetch('/api/auth/login', {
+      // FIX 2: Attached baseUrl
+      const response = await fetch(`${baseUrl}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -156,7 +160,6 @@ const Login = () => {
       setSuccessMessage(`Successfully logged in as ${data.user.name} (${data.user.role})!`);
       setSuccess(true);
 
-      // Persist login state and redirect via context after a short delay
       setTimeout(() => {
         login(data);
       }, 1500);
@@ -179,7 +182,8 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/forgot-password', {
+      // FIX 3: Attached baseUrl
+      const response = await fetch(`${baseUrl}/api/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -215,7 +219,8 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/verify-otp', {
+      // FIX 4: Attached baseUrl
+      const response = await fetch(`${baseUrl}/api/auth/verify-otp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -263,7 +268,8 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('/api/auth/reset-password', {
+      // FIX 5: Attached baseUrl
+      const response = await fetch(`${baseUrl}/api/auth/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -312,16 +318,13 @@ const Login = () => {
       hideBanner={true}
       bgClass="bg-white text-black relative overflow-hidden"
     >
-      {/* Blueprint grid overlay */}
       <div className="absolute inset-0 grid-pattern opacity-[0.03] pointer-events-none z-0" />
 
       <div className="min-h-[calc(100vh-180px)] flex items-center justify-center py-12 px-6 relative z-10">
-        {/* Centered rectangular login card */}
         <div 
           className="w-full max-w-md bg-white border border-[#E2E8F0] shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-8 md:p-10 relative z-10"
           style={{ borderRadius: '8px' }}
         >
-          {/* Success Screen */}
           <AnimatePresence>
             {success && (
               <motion.div
@@ -342,7 +345,6 @@ const Login = () => {
             )}
           </AnimatePresence>
 
-          {/* Logo with NO outline */}
           <div className="flex justify-center mb-6">
             <img
               src="/Kelvornex.jpeg"
@@ -372,7 +374,6 @@ const Login = () => {
 
           {viewState === 'LOGIN' && (
             <>
-              {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1.5">
                   <label className="block text-[11px] font-bold text-slate-500 tracking-wider uppercase">
@@ -427,7 +428,6 @@ const Login = () => {
                   </div>
                 </div>
 
-                {/* SIGN IN button — nav-btn-google style */}
                 <button
                   type="submit"
                   className="w-full cursor-pointer"
@@ -456,7 +456,6 @@ const Login = () => {
                 </button>
               </form>
 
-              {/* Continue with Google button */}
               <button
                 type="button"
                 className="w-full flex items-center justify-center gap-3 bg-white border border-[#E2E8F0] hover:border-slate-350 rounded-full py-3 text-xs font-bold text-slate-800 transition-all duration-200 cursor-pointer shadow-sm mt-4"
@@ -471,7 +470,6 @@ const Login = () => {
                 Continue with Google
               </button>
 
-              {/* Footer Text Links inside Card */}
               <div className="mt-8 text-center border-t border-[#F1F5F9] pt-6 flex flex-col gap-2">
                 <a 
                   href="mailto:admin@kelvornex.com" 

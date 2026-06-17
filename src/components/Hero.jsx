@@ -82,11 +82,6 @@ const Hero = () => {
       {/* ── Hero Main Content ── */}
       <div className="container mx-auto px-6 relative z-10 flex-grow flex flex-col justify-center max-w-7xl">
         <div className="max-w-2xl text-left">
-          {/* Tagline */}
-          <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#1A73E8] mb-5 block">
-            • Innovation Lab
-          </span>
-
           {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

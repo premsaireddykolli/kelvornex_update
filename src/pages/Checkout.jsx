@@ -300,7 +300,7 @@ const Checkout = () => {
 
   // Payment tab helper
   const tabClasses = (tab) => `flex items-center gap-3 p-4 rounded border font-bold text-sm transition-all ${activeTab === tab
-    ? 'bg-brand-purple/5 border-brand-purple text-brand-purple'
+    ? 'bg-black/5 border-black text-black'
     : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50 hover:border-gray-200'
     }`;
 
@@ -450,7 +450,7 @@ const Checkout = () => {
                           type="button"
                           onClick={() => setUpiSubMethod('app')}
                           className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'app'
-                            ? 'border-brand-purple text-brand-purple'
+                            ? 'border-black text-black'
                             : 'border-transparent text-gray-400 hover:text-gray-650'
                             }`}
                         >
@@ -460,7 +460,7 @@ const Checkout = () => {
                           type="button"
                           onClick={() => setUpiSubMethod('qr')}
                           className={`pb-2 px-4 font-bold text-sm transition-all border-b-2 ${upiSubMethod === 'qr'
-                            ? 'border-brand-purple text-brand-purple'
+                            ? 'border-black text-black'
                             : 'border-transparent text-gray-400 hover:text-gray-650'
                             }`}
                         >
@@ -488,8 +488,8 @@ const Checkout = () => {
                                     setSelectedUpiApp(app.id);
                                     setIsUpiVerified(false);
                                   }}
-                                  className={`flex flex-col items-center justify-center p-3 bg-white border rounded-xl hover:border-brand-purple hover:scale-[1.03] transition-all gap-2 h-20 ${selectedUpiApp === app.id
-                                    ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5'
+                                  className={`flex flex-col items-center justify-center p-3 bg-white border rounded-xl hover:border-black hover:scale-[1.03] transition-all gap-2 h-20 ${selectedUpiApp === app.id
+                                    ? 'border-black shadow-md ring-1 ring-black/20 bg-black/5'
                                     : 'border-gray-150 shadow-sm'
                                     }`}
                                 >
@@ -521,7 +521,7 @@ const Checkout = () => {
                                   disabled={isVerifyingUpi || !upiId}
                                   className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
                                     ? 'bg-green-50 text-green-650 border border-green-200'
-                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    : 'bg-black text-white hover:bg-gray-800 disabled:opacity-50'
                                     }`}
                                 >
                                   {isVerifyingUpi ? (
@@ -560,7 +560,7 @@ const Checkout = () => {
                                   disabled={isVerifyingUpi || !upiUsername}
                                   className={`px-6 py-3 rounded-xl text-xs font-bold transition-all shrink-0 ${isUpiVerified
                                     ? 'bg-green-50 text-green-650 border border-green-200'
-                                    : 'bg-brand-purple text-white hover:bg-brand-purple-light disabled:opacity-50'
+                                    : 'bg-black text-white hover:bg-gray-800 disabled:opacity-50'
                                     }`}
                                 >
                                   {isVerifyingUpi ? (
@@ -819,8 +819,8 @@ const Checkout = () => {
                         <button
                           type="button"
                           onClick={() => setNetBank('hdfc')}
-                          className={`flex flex-col items-center justify-center p-6 bg-white border rounded-2xl hover:border-brand-purple hover:scale-[1.02] transition-all gap-4 w-full max-w-md ${netBank === 'hdfc'
-                            ? 'border-brand-purple shadow-md ring-2 ring-brand-purple/20 bg-brand-purple/5'
+                          className={`flex flex-col items-center justify-center p-6 bg-white border rounded-2xl hover:border-black hover:scale-[1.02] transition-all gap-4 w-full max-w-md ${netBank === 'hdfc'
+                            ? 'border-black shadow-md ring-2 ring-black/20 bg-black/5'
                             : 'border-gray-200 shadow-sm'
                             }`}
                         >
@@ -861,7 +861,7 @@ const Checkout = () => {
                             key={w.id}
                             type="button"
                             onClick={() => setWallet(w.id)}
-                            className={`flex flex-col items-center justify-center p-4 bg-white border rounded-xl hover:border-brand-purple hover:scale-105 transition-all gap-3 ${wallet === w.id ? 'border-brand-purple shadow-md ring-1 ring-brand-purple/20 bg-brand-purple/5' : 'border-gray-100 shadow-sm'
+                            className={`flex flex-col items-center justify-center p-4 bg-white border rounded-xl hover:border-black hover:scale-105 transition-all gap-3 ${wallet === w.id ? 'border-black shadow-md ring-1 ring-black/20 bg-black/5' : 'border-gray-100 shadow-sm'
                               }`}
                           >
                             {w.id === 'paytm' && <PaytmLogo />}
@@ -880,7 +880,7 @@ const Checkout = () => {
               <button
                 type="submit"
                 disabled={isProcessing}
-                className="w-full bg-gradient-vibrant hover:scale-[1.01] transition-transform text-white py-4 rounded font-bold text-lg flex items-center justify-center gap-2 shadow-xl shadow-brand-purple/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-black hover:bg-transparent border-2 border-black text-white hover:text-black py-4 rounded-full font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-black/10 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isProcessing ? (
                   <>

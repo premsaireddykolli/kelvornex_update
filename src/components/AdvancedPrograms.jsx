@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Download, ExternalLink, Users, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
 
 /* ────────────────────────────────────────────────────────────────
@@ -74,9 +75,9 @@ const FloatingShapes = ({ scrollY }) => {
 };
 
 /* ────────────────────────────────────────────────────────────────
-   SHOWCASE CARD  (no 3D tilt)
+   SHOWCASE CARD
    ──────────────────────────────────────────────────────────────── */
-const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image, accentColor, reversed = false }) => {
+const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image, reversed = false }) => {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
 
@@ -99,78 +100,49 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
       }}
     >
       <div
-        style={{
-          background: '#FFFFFF',
-          border: '1px solid #E8EAED',
-          display: 'grid',
-          gridTemplateColumns: reversed ? '1fr 2fr' : '2fr 1fr',
-          boxShadow: '0 2px 12px rgba(60,64,67,0.06)',
-          overflow: 'hidden',
-          transition: 'box-shadow 0.25s ease',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = `0 8px 32px rgba(60,64,67,0.12)`;
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = '0 2px 12px rgba(60,64,67,0.06)';
-        }}
+        className="bg-white border border-slate-200 hover:border-black hover:shadow-[10px_10px_0px_rgba(0,0,0,0.05)] transition-all duration-300 grid grid-cols-1 lg:grid-cols-3 rounded-none overflow-hidden"
       >
         {/* Image */}
         <div
-          style={{
-            position: 'relative',
-            overflow: 'hidden',
-            minHeight: 340,
-            order: reversed ? 1 : 0,
-            borderRight: reversed ? 'none' : '1px solid #E8EAED',
-            borderLeft: reversed ? '1px solid #E8EAED' : 'none',
-          }}
+          className={`relative overflow-hidden min-h-[300px] border-slate-250 lg:col-span-1 ${
+            reversed ? 'lg:order-last lg:border-l' : 'lg:border-r'
+          }`}
         >
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover"
-            style={{ opacity: 0.92, transition: 'transform 0.6s ease' }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.04)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
+            className="w-full h-full object-cover opacity-92 hover:scale-104 transition-transform duration-500"
           />
           {/* 4-color top strip */}
-          <div className="absolute top-0 left-0 right-0 flex" style={{ height: 3 }}>
+          <div className="absolute top-0 left-0 right-0 flex h-[3px]">
             {[G.blue, G.red, G.yellow, G.green].map((c, i) => (
-              <span key={i} style={{ flex: 1, background: c }} />
+              <span key={i} className="flex-1" style={{ background: c }} />
             ))}
           </div>
           {/* Tag */}
           <span
-            className="absolute top-5 left-5 text-[10px] font-bold uppercase tracking-widest px-3 py-1"
-            style={{
-              background: accentColor,
-              color: accentColor === G.yellow ? '#000' : '#fff',
-            }}
+            className="absolute top-5 left-5 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-black text-white shadow-sm"
           >
             {tag}
           </span>
         </div>
 
         {/* Content */}
-        <div style={{ padding: '3rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <h3
-            className="text-3xl md:text-4xl font-extrabold font-sans mb-4 leading-tight"
-            style={{ color: '#202124' }}
-          >
+        <div className="p-8 md:p-12 lg:col-span-2 flex flex-col justify-center font-sans">
+          <h3 className="text-3xl font-extrabold text-black mb-4 tracking-tight">
             {title}
           </h3>
-          <p className="text-slate-600 text-base leading-relaxed mb-8 font-sans">
+          <p className="text-slate-800 text-sm leading-relaxed mb-8 font-medium">
             {description}
           </p>
 
           {/* Meta */}
-          <div className="flex flex-wrap gap-6 mb-8">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
-              <Clock size={14} style={{ color: accentColor }} /> {duration}
+          <div className="flex flex-wrap gap-6 mb-8 border-b border-slate-100 pb-6">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+              <Clock size={14} className="text-black" /> {duration}
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
-              <Users size={14} style={{ color: accentColor }} /> {mentees} Mentees
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+              <Users size={14} className="text-black" /> {mentees} Mentees
             </div>
           </div>
 
@@ -181,7 +153,7 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
               {logos.map((logo, i) => (
                 <img
                   key={i} src={logo} alt="Partner"
-                  className="h-8 w-auto object-contain"
+                  className="h-8 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
                   onError={(e) => { e.target.onerror = null; e.target.src = 'https://logo.clearbit.com/microsoft.com'; }}
                 />
               ))}
@@ -190,21 +162,22 @@ const ShowcaseCard = ({ title, tag, description, mentees, duration, logos, image
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              className="g-btn g-btn--primary group"
+            <Link
+              to={`/checkout/${title.toLowerCase().replace(/\s+/g, '-')}`}
+              className="bg-black hover:bg-transparent border-2 border-black text-white hover:text-black px-6 py-3 rounded-full font-bold text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-black/10 text-center"
               id={`showcase-${title.replace(/\s+/g, '-').toLowerCase()}`}
             >
               View Details <ExternalLink size={13} />
-            </button>
-            <button className="g-btn g-btn--outline group">
+            </Link>
+            <button className="bg-white hover:bg-black border-2 border-black text-black hover:text-white px-6 py-3 rounded-full font-bold text-xs tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer">
               Download Brochure <Download size={13} />
             </button>
           </div>
 
           {/* Ratified */}
-          <div className="mt-6 flex items-center gap-2" style={{ color: G.green }}>
-            <ShieldCheck size={15} />
-            <span className="text-[11px] font-bold uppercase tracking-widest">Industry Ratified</span>
+          <div className="mt-6 flex items-center gap-2 text-[#34A853]">
+            <ShieldCheck size={16} />
+            <span className="text-[10px] font-bold uppercase tracking-widest">Industry Ratified &amp; Approved</span>
           </div>
         </div>
       </div>
@@ -261,27 +234,22 @@ const AdvancedPrograms = () => {
         >
           <div className="max-w-2xl font-sans">
             <span
-              className="inline-flex items-center gap-1 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest"
-              style={{ background: '#E8F0FE', color: G.blue, border: `1px solid ${G.blue}22` }}
+              className="inline-flex items-center gap-1.5 px-3 py-1 mb-5 text-[10px] font-bold uppercase tracking-widest border border-black/10 bg-black/5 text-black rounded-none"
             >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: G.blue }} />
+              <span className="w-1.5 h-1.5 rounded-full bg-black" />
               Flagship Programs
             </span>
-            <h2
-              className="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight leading-tight"
-              style={{ color: '#202124' }}
-            >
-              Advanced{' '}
-              <span style={{ color: G.blue }}>Programs</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-5 tracking-tight leading-tight text-black">
+              Advanced <span className="text-[#1A73E8]">Programs</span>
             </h2>
-            <p className="text-slate-600 text-lg font-light">
+            <p className="text-slate-650 text-base md:text-lg font-medium leading-relaxed">
               Long-term, intensive certification programs designed for deep expertise
               and irreversible career transformation.
             </p>
           </div>
           <a
-            href="#programs"
-            className="g-btn g-btn--primary group shrink-0"
+            href="/"
+            className="bg-black hover:bg-transparent border-2 border-black text-white hover:text-black px-6 py-3.5 rounded-full font-bold text-xs tracking-widest uppercase transition-all flex items-center gap-2 group shrink-0 cursor-pointer shadow-lg shadow-black/10"
             id="adv-view-all"
           >
             View All Programs
@@ -294,7 +262,6 @@ const AdvancedPrograms = () => {
           <ShowcaseCard
             title="Digital Marketing"
             tag="Trending"
-            accentColor={G.blue}
             description="Boost your online presence and engage with your audience effectively. Learn data-driven strategies to drive traffic, increase conversions, and build an iconic brand from scratch."
             duration="6 Months"
             mentees="20k+"
@@ -307,7 +274,6 @@ const AdvancedPrograms = () => {
           <ShowcaseCard
             title="Data Science"
             tag="Popular"
-            accentColor={G.green}
             description="Master Data Science to unlock valuable insights from data and make informed decisions. Gain expertise in analysis, machine learning, and predictive modelling with live mentors."
             duration="6 Months"
             mentees="20k+"

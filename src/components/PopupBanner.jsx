@@ -38,13 +38,13 @@ const PopupBanner = () => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 40 }}
             transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-            className="fixed inset-0 z-[110] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[110] flex items-center justify-center p-4 font-sans"
           >
-            <div className="relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl shadow-black/40 border border-white/10">
+            <div className="relative w-full max-w-2xl rounded-none overflow-hidden shadow-2xl shadow-black/40 border border-slate-200">
               {/* Close Button */}
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/80 transition-colors border border-white/20"
+                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/55 backdrop-blur-md flex items-center justify-center text-white hover:bg-black transition-colors border border-white/20 cursor-pointer"
                 aria-label="Close popup"
               >
                 <X size={20} />
@@ -58,22 +58,22 @@ const PopupBanner = () => {
               />
 
               {/* Bottom CTA Bar */}
-              <div className="bg-white px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-white px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
                 <div>
-                  <p className="font-bold text-gray-900 text-lg">Join Our Team!</p>
-                  <p className="text-gray-500 text-sm">Product &amp; Software Development Interns – Including R&amp;D Roles</p>
+                  <p className="font-bold text-gray-900 text-lg tracking-tight">Join Our Team!</p>
+                  <p className="text-slate-500 text-sm font-semibold">Product &amp; Software Development Interns – Including R&amp;D Roles</p>
                 </div>
                 <div className="flex gap-3 shrink-0">
                   <Link
                     to="/careers"
                     onClick={handleClose}
-                    className="bg-slate-900 text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-slate-800 transition-all border border-slate-900 hover:border-slate-800 active:scale-[0.98] shadow-sm hover:shadow-md hover:shadow-slate-900/10"
+                    className="bg-black hover:bg-transparent border-2 border-black text-white hover:text-black px-6 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase transition-all shadow-md shadow-black/10 text-center"
                   >
                     Apply Now
                   </Link>
                   <button
                     onClick={handleClose}
-                    className="border border-slate-200 text-slate-600 px-6 py-2.5 rounded-full font-medium text-sm hover:bg-slate-50 transition-all active:scale-[0.98]"
+                    className="border-2 border-slate-200 text-slate-500 hover:text-black hover:border-black px-6 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase transition-all bg-transparent cursor-pointer"
                   >
                     Maybe Later
                   </button>

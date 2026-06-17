@@ -33,18 +33,18 @@ const Partners = () => {
         </h2>
         <p className="text-slate-800 font-semibold font-sans">Our students are placed in top companies worldwide</p>
       </div>
-      
+
       {/* Hiring Partners Marquee */}
       <div className="group mb-24 relative flex overflow-hidden">
         <div className="flex w-max animate-marquee flex-nowrap group-hover:pause-marquee items-center">
           {[...partners, ...partners].map((partner, i) => (
             <div key={i} className="mx-10 flex flex-col items-center justify-center gap-3 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 w-32">
-              <img 
-                src={partner.logo} 
-                alt={partner.name} 
-                className="h-10 w-full object-contain" 
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                className="h-10 w-full object-contain"
                 onError={(e) => {
-                  e.target.onerror = null; 
+                  e.target.onerror = null;
                   e.target.src = `https://ui-avatars.com/api/?name=${partner.name}&background=random&color=fff&rounded=true`;
                 }}
               />
@@ -57,17 +57,14 @@ const Partners = () => {
       {/* Certifications Section */}
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="bg-white p-8 md:p-12 border border-slate-200 hover:border-[#1A73E8] hover:shadow-[10px_10px_0px_rgba(26,115,232,0.06)] transition-all duration-300 rounded-none flex flex-col md:flex-row items-center justify-between gap-12 relative group">
-          
+
           {/* Left side: Large Logo and Badges */}
           <div className="w-full md:w-1/3 flex flex-col items-center md:items-start text-center md:text-left border-b md:border-b-0 md:border-r border-slate-100 pb-8 md:pb-0 md:pr-12">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-6 text-[10px] font-bold uppercase tracking-widest border border-[#1A73E8]/20 bg-[#1A73E8]/5 text-[#1A73E8] rounded-none">
-              Official Partner
-            </span>
             <div className="h-16 flex items-center justify-center md:justify-start mb-6">
-              <img 
-                src={certification.logo} 
-                alt={certification.name} 
-                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              <img
+                src={certification.logo}
+                alt={certification.name}
+                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 onError={(e) => {
                   e.target.src = `https://logo.clearbit.com/microsoft.com`;
                 }}
@@ -89,7 +86,7 @@ const Partners = () => {
             <p className="text-slate-800 leading-relaxed text-sm mb-6 font-medium">
               {certification.desc}
             </p>
-            
+
             {/* Benefits Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {certification.benefits.map((benefit, i) => (
@@ -106,10 +103,10 @@ const Partners = () => {
               <span>Microsoft Certified Curriculum ratifications active</span>
             </div>
           </div>
-          
+
         </div>
       </div>
-      
+
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }

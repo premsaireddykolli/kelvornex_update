@@ -5,10 +5,10 @@ import { Video, Award, UserCheck, Briefcase, HelpCircle, Users, Star, ArrowRight
    GOOGLE COLORS
    ──────────────────────────────────────────────────────────────── */
 const G = {
-  blue:   '#1A73E8',
-  red:    '#EA4335',
+  blue: '#1A73E8',
+  red: '#EA4335',
   yellow: '#FBBC05',
-  green:  '#34A853',
+  green: '#34A853',
 };
 
 /* ────────────────────────────────────────────────────────────────
@@ -67,8 +67,8 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
     <div
       ref={ref}
       style={{
-        opacity:    inView ? 1 : 0,
-        transform:  inView ? 'translateY(0)' : 'translateY(28px)',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(28px)',
         transition: `opacity 0.65s ease ${delay}ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms`,
       }}
     >
@@ -85,14 +85,14 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
           e.currentTarget.querySelector('.card-top-strip').style.transform = 'scaleX(0)';
         }}
         style={{
-          background:  '#FFFFFF',
-          border:      '1px solid #E2E8F0',
-          padding:     '1.75rem',
-          cursor:      'default',
-          transition:  'box-shadow 0.25s ease, border-color 0.25s ease',
-          position:    'relative',
-          overflow:    'hidden',
-          boxShadow:   '0 1px 4px rgba(60,64,67,0.06)',
+          background: '#FFFFFF',
+          border: '1px solid #E2E8F0',
+          padding: '1.75rem',
+          cursor: 'default',
+          transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 1px 4px rgba(60,64,67,0.06)',
           borderRadius: '0px',
         }}
       >
@@ -100,13 +100,13 @@ const FeatureCard = ({ icon: Icon, title, description, accentColor, delay }) => 
         <div
           className="card-top-strip"
           style={{
-            position:        'absolute',
+            position: 'absolute',
             top: 0, left: 0, right: 0,
-            height:          3,
-            background:      accentColor,
-            transform:       'scaleX(0)',
+            height: 3,
+            background: accentColor,
+            transform: 'scaleX(0)',
             transformOrigin: 'left',
-            transition:      'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
+            transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1)',
           }}
         />
 
@@ -153,8 +153,8 @@ const StatPanel = () => {
       ref={ref}
       className="h-full w-full flex flex-col"
       style={{
-        opacity:    inView ? 1 : 0,
-        transform:  inView ? 'translateX(0)' : 'translateX(40px)',
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateX(0)' : 'translateX(40px)',
         transition: 'opacity 0.9s ease 0.3s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s',
       }}
     >
@@ -200,10 +200,10 @@ const StatPanel = () => {
         {/* Stats */}
         <div className="grid grid-cols-2 gap-8 text-center">
           {[
-            { value: '50K+', label: 'Mentees'      },
-            { value: '500+', label: 'Partners'     },
-            { value: '120+', label: 'Mentors'      },
-            { value: '98%',  label: 'Satisfaction' },
+            { value: '50K+', label: 'Mentees' },
+            { value: '500+', label: 'Partners' },
+            { value: '120+', label: 'Mentors' },
+            { value: '98%', label: 'Satisfaction' },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-2xl font-black font-sans" style={{ color: '#1A73E8' }}>
@@ -237,12 +237,12 @@ const WhyChoose = () => {
   }, []);
 
   const features = [
-    { icon: Video,      title: 'LIVE Interactive Sessions',       description: 'Real-time sessions with practitioners — ask, debug, and get live feedback.',               accentColor: '#1A73E8', delay: 0   },
-    { icon: Award,      title: 'Industry Ratified Certifications',description: 'Credentials validated by leading industry bodies and government organisations.',             accentColor: '#1A73E8', delay: 80  },
-    { icon: UserCheck,  title: 'Expert Industry Mentors',         description: 'Learn from engineers and leaders with 10+ years of real-world experience.',                 accentColor: '#1A73E8', delay: 160 },
-    { icon: Briefcase,  title: 'Portfolio-worthy Projects',       description: 'Build production-grade projects that impress senior engineers on day one.',                 accentColor: '#1A73E8', delay: 240 },
-    { icon: HelpCircle, title: 'Dedicated Query Sessions',        description: 'One-on-one doubt resolution sessions with your mentor, at your convenience.',              accentColor: '#1A73E8', delay: 320 },
-    { icon: Users,      title: 'Active Peer Community',           description: 'Join 50,000+ ambitious learners in a thriving, collaborative learning network.',           accentColor: '#1A73E8', delay: 400 },
+    { icon: Video, title: 'LIVE Interactive Sessions', description: 'Real-time sessions with practitioners — ask, debug, and get live feedback.', accentColor: '#1A73E8', delay: 0 },
+    { icon: Award, title: 'Industry Ratified Certifications', description: 'Credentials validated by leading industry bodies and government organisations.', accentColor: '#1A73E8', delay: 80 },
+    { icon: UserCheck, title: 'Expert Industry Mentors', description: 'Learn from engineers and leaders with 10+ years of real-world experience.', accentColor: '#1A73E8', delay: 160 },
+    { icon: Briefcase, title: 'Portfolio-worthy Projects', description: 'Build production-grade projects that impress senior engineers on day one.', accentColor: '#1A73E8', delay: 240 },
+    { icon: HelpCircle, title: 'Dedicated Query Sessions', description: 'One-on-one doubt resolution sessions with your mentor, at your convenience.', accentColor: '#1A73E8', delay: 320 },
+    { icon: Users, title: 'Active Peer Community', description: 'Join 50,000+ ambitious learners in a thriving, collaborative learning network.', accentColor: '#1A73E8', delay: 400 },
   ];
 
   return (
@@ -259,9 +259,9 @@ const WhyChoose = () => {
         <div
           ref={headerRef}
           style={{
-            opacity:   hdrIn ? 1 : 0,
+            opacity: hdrIn ? 1 : 0,
             transform: hdrIn ? 'translateY(0)' : 'translateY(28px)',
-            transition:'opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1)',
+            transition: 'opacity 0.85s ease, transform 0.85s cubic-bezier(0.22,1,0.36,1)',
           }}
           className="flex flex-col lg:flex-row justify-between items-start mb-20 gap-8"
         >

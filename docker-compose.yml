@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: kelvornex_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: kelvronex_db
+      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-Dtss@1011}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${SPRING_DATASOURCE_PASSWORD:-Dtss@1011}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: kelvornex_backend
+    restart: always
+    ports:
+      - "8085:8085"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PORT: 8085
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kelvronex_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD:-Dtss@1011}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-586504757431-c6l75kc9ol2lmvis489jt2vfbsmlt0go.apps.googleusercontent.com}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST:-smtp.gmail.com}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT:-587}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-*}
+      APP_DATABASE_SEED: ${APP_DATABASE_SEED:-true}
+      SPRING_SQL_INIT_MODE: ${SPRING_SQL_INIT_MODE:-always}
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID:-586504757431-c6l75kc9ol2lmvis489jt2vfbsmlt0go.apps.googleusercontent.com}
+    container_name: kelvornex_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
